@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class pivotActions : MonoBehaviour
 {
-	public bool intro;
+    public bool intro;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -56,27 +57,44 @@ public class pivotActions : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D col)
     {
-		GameObject mill=col.transform.gameObject.transform.parent.gameObject;
-	
-        
-
-
+        var need_reset = false;
+        GameObject mill = null;
+        if (col != null)
+            mill = col.transform.gameObject.transform.parent.gameObject;
+        else
+        {
+            mill = GameObject.FindGameObjectsWithTag("cylinderparent")[0];
+        }
         if (mill.GetComponent<rotate>().stopped) return;
         if (!intro)
         {
-            var current_num =
-                Camera.main.GetComponent<game1_manager>().OneHitOccured();
+            Camera.main.GetComponent<SoundManager>().play_ding();
+            var GM_script = Camera.main.GetComponent<game1_manager>();
+            var current_num = GM_script.OneHitOccured(this.gameObject);
             if (!labled)
-                set_number(current_num);
+            {
+                set_number (current_num);
+                if (GM_script.current_labels.Contains(current_num))
+                {
+                    need_reset = true;
+                }
+            }
             else
             {
-                if (get_my_num() == current_num)
+                if (
+                    get_my_num() == current_num &&
+                    !GM_script.seen.Contains(this.gameObject) &&
+                    (!GM_script.current_labels.Contains(current_num) || labled)
+                )
+                {
                     check_up();
+                    GM_script.seen.Add(this.gameObject);
+                    GM_script.current_labels.Add (current_num);
+                }
                 else
-                    Camera
-                        .main
-                        .GetComponent<game1_manager>()
-                        .OneMistakeOccured();
+                {
+                    need_reset = true;
+                }
             }
         }
 
@@ -84,6 +102,10 @@ public class pivotActions : MonoBehaviour
             mill.GetComponent<rotate>().set_pivot(this.gameObject, true);
         else if (this.gameObject.tag == "counterclockwise")
             mill.GetComponent<rotate>().set_pivot(this.gameObject, false);
+        if (need_reset)
+        {
+            Camera.main.GetComponent<game1_manager>().OneMistakeOccured();
+        }
     }
 
     // Update is called once per frame

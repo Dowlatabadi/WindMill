@@ -32,6 +32,7 @@ public class rotate : MonoBehaviour
     {
         stopped = false;
         pivot.GetComponent<pivotActions>().OnTriggerEnter2D(this.gameObject.GetComponent<BoxCollider2D>());
+		Camera.main.GetComponent<PauseManager>().Plays();
     }
 
     public void SPAWN_pivot(GameObject pivot1)
@@ -39,6 +40,8 @@ public class rotate : MonoBehaviour
         pivot = pivot1;
         var pivot_pos = pivot.transform.position;
         transform.position = pivot_pos;
+		UnityEngine.Debug.Log(pivot_pos);
+		UnityEngine.Debug.Log( transform.position);
     }
 
     public void set_pivot(GameObject pivot1, bool clockwise)

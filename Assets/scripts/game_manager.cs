@@ -5,7 +5,6 @@ using System.Linq;
 
 public class game_manager : MonoBehaviour
 {
-	public AudioClip[] AudioClips; 
 	//-3,3 x
 	//-2,2 y
 	public GameObject pivot_pefab;
@@ -13,24 +12,20 @@ public class game_manager : MonoBehaviour
 	public int number = 0;
 	public GameObject DialoguePrefab;
 	// Start is called before the first frame update
-	public bool musixMuted;
 	public void show(string st){
 	var go = GameObject.Instantiate(DialoguePrefab, new Vector3(0, 0, DialoguePrefab.transform.position.z), Quaternion.identity);
 	go.GetComponent<Dialogue_script>().show(st);
 	 go.transform.SetParent (GameObject.FindGameObjectWithTag("Canvas").transform, false);
 	}
-	public void play_clickSound(){
+	
+    public void start_level()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Game1");
+    }
 
-			gameObject.GetComponent<AudioSource>().PlayOneShot(AudioClips[1],3f);
-
-	}
 	void Start()
 	{
-		//play music
-		if (!musixMuted)
-		{
-			gameObject.GetComponent<AudioSource>().Play();
-		}
+	
 		pivots_pos = new List<Vector2>(){
 			// new Vector2(-2f,1f),
 			// new Vector2(3.5f,2f),

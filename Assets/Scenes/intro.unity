@@ -197,9 +197,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1628066470}
-        m_MethodName: show
-        m_Mode: 5
+      - m_Target: {fileID: 1628066472}
+        m_MethodName: play_clickSound
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1326,7 +1326,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1628066470}
+      - m_Target: {fileID: 1628066472}
         m_MethodName: play_clickSound
         m_Mode: 1
         m_Arguments:
@@ -2446,7 +2446,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1628066470}
+      - m_Target: {fileID: 1628066472}
         m_MethodName: play_clickSound
         m_Mode: 1
         m_Arguments:
@@ -2505,6 +2505,7 @@ GameObject:
   - component: {fileID: 1628066467}
   - component: {fileID: 1628066470}
   - component: {fileID: 1628066471}
+  - component: {fileID: 1628066472}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2588,15 +2589,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0c482a00c8bc7e3bb486645261761a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AudioClips:
-  - {fileID: 8300000, guid: 3b18fec7f439ea8e0a373ebd9d3e4ae3, type: 3}
-  - {fileID: 8300000, guid: 6028e5e512e3c1b139d8c3c308013da7, type: 3}
   pivot_pefab: {fileID: 0}
   pivots_pos: []
   number: 0
   DialoguePrefab: {fileID: 9013008239022693986, guid: 45a3d735bc1fe373396c3bc8900ee522,
     type: 3}
-  musixMuted: 0
 --- !u!82 &1628066471
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2693,6 +2690,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1628066472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1628066466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b3736fee8e76df4390fc9643b39fd45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musixMuted: 0
+  AudioClips:
+  - {fileID: 8300000, guid: 6fbdba1dea24c1b8a880f256d34ba699, type: 3}
+  - {fileID: 8300000, guid: 3b18fec7f439ea8e0a373ebd9d3e4ae3, type: 3}
+  - {fileID: 8300000, guid: 6028e5e512e3c1b139d8c3c308013da7, type: 3}
+  - {fileID: 0}
 --- !u!1 &1696037601
 GameObject:
   m_ObjectHideFlags: 0
@@ -2858,7 +2873,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1628066470}
-        m_MethodName: play_clickSound
+        m_MethodName: start_level
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3547,7 +3562,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1628066470}
+      - m_Target: {fileID: 1628066472}
         m_MethodName: play_clickSound
         m_Mode: 1
         m_Arguments:

@@ -8,6 +8,7 @@ TagManager:
   - cylinderparent
   - counterclockwise
   - Canvas
+  - DialogueBox
   layers:
   - Default
   - TransparentFX

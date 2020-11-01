@@ -10,14 +10,15 @@ public class Dialogue_script : MonoBehaviour
     {
 		try{
 
-		Camera.main.GetComponent<game_manager>().play_clickSound();
+		Camera.main.GetComponent<SoundManager>().play_clickSound();
+		Camera.main.GetComponent<PauseManager>().ResumeifPaused();
 
 		}
 		catch {
-//		Camera.main.GetComponent<game1_manager>().play_clickSound();
 
 		}
         GameObject.Destroy (gameObject);
+
     }
 
     public void show(string text)
