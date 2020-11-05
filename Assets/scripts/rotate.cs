@@ -38,6 +38,7 @@ public class rotate : MonoBehaviour
     public void SPAWN_pivot(GameObject pivot1)
     {
         pivot = pivot1;
+	
         var pivot_pos = pivot.transform.position;
         transform.position = pivot_pos;
 		UnityEngine.Debug.Log(pivot_pos);
@@ -46,6 +47,7 @@ public class rotate : MonoBehaviour
 
     public void set_pivot(GameObject pivot1, bool clockwise)
     {
+		
         pivot = pivot1;
         var pivot_pos = pivot.transform.position;
         var saved_child_pos = child_transform.position;

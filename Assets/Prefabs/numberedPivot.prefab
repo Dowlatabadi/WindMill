@@ -125,6 +125,7 @@ GameObject:
   - component: {fileID: 1151500156133535705}
   - component: {fileID: 6756756490120103539}
   - component: {fileID: 2563297207601182370}
+  - component: {fileID: 114004066767125538}
   m_Layer: 0
   m_Name: numberedPivot
   m_TagString: clockwise
@@ -240,6 +241,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   intro: 0
   labled: 0
+--- !u!114 &114004066767125538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3981381762903689905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d286b649595867263a1e7f27499e9361, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7366370088066231231
 GameObject:
   m_ObjectHideFlags: 0
