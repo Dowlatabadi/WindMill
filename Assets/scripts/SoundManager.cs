@@ -17,7 +17,10 @@ public class SoundManager : MonoBehaviour
     {
         gameObject.GetComponent<AudioSource>().PlayOneShot(AudioClips[0], 1f);
     }
-
+  public void play_failure()
+    {
+        gameObject.GetComponent<AudioSource>().PlayOneShot(AudioClips[3], 2f);
+    }
     // Start is called before the first frame update
     void Start()
     {

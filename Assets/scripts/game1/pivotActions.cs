@@ -22,7 +22,17 @@ public class pivotActions : MonoBehaviour
             .GetComponent<Animator>()
             .SetBool("grow", true);
     }
-
+ public void failed()
+    {
+		var cyl_parent = GameObject.FindGameObjectsWithTag("cylinderparent")[0];
+        cyl_parent.GetComponent<rotate>().stop();
+        gameObject
+            .transform
+            .Find("failure")
+            .GetComponent<Animator>()
+            .SetBool("grow", true);
+			
+    }
     public int get_my_num()
     {
         var str =
@@ -65,10 +75,10 @@ public class pivotActions : MonoBehaviour
         {
             mill = GameObject.FindGameObjectsWithTag("cylinderparent")[0];
         }
-        if (mill.GetComponent<rotate>().stopped) return;
+        if (mill.GetComponent<rotate>().stopped)  return;
         if (!intro)
         {
-            Camera.main.GetComponent<SoundManager>().play_ding();
+            
             var GM_script = Camera.main.GetComponent<game1_manager>();
             var current_num = GM_script.OneHitOccured(this.gameObject);
             if (!labled)
@@ -78,6 +88,10 @@ public class pivotActions : MonoBehaviour
                 {
                     need_reset = true;
                 }
+				else{
+					Camera.main.GetComponent<SoundManager>().play_ding();
+
+				}
             }
             else
             {
@@ -87,6 +101,7 @@ public class pivotActions : MonoBehaviour
                     (!GM_script.current_labels.Contains(current_num) || labled)
                 )
                 {
+					Camera.main.GetComponent<SoundManager>().play_ding();
                     check_up();
                     GM_script.seen.Add(this.gameObject);
                     GM_script.current_labels.Add (current_num);
@@ -104,7 +119,11 @@ public class pivotActions : MonoBehaviour
             mill.GetComponent<rotate>().set_pivot(this.gameObject, false);
         if (need_reset)
         {
-            Camera.main.GetComponent<game1_manager>().OneMistakeOccured();
+           
+ failed();
+    
+Debug.Log("sound");
+            
         }
     }
 

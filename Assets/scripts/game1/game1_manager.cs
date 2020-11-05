@@ -203,16 +203,6 @@ public class game1_manager : MonoBehaviour
         Draw_level (lvl);
     }
 
-    public void unshow_dialogues()
-    {
-        //close other messages
-        var dia = GameObject.FindGameObjectWithTag("DialogueBox");
-
-        if (dia != null)
-        {
-            dia.GetComponent<Dialogue_script>().destroy();
-        }
-    }
 
     // Update is called once per frame
     bool dragging = false;

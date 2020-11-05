@@ -47,7 +47,7 @@ public class touch_col : MonoBehaviour
 			else {
 //close if showing dialogue
 		
-		Camera.main.GetComponent<game1_manager>().unshow_dialogues();
+		Camera.main.GetComponent<DialogueManager>().unshow_dialogues();
 
 
 			}
