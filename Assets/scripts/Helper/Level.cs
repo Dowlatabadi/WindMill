@@ -43,7 +43,7 @@ namespace Classes
             this.Known_pivots = Known_pivots;
         }
 
-        public Level(int number_of_C, int number_of_CC,float label_portion)
+        public Level(game_mode game_mode,int number_of_C, int number_of_CC,float label_portion)
         {
 			var total_points=number_of_C+number_of_CC;
 			var labeled_number=(int)(total_points*label_portion);
@@ -69,7 +69,7 @@ namespace Classes
             for (int i = 0; i < total_points; i++)
             {
                 (Vector2 pivot_pos,Pivot_type pivot_type,bool labeled) cur_tuple;
-                var point_pos =Helper.find_next_point(res.Select(x => x.pivot_pos).ToList(),.4f,5f);
+                var point_pos =Helper.find_next_point(res.Select(x => x.pivot_pos).ToList(),5f,20f);
                 cur_tuple.pivot_pos = point_pos;
 
                 //rotation
@@ -90,6 +90,8 @@ namespace Classes
             }
             Pivots = res;
 			 this.Known_pivots = labeled_number;
+			 this.gamemode = game_mode;
+
         }
 
      

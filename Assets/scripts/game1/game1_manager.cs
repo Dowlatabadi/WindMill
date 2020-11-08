@@ -172,7 +172,7 @@ public class game1_manager : MonoBehaviour
           
 		cyl_parent.transform.SetParent(gos.ElementAt(0).transform,true);
 }
-		UnityEngine.Debug.Log(gos.ElementAt(0).transform.position);
+		//UnityEngine.Debug.Log(gos.ElementAt(0).transform.position);
 
         cyl_parent.transform.eulerAngles =
             new Vector3(cyl_parent.transform.eulerAngles.x,
@@ -187,33 +187,40 @@ public class game1_manager : MonoBehaviour
     void Start()
     {
         UnityEngine.Debug.Log("test");
+        UnityEngine.Debug.Log("test slope="+Helper.PointsGetSlopeCloseness(new Vector2(0,0),new Vector2(1,0),new Vector2(0,1)));
 
         failure_counter = 0;
         current_order = 0;
-        UnityEngine
-            .Debug
-            .Log(Helper
-                .LinePointGetDist(new Vector2(1, 1.5f),
-                new Line { m_slope = 1, b = 0 }));
+        // UnityEngine
+        //     .Debug
+        //     .Log(Helper
+        //         .LinePointGetDist(new Vector2(1, 1.5f),
+        //         new Line { m_slope = 1, b = 0 }));
 
         // lvl=new Level(5);
         lvl =
-            new Level(game_mode.pivotCreation,
-                new List<(
-                        Vector2 pivot_pos,
-                        Pivot_type pivot_type,
-                        bool labeled
-                    )
-                > {
-                    (new Vector2(1, 1), Pivot_type.ClockWise, true),
-                    (new Vector2(0, 0), Pivot_type.CounterClockWise, false),
-                    (new Vector2(-1, 2), Pivot_type.ClockWise, true),
-                    (new Vector2(-2, 3), Pivot_type.ClockWise, true),
-                    (new Vector2(2f, -2.5f), Pivot_type.ClockWise, false),
-                    (new Vector2(1.5f, -3.5f), Pivot_type.ClockWise, false)
-                },
-                "string Info",
-                2);
+            // new Level(game_mode.pivotCreation,
+            //     new List<(
+            //             Vector2 pivot_pos,
+            //             Pivot_type pivot_type,
+            //             bool labeled
+            //         )
+            //     > {
+            //         (new Vector2(1, 1), Pivot_type.ClockWise, true),
+            //         (new Vector2(0, 0), Pivot_type.CounterClockWise, false),
+            //         (new Vector2(-1, 2), Pivot_type.ClockWise, true),
+            //         (new Vector2(-2, 3), Pivot_type.ClockWise, true),
+            //         (new Vector2(2f, -2.5f), Pivot_type.ClockWise, false),
+            //         (new Vector2(1.5f, -3.5f), Pivot_type.ClockWise, false)
+            //     },
+            //     "string Info",
+            //     2);
+
+
+			  new Level(game_mode.pivotCreation,
+            3,3,.5f
+			
+			);
 
         Draw_level (lvl);
     }
