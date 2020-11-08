@@ -21,7 +21,9 @@ public class dest_move : MonoBehaviour
 
 		transform.position = Vector3.Lerp(transform.position, DestPos, Time.deltaTime*5f);
 
-		if (Vector3.Distance(transform.position, DestPos) < .1f)
-			Move = false;
+		if (Vector3.Distance(transform.position, DestPos) < .3f)
+			{
+			transform.position=	DestPos;
+				Move = false;}
 	}
 }

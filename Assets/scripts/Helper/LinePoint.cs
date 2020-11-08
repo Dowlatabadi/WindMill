@@ -15,6 +15,20 @@ namespace LinePoint
 
     public static class Helper
     {
+public static float PointsGetSlopeCloseness(Vector2 point,Vector2 point1,Vector2 point2)
+        {
+var line1 = Helper.GetLine(point1, point);
+var line2 = Helper.GetLine(point2, point);
+var actualline = Helper.GetLine(point1, point2);
+
+var diff1=Mathf.Abs( line1.m_slope-actualline.m_slope);
+var diff2=Mathf.Abs( line2.m_slope-actualline.m_slope);
+
+
+ return Mathf.Min(diff1,diff2);
+        }
+
+
         public static float LinePointGetDist(Vector2 point, Line line)
         {
             var b1 = point.y + (point.x / line.m_slope);
@@ -39,21 +53,23 @@ namespace LinePoint
         }
 
         public static Vector2
-        find_next_point(List<Vector2> points, float min_dist)
+        find_next_point(List<Vector2> points, float min_dist,float min_slope)
         {
             Stopwatch stopWatch = new Stopwatch();
             stopWatch.Start();
             float distance = 0;
+            float Slope_diff = 0;
             var x = Random.Range(-2f, 2f);
             var y = Random.Range(-4f, 4f);
             var point = new Vector2(x, y);
             if (points.Count() <= 1) return point;
             bool is_ok;
-            while (distance < min_dist)
+            while (distance < min_dist && Slope_diff < min_slope)
             {
                 if (stopWatch.ElapsedMilliseconds > 5000)
                 {
                     UnityEngine.Debug.Log(distance + "failed");
+                    UnityEngine.Debug.Log(Slope_diff + "failed");
                     break;
                 }
                 x = Random.Range(-1.5f, 1.5f);
@@ -71,7 +87,8 @@ namespace LinePoint
                         var point2 = points.ElementAt(j);
                         var line = Helper.GetLine(point1, point2);
                         distance = Helper.LinePointGetDist(point, line);
-                        if (distance < min_dist)
+                        Slope_diff = Helper.PointsGetSlopeCloseness(point, point1 , point2);
+                        if (distance < min_dist || Slope_diff<min_slope)
                         {
                             is_ok = false;
                             break;
