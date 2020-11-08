@@ -142,7 +142,7 @@ namespace LinePoint
                 }
                 if (!is_ok)
                 {
-                    var worst = so_far_worst.OrderBy(w => w.Item1).First();
+                    var worst = so_far_worst.OrderBy(w => w.Item1*w.Item1+w.Item2).First();
                     result_points.Add((point, worst.Item1, worst.Item2));
                 }
             }
@@ -154,7 +154,7 @@ namespace LinePoint
             {
                 chosen =
                     result_points
-                        .OrderByDescending(yy => yy.Item2)
+                        .OrderByDescending(yy => yy.Item2*yy.Item2+yy.Item3)
                         .First()
                         .Item1;
             }

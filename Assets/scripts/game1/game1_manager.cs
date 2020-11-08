@@ -218,7 +218,7 @@ public class game1_manager : MonoBehaviour
 
 
 			  new Level(game_mode.pivotCreation,
-            3,3,.5f
+            5,1,.2f
 			
 			);
 
