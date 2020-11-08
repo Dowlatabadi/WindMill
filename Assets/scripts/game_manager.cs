@@ -22,7 +22,14 @@ public class game_manager : MonoBehaviour
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("Game1");
     }
-
+ public void Scene_Selection()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Selection");
+    }
+	 public void Scene_About()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("About");
+    }
 	void Start()
 	{
 	
