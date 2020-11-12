@@ -1,9 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using LinePoint;
 using UnityEngine;
-using System;
+
 namespace Classes
 {
     public enum game_mode
@@ -14,8 +15,8 @@ namespace Classes
 
     public enum Pivot_type
     {
-        ClockWise=1,
-        CounterClockWise=-1
+        ClockWise = 1,
+        CounterClockWise = -1
     }
 
     public class Level
@@ -70,10 +71,13 @@ namespace Classes
                     .OrderBy(x => UnityEngine.Random.value)
                     .Take(labeled_number)
                     .ToList();
-UnityEngine.Debug.Log("labeled ones===="+labeled_number);
-UnityEngine.Debug.Log(String.Join(",",Labeled_indexes));
+            UnityEngine.Debug.Log("labeled ones====" + labeled_number);
+            UnityEngine.Debug.Log(String.Join(",", Labeled_indexes));
             List<int> C_indexes =
-                indexes.OrderBy(x => UnityEngine.Random.value).Take(number_of_C).ToList();
+                indexes
+                    .OrderBy(x => UnityEngine.Random.value)
+                    .Take(number_of_C)
+                    .ToList();
 
             var res =
                 new List<(
@@ -116,7 +120,7 @@ UnityEngine.Debug.Log(String.Join(",",Labeled_indexes));
             }
             UnityEngine.Debug.Log("before orderise pivots: " + res.Count());
 
-            var result = Orderise(res);
+            // var result = Orderise(res);
             UnityEngine.Debug.Log("After orderise pivots: " + result.Count());
 
             Pivots = result;
@@ -136,7 +140,10 @@ UnityEngine.Debug.Log(String.Join(",",Labeled_indexes));
             List<(Vector2 pivot_pos, Pivot_type pivot_type, bool labeled)> input
         )
         {
-                UnityEngine.Debug.Log("input labelds1:============= " + input.Where(x=>x.labeled).Count());
+            UnityEngine
+                .Debug
+                .Log("input labelds1:============= " +
+                input.Where(x => x.labeled).Count());
 
             var res =
                 new List<(
@@ -149,7 +156,7 @@ UnityEngine.Debug.Log(String.Join(",",Labeled_indexes));
             var tot = input.Count();
             var next_index = UnityEngine.Random.Range(0, tot);
             var total_steps = Mathf.Min(10, tot);
-			var l1=new Line {m_slope=99999f, b=0 };
+            var l1 = new Vector2(0, 1);
             int i = 1;
             List<int> seen = new List<int>();
             res
@@ -162,19 +169,20 @@ UnityEngine.Debug.Log(String.Join(",",Labeled_indexes));
 
             //todo
             seen.Add (next_index);
-			var Clocksign=(int)input[next_index].pivot_type;
+            var Clocksign = (int) input[next_index].pivot_type;
             while (i < total_steps)
             {
+                i++;
+
                 var prev_point = input[next_index].pivot_pos;
                 next_index =
                     next_order(input.Select(x => x.pivot_pos).ToList(),
-                    next_index
-                    ,Clocksign,l1);
-                l1 =
-                    Helper
-                        .GetLine(prev_point, input[next_index].pivot_pos)
-                        ;
-						Clocksign=(int)input[next_index].pivot_type;
+                    next_index,
+                    Clocksign,
+                    l1);
+                l1 =  input[next_index].pivot_pos -  prev_point;
+
+                Clocksign = (int) input[next_index].pivot_type;
                 if (seen.Contains(next_index)) break;
 
                 //todo
@@ -187,16 +195,15 @@ UnityEngine.Debug.Log(String.Join(",",Labeled_indexes));
                         input[next_index].labeled,
                         i
                     ));
-                UnityEngine.Debug.Log("next index: " + next_index);
-
-                i++;
+                // UnityEngine.Debug.Log("next index: " + next_index);
             }
-			var debug_labeleds=0;
+            var debug_labeleds = 0;
             for (int j = 0; j < tot; j++)
             {
-                if (input[j].labeled) {
-					debug_labeleds++;
-				}
+                if (input[j].labeled)
+                {
+                    debug_labeleds++;
+                }
                 if (seen.Contains(j)) continue;
                 res
                     .Add((
@@ -206,8 +213,8 @@ UnityEngine.Debug.Log(String.Join(",",Labeled_indexes));
                         -1000
                     ));
             }
-                UnityEngine.Debug.Log("final labelds:============= " + debug_labeleds);
 
+            // UnityEngine.Debug.Log("final labelds:============= " + debug_labeleds);
             //may cause some mistakes in future
             return res;
         }
@@ -215,30 +222,58 @@ UnityEngine.Debug.Log(String.Join(",",Labeled_indexes));
         private int
         next_order(
             List<Vector2> positions,
-            int start_index
-        ,int Clocksign,
-            Line l1)
+            int start_index,
+            int Clocksign,
+            Vector2 l1
+        )
         {
-			// Clocksign=-Clocksign;
-            var min_diff = 1000000f;
-            
+            //Clocksign=-Clocksign;
+            l1 = new Vector2(l1.x * Clocksign, l1.y * Clocksign);
+            var min_diff = 1f;
+
             var res = -1;
             for (int i = 0; i < positions.Count(); i++)
             {
                 if (i == start_index) continue;
 
                 //order of point 1 and 2 is important==direction of line
-				var AngelBetween=Helper.LinesAngelBetween(l1,Helper.GetLine(positions[start_index],positions[i]));
-                
+                var AngelBetween =
+                    Vector2
+                        .SignedAngle(l1,
+                        -positions[start_index] + positions[i]);
+
                 if (
-                    Clocksign*(AngelBetween) < min_diff &&
-                    Mathf.Abs( AngelBetween) >=1/*degree*/
+                    AngelBetween != 0 &&
+                    AngelBetween != 180 &&
+                    AngelBetween != -180
                 )
                 {
-                    res = i;
-                    min_diff = Clocksign*AngelBetween;
+                    if (AngelBetween * min_diff > 0 && AngelBetween > min_diff)
+                    {  
+						UnityEngine
+                            .Debug
+                            .Log($" same signs and {AngelBetween} > {min_diff}");
+                        res = i;
+                        min_diff = AngelBetween;
+                      
+                    }
+                    else if (AngelBetween * min_diff < 0 && AngelBetween < 0)
+                    { 
+						UnityEngine
+                            .Debug
+                            .Log($" different signs and {AngelBetween} is better than {min_diff}");
+                        res = i;
+                        min_diff = AngelBetween;
+                       
+                    }
                 }
             }
+            UnityEngine
+                .Debug
+                .Log($"center is {start_index} and chosen diff is: " +
+                min_diff.ToString() +
+                " whose index is: " +
+                res);
             return res;
         }
     }

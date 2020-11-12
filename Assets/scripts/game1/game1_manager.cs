@@ -187,8 +187,12 @@ public class game1_manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        UnityEngine.Debug.Log("test");
-        UnityEngine.Debug.Log("test slope="+Helper.PointsGetSlopeCloseness(new Vector2(0,0),new Vector2(1,0),new Vector2(0,1)));
+        UnityEngine.Debug.Log("slope is:::::"+Vector2.SignedAngle(new Vector2(0,1),new Vector2(1,2)));
+        UnityEngine.Debug.Log("slope is:::::"+Vector2.SignedAngle(new Vector2(0,1),new Vector2(1,-2)));
+        UnityEngine.Debug.Log("slope is:::::"+Vector2.SignedAngle(new Vector2(0,1),new Vector2(-2,-1)));
+        UnityEngine.Debug.Log("slope is:::::"+Vector2.SignedAngle(new Vector2(0,1),new Vector2(-1,2)));
+
+        // UnityEngine.Debug.Log("test slope="+Helper.PointsGetSlopeCloseness(new Vector2(0,0),new Vector2(1,0),new Vector2(0,1)));
 
         failure_counter = 0;
         current_order = 0;
@@ -219,7 +223,7 @@ public class game1_manager : MonoBehaviour
 
 
 			  new Level(game_mode.pivotCreation,
-            5,1,1f
+            3,0,1f
 			
 			);
 
