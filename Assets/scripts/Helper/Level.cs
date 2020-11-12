@@ -148,8 +148,8 @@ UnityEngine.Debug.Log(String.Join(",",Labeled_indexes));
                 >();
             var tot = input.Count();
             var next_index = UnityEngine.Random.Range(0, tot);
-            var start_slope = -9999f;
             var total_steps = Mathf.Min(10, tot);
+			var l1=new Line {m_slope=99999f, b=0 };
             int i = 1;
             List<int> seen = new List<int>();
             res
@@ -169,11 +169,11 @@ UnityEngine.Debug.Log(String.Join(",",Labeled_indexes));
                 next_index =
                     next_order(input.Select(x => x.pivot_pos).ToList(),
                     next_index
-                    ,Clocksign,start_slope);
-                start_slope =
+                    ,Clocksign,l1);
+                l1 =
                     Helper
                         .GetLine(prev_point, input[next_index].pivot_pos)
-                        .m_slope;
+                        ;
 						Clocksign=(int)input[next_index].pivot_type;
                 if (seen.Contains(next_index)) break;
 
@@ -217,29 +217,26 @@ UnityEngine.Debug.Log(String.Join(",",Labeled_indexes));
             List<Vector2> positions,
             int start_index
         ,int Clocksign,
-            float line_slope = -9999f)
+            Line l1)
         {
+			// Clocksign=-Clocksign;
             var min_diff = 1000000f;
-            if (line_slope == -9999f) line_slope = 1000000f;
-
+            
             var res = -1;
             for (int i = 0; i < positions.Count(); i++)
             {
                 if (i == start_index) continue;
 
                 //order of point 1 and 2 is important==direction of line
-                var m =
-                    Helper
-                        .GetLine(positions[i], positions[start_index])
-                        .m_slope;
-						
+				var AngelBetween=Helper.LinesAngelBetween(l1,Helper.GetLine(positions[start_index],positions[i]));
+                
                 if (
-                    Mathf.Abs(Clocksign*(m - line_slope)) < min_diff &&
-                    Mathf.Abs(m - line_slope) != 0
+                    Clocksign*(AngelBetween) < min_diff &&
+                    Mathf.Abs( AngelBetween) >=1/*degree*/
                 )
                 {
                     res = i;
-                    min_diff = Mathf.Abs(m - line_slope);
+                    min_diff = Clocksign*AngelBetween;
                 }
             }
             return res;

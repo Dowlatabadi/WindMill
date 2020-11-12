@@ -32,7 +32,14 @@ namespace LinePoint
 
             return Mathf.Abs((angle1 * 180) / Mathf.PI);
         }
+public static float LinesAngelBetween(Line line1,Line l2){
+var angle1 =
+                Mathf
+                    .Atan((line1.m_slope - l2.m_slope) /
+                    (1f + line1.m_slope * l2.m_slope));
 
+            return ((angle1 * 180) / Mathf.PI);
+}
         public static float LinePointGetDist(Vector2 point, Line line)
         {
             var b1 = point.y + (point.x / line.m_slope);
@@ -57,13 +64,12 @@ namespace LinePoint
 
         public static Line GetLine(Vector2 point1, Vector2 point2)
         {
-            var slope = (float)(point2.y - point1.y) / (point1.x - point2.x);
+            var slope = (float)(point2.y - point1.y) / (float)(point1.x - point2.x);
             if (point1.x - point2.x == 0) slope = 10000f;
             return new Line {
-                m_slope = Mathf.Abs(slope),
+                m_slope = slope,
                 b =
-                    (float)(point1.x * point2.y - point2.x * point1.y) /
-                    (point1.x - point2.x)
+                   point1.y-( slope*point1.x )
             };
         }
 
