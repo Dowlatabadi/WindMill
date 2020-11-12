@@ -114,6 +114,7 @@ public class game1_manager : MonoBehaviour
 
     void Draw_level(Level lvl)
     {
+		UnityEngine.Debug.Log("all lvl pivots: "+lvl.Pivots.Count());
 			var cyl_parent = GameObject.FindGameObjectsWithTag("cylinderparent")[0];
 		gos= new List<GameObject>();
         int i = 0;
@@ -133,9 +134,9 @@ public class game1_manager : MonoBehaviour
                             pvt.pivot_pos.y,
                             checkpivot_pefab.transform.position.z),
                         Quaternion.identity);
-                go.GetComponent<pivotActions>().set_number(i);
+                go.GetComponent<pivotActions>().set_number(pvt.order_num);
 
-                current_labels.Add (i);
+                current_labels.Add (pvt.order_num);
             }
             else
             {
@@ -218,7 +219,7 @@ public class game1_manager : MonoBehaviour
 
 
 			  new Level(game_mode.pivotCreation,
-            5,1,.2f
+            5,1,1f
 			
 			);
 
