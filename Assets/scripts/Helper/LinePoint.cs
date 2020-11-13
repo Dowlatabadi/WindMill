@@ -76,7 +76,7 @@ var angle1 =
         public static Vector2
         find_next_point(List<Vector2> points, float min_dist, float min_slope)
         {
-			var min_margin=0f;
+			var min_margin=.1f;
             List<(Vector2, float, float,float)> result_points =
                 new List<(Vector2, float, float,float)>();
             Stopwatch stopWatch = new Stopwatch();
@@ -99,6 +99,8 @@ var angle1 =
                     y = Random.Range(-3.5f, 3.5f);
                     point = new Vector2(x, y);
                     distance = Vector2.Distance(points[0], point);
+						margin=Mathf.Abs(point.x-points[0].x);
+
                 }
 
                 return point;
@@ -110,7 +112,7 @@ var angle1 =
             while (distance < min_dist || Slope_diff < min_slope  ||margin < min_margin )
             {
                 try1++;
-                if (stopWatch.ElapsedMilliseconds > 300)
+                if (stopWatch.ElapsedMilliseconds > 100)
                 {
                     // UnityEngine.Debug.Log("timeout failed");
                     timeOut = true;
@@ -151,7 +153,7 @@ var angle1 =
                 }
                 if (!is_ok)
                 {
-                    var worst = so_far_worst.OrderBy(w => w.Item1*w.Item1+w.Item2+((w.Item3)*(w.Item3))).First();
+                    var worst = so_far_worst.OrderBy(w => w.Item1*w.Item1+w.Item2+(50/*factor of margin*/*(w.Item3))).First();
                     result_points.Add((point, worst.Item1, worst.Item2,worst.Item3));
                 }
             }
@@ -163,7 +165,7 @@ var angle1 =
             {
                 chosen =
                     result_points
-                        .OrderByDescending(yy => yy.Item2*yy.Item2+yy.Item3+((yy.Item4)*(yy.Item4)))
+                        .OrderByDescending(yy => yy.Item2*yy.Item2+yy.Item3+(50*(yy.Item4)))
                         .First()
                         .Item1;
             }

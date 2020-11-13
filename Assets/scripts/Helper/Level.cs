@@ -120,7 +120,8 @@ namespace Classes
             }
             UnityEngine.Debug.Log("before orderise pivots: " + res.Count());
 
-            // var result = Orderise(res);
+            // var result = FakeOrderise(res);
+            var result = Orderise(res);
             UnityEngine.Debug.Log("After orderise pivots: " + result.Count());
 
             Pivots = result;
@@ -130,6 +131,21 @@ namespace Classes
 
         //sets the order num for all pivots
         private List<(
+                Vector2 pivot_pos,
+                Pivot_type pivot_type,
+                bool labeled,
+                int order_num
+            )
+        >
+        FakeOrderise(
+            List<(Vector2 pivot_pos, Pivot_type pivot_type, bool labeled)> input
+        )
+        {
+            return input
+                .Select(x => (x.pivot_pos, x.pivot_type, x.labeled, -1000))
+                .ToList();
+        }
+ private List<(
                 Vector2 pivot_pos,
                 Pivot_type pivot_type,
                 bool labeled,
@@ -180,7 +196,7 @@ namespace Classes
                     next_index,
                     Clocksign,
                     l1);
-                l1 =  input[next_index].pivot_pos -  prev_point;
+                l1 = -input[next_index].pivot_pos + prev_point;
 
                 Clocksign = (int) input[next_index].pivot_type;
                 if (seen.Contains(next_index)) break;
@@ -227,45 +243,49 @@ namespace Classes
             Vector2 l1
         )
         {
-            //Clocksign=-Clocksign;
-            l1 = new Vector2(l1.x * Clocksign, l1.y * Clocksign);
+            Clocksign=-Clocksign;
+            l1 = new Vector2(l1.x , l1.y );
             var min_diff = 1f;
 
-            var res = -1;
+            var res = -180;
             for (int i = 0; i < positions.Count(); i++)
             {
                 if (i == start_index) continue;
 
                 //order of point 1 and 2 is important==direction of line
+				var mapped_and_maybe_reflected= -positions[start_index] + positions[i];
+			if (Vector2.SignedAngle(l1,mapped_and_maybe_reflected)*Clocksign>0)
+			mapped_and_maybe_reflected=new Vector2(-mapped_and_maybe_reflected.x,-mapped_and_maybe_reflected.y);
                 var AngelBetween =
                     Vector2
                         .SignedAngle(l1,
-                        -positions[start_index] + positions[i]);
-
+                       mapped_and_maybe_reflected);
+UnityEngine.Debug.Log("new ang: "+AngelBetween);
                 if (
                     AngelBetween != 0 &&
                     AngelBetween != 180 &&
                     AngelBetween != -180
                 )
                 {
-                    if (AngelBetween * min_diff > 0 && AngelBetween > min_diff)
-                    {  
-						UnityEngine
-                            .Debug
-                            .Log($" same signs and {AngelBetween} > {min_diff}");
-                        res = i;
-                        min_diff = AngelBetween;
-                      
-                    }
-                    else if (AngelBetween * min_diff < 0 && AngelBetween < 0)
-                    { 
-						UnityEngine
-                            .Debug
-                            .Log($" different signs and {AngelBetween} is better than {min_diff}");
-                        res = i;
-                        min_diff = AngelBetween;
-                       
-                    }
+                    if (/*AngelBetween * min_diff> 0 && */ Math.Abs(AngelBetween) > Math.Abs(min_diff)){
+res=i;
+min_diff=AngelBetween;
+					}
+                    // {
+                    //     UnityEngine
+                    //         .Debug
+                    //         .Log($" same signs and {AngelBetween} > {min_diff}");
+                    //     res = i;
+                    //     min_diff = AngelBetween;
+                    // }
+                    // else if (AngelBetween * min_diff < 0 && AngelBetween < 0)
+                    // {
+                    //     UnityEngine
+                    //         .Debug
+                    //         .Log($" different signs and {AngelBetween} is better than {min_diff}");
+                    //     res = i;
+                    //     min_diff = AngelBetween;
+                    // }
                 }
             }
             UnityEngine
