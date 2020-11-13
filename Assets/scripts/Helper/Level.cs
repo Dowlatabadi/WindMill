@@ -243,7 +243,7 @@ namespace Classes
             Vector2 l1
         )
         {
-            Clocksign=-Clocksign;
+            //Clocksign=-Clocksign;
             l1 = new Vector2(l1.x , l1.y );
             var min_diff = 1f;
 
@@ -254,7 +254,7 @@ namespace Classes
 
                 //order of point 1 and 2 is important==direction of line
 				var mapped_and_maybe_reflected= -positions[start_index] + positions[i];
-			if (Vector2.SignedAngle(l1,mapped_and_maybe_reflected)*Clocksign>0)
+			if (Vector2.SignedAngle(l1,mapped_and_maybe_reflected)*Clocksign<0)
 			mapped_and_maybe_reflected=new Vector2(-mapped_and_maybe_reflected.x,-mapped_and_maybe_reflected.y);
                 var AngelBetween =
                     Vector2
