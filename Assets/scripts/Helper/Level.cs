@@ -9,8 +9,10 @@ namespace Classes
 {
     public enum game_mode
     {
-        millCreataion,
-        pivotCreation
+        millCreataion_orderise,
+        pivotCreation_orderise,
+		millCreataion_inaccessible_pivots,
+		pivotCreation_inaccessible_pivots,
     }
 
     public enum Pivot_type

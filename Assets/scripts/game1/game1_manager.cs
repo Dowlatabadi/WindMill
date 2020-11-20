@@ -26,7 +26,7 @@ public class game1_manager : MonoBehaviour
 
     List<GameObject> gos = new List<GameObject>();
 
-	public GameObject spawn_location;
+    public GameObject spawn_location;
 
     public List<int> current_labels = new List<int>();
 
@@ -74,19 +74,19 @@ public class game1_manager : MonoBehaviour
 
     public void OneMistakeOccured()
     {
-			var cyl_parent = GameObject.FindGameObjectsWithTag("cylinderparent")[0];
+        var cyl_parent = GameObject.FindGameObjectsWithTag("cylinderparent")[0];
 
-		cyl_parent.transform.parent=null;
+        cyl_parent.transform.parent = null;
         failure_counter++;
         if (failure_counter > renew_limit)
         {
-        UnityEngine.Debug.Log("renew1");
+            UnityEngine.Debug.Log("renew1");
 
             renew();
         }
         else
         {
-        UnityEngine.Debug.Log("reset1");
+            UnityEngine.Debug.Log("reset1");
 
             reset();
         }
@@ -107,16 +107,16 @@ public class game1_manager : MonoBehaviour
         {
             GameObject.Destroy (pvt_go);
         }
-       
+
         UnityEngine.Debug.Log("reset");
         Draw_level (lvl);
     }
 
     void Draw_level(Level lvl)
     {
-		UnityEngine.Debug.Log("all lvl pivots: "+lvl.Pivots.Count());
-			var cyl_parent = GameObject.FindGameObjectsWithTag("cylinderparent")[0];
-		gos= new List<GameObject>();
+        UnityEngine.Debug.Log("all lvl pivots: " + lvl.Pivots.Count());
+        var cyl_parent = GameObject.FindGameObjectsWithTag("cylinderparent")[0];
+        gos = new List<GameObject>();
         int i = 0;
         foreach (var pvt in lvl.Pivots)
         {
@@ -136,7 +136,7 @@ public class game1_manager : MonoBehaviour
                         Quaternion.identity);
                 go.GetComponent<pivotActions>().set_number(pvt.order_num);
 
-                current_labels.Add (pvt.order_num);
+                current_labels.Add(pvt.order_num);
             }
             else
             {
@@ -149,10 +149,12 @@ public class game1_manager : MonoBehaviour
                         Quaternion.identity);
             }
             go.GetComponent<pivotActions>().labled = pvt.labeled;
-	if (failure_counter==0){
-            go.GetComponent<dest_move>().Move = true;
-            go.GetComponent<dest_move>().DestPos = go.transform.position;
-			 go.transform.position=spawn_location.transform.position;}
+            if (failure_counter == 0)
+            {
+                go.GetComponent<dest_move>().Move = true;
+                go.GetComponent<dest_move>().DestPos = go.transform.position;
+                go.transform.position = spawn_location.transform.position;
+            }
             if (pvt.pivot_type == Pivot_type.ClockWise)
             {
                 go.gameObject.tag = "clockwise";
@@ -166,42 +168,54 @@ public class game1_manager : MonoBehaviour
             }
             gos.Add (go);
         }
-        
-        cyl_parent.GetComponent<rotate>().SPAWN_pivot(gos.ElementAt(0));
-		//move effect initial
-		if (failure_counter==0){
-          
-		cyl_parent.transform.SetParent(gos.ElementAt(0).transform,true);
-}
-		//UnityEngine.Debug.Log(gos.ElementAt(0).transform.position);
 
+        cyl_parent.GetComponent<rotate>().SPAWN_pivot(gos.ElementAt(0));
+
+        //move effect initial
+        if (failure_counter == 0)
+        {
+            cyl_parent.transform.SetParent(gos.ElementAt(0).transform, true);
+        }
+
+        //UnityEngine.Debug.Log(gos.ElementAt(0).transform.position);
         cyl_parent.transform.eulerAngles =
             new Vector3(cyl_parent.transform.eulerAngles.x,
                 cyl_parent.transform.eulerAngles.y,
                 0);
         cyl_parent.GetComponent<rotate>().stop();
-		
-
     }
+
+    public game_mode gamemode;
 
     // Start is called before the first frame update
     void Start()
     {
-        UnityEngine.Debug.Log("slope is:::::"+Vector2.SignedAngle(new Vector2(0,1),new Vector2(1,2)));
-        UnityEngine.Debug.Log("slope is:::::"+Vector2.SignedAngle(new Vector2(0,1),new Vector2(1,-2)));
-        UnityEngine.Debug.Log("slope is:::::"+Vector2.SignedAngle(new Vector2(0,1),new Vector2(-2,-1)));
-        UnityEngine.Debug.Log("slope is:::::"+Vector2.SignedAngle(new Vector2(0,1),new Vector2(-1,2)));
+        UnityEngine
+            .Debug
+            .Log("slope is:::::" +
+            Vector2.SignedAngle(new Vector2(0, 1), new Vector2(1, 2)));
+        UnityEngine
+            .Debug
+            .Log("slope is:::::" +
+            Vector2.SignedAngle(new Vector2(0, 1), new Vector2(1, -2)));
+        UnityEngine
+            .Debug
+            .Log("slope is:::::" +
+            Vector2.SignedAngle(new Vector2(0, 1), new Vector2(-2, -1)));
+        UnityEngine
+            .Debug
+            .Log("slope is:::::" +
+            Vector2.SignedAngle(new Vector2(0, 1), new Vector2(-1, 2)));
 
         // UnityEngine.Debug.Log("test slope="+Helper.PointsGetSlopeCloseness(new Vector2(0,0),new Vector2(1,0),new Vector2(0,1)));
-
         failure_counter = 0;
         current_order = 0;
+
         // UnityEngine
         //     .Debug
         //     .Log(Helper
         //         .LinePointGetDist(new Vector2(1, 1.5f),
         //         new Line { m_slope = 1, b = 0 }));
-
         // lvl=new Level(5);
         lvl =
             // new Level(game_mode.pivotCreation,
@@ -220,72 +234,11 @@ public class game1_manager : MonoBehaviour
             //     },
             //     "string Info",
             //     2);
-
-
-			  new Level(game_mode.pivotCreation,
-            1,1,1f
-			
-			);
-
+            // new Level(game_mode.pivotCreation_orderise, 5, 5, 1f);
+            new Level(game_mode.pivotCreation_orderise, 5, 5, 1f);
+        gamemode = lvl.gamemode;
         Draw_level (lvl);
     }
 
-
     // Update is called once per frame
-    bool dragging = false;
-
-    Vector3 drag_pos = Vector3.zero;
-
-    void Update()
-    {
-        if (
-            Input.GetMouseButton(0) &&
-            !dragging &&
-            GameObject
-                .FindGameObjectsWithTag("cylinderparent")[0]
-                .GetComponent<rotate>()
-                .stopped
-        )
-        {
-            UnityEngine.Debug.Log("started");
-
-            dragging = true;
-            drag_pos = Input.mousePosition;
-        }
-        if (
-            Input.GetMouseButton(0) &&
-            dragging &&
-            GameObject
-                .FindGameObjectsWithTag("cylinderparent")[0]
-                .GetComponent<rotate>()
-                .stopped
-        )
-        //rotation phase
-        {
-            UnityEngine.Debug.Log("updown");
-
-            var mill = GameObject.FindGameObjectsWithTag("cylinderparent")[0];
-
-            var currpos = Input.mousePosition;
-            var amount = (currpos.y - drag_pos.y>0)?1f:-1f;
-            mill.transform.eulerAngles =
-                new Vector3(mill.transform.eulerAngles.x,
-                    mill.transform.eulerAngles.y,
-                    mill.transform.eulerAngles.z + .3f * amount);
-        }
-        if (
-            Input.GetMouseButtonUp(0) &&
-            dragging &&
-            GameObject
-                .FindGameObjectsWithTag("cylinderparent")[0]
-                .GetComponent<rotate>()
-                .stopped
-        )
-        {
-            UnityEngine.Debug.Log("release");
-
-            dragging = false;
-            drag_pos = Vector3.zero;
-        }
-    }
 }

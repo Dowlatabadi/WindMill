@@ -46,6 +46,9 @@ public class pivotActions : MonoBehaviour
 
     public void set_number(int num)
     {
+		string st=num.ToString();
+		if (num==-1000)
+		st="∞";
         //set color first
         //gameObject.transform.Find("number").GetComponent<TMPro.TextMeshPro>().text=num.ToString();;
         gameObject
@@ -57,7 +60,7 @@ public class pivotActions : MonoBehaviour
             .transform
             .Find("number")
             .GetComponent<TMPro.TextMeshPro>()
-            .text = num.ToString();
+            .text = st;
         gameObject
             .transform
             .Find("number")
