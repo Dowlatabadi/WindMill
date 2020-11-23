@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Classes;
 using UnityEngine;
 
 public class pivotActions : MonoBehaviour
@@ -22,17 +23,18 @@ public class pivotActions : MonoBehaviour
             .GetComponent<Animator>()
             .SetBool("grow", true);
     }
- public void failed()
+
+    public void failed()
     {
-		var cyl_parent = GameObject.FindGameObjectsWithTag("cylinderparent")[0];
+        var cyl_parent = GameObject.FindGameObjectsWithTag("cylinderparent")[0];
         cyl_parent.GetComponent<rotate>().stop();
         gameObject
             .transform
             .Find("failure")
             .GetComponent<Animator>()
             .SetBool("grow", true);
-			
     }
+
     public int get_my_num()
     {
         var str =
@@ -41,14 +43,22 @@ public class pivotActions : MonoBehaviour
                 .Find("number")
                 .GetComponent<TMPro.TextMeshPro>()
                 .text;
+        if (str == "") return 0;
+        if (str == "∞") return 999;
         return int.Parse(str);
     }
 
     public void set_number(int num)
     {
-		string st=num.ToString();
-		if (num==-1000)
-		st="∞";
+        var gamemode = Camera.main.GetComponent<game1_manager>().gamemode;
+        var AccessModeGame =
+            (
+            gamemode == game_mode.pivotCreation_inaccessible_pivots ||
+            gamemode == game_mode.millCreataion_inaccessible_pivots
+            );
+        string st = num.ToString();
+        if (num == -1000) st = "∞";
+
         //set color first
         //gameObject.transform.Find("number").GetComponent<TMPro.TextMeshPro>().text=num.ToString();;
         gameObject
@@ -56,11 +66,23 @@ public class pivotActions : MonoBehaviour
             .Find("number")
             .GetComponent<TMPro.TextMeshPro>()
             .enabled = true;
-        gameObject
-            .transform
-            .Find("number")
-            .GetComponent<TMPro.TextMeshPro>()
-            .text = st;
+        if (num == -1000 || (!AccessModeGame))
+        {
+            gameObject
+                .transform
+                .Find("number")
+                .GetComponent<TMPro.TextMeshPro>()
+                .text = st;
+        }
+        else
+        {
+            gameObject
+                .transform
+                .Find("number")
+                .GetComponent<TMPro.TextMeshPro>()
+                .text = "";
+        }
+
         gameObject
             .transform
             .Find("number")
@@ -70,6 +92,13 @@ public class pivotActions : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D col)
     {
+        var gamemode = Camera.main.GetComponent<game1_manager>().gamemode;
+        var AccessModeGame =
+            (
+            gamemode == game_mode.pivotCreation_inaccessible_pivots ||
+            gamemode == game_mode.millCreataion_inaccessible_pivots
+            );
+
         var need_reset = false;
         GameObject mill = null;
         if (col != null)
@@ -78,41 +107,58 @@ public class pivotActions : MonoBehaviour
         {
             mill = GameObject.FindGameObjectsWithTag("cylinderparent")[0];
         }
-        if (mill.GetComponent<rotate>().stopped)  return;
+        if (mill.GetComponent<rotate>().stopped) return;
         if (!intro)
         {
-            
             var GM_script = Camera.main.GetComponent<game1_manager>();
             var current_num = GM_script.OneHitOccured(this.gameObject);
-            if (!labled)
+            if (!AccessModeGame)
             {
-                set_number (current_num);
-                if (GM_script.current_labels.Contains(current_num))
+                if (!labled)
                 {
-                    need_reset = true;
-                }
-				else{
-					Camera.main.GetComponent<SoundManager>().play_ding();
-
-				}
-            }
-            else
-            {
-                if (
-                    get_my_num() == current_num &&
-                    !GM_script.seen.Contains(this.gameObject) &&
-                    (!GM_script.current_labels.Contains(current_num) || labled)
-                )
-                {
-					Camera.main.GetComponent<SoundManager>().play_ding();
-                    check_up();
-                    GM_script.seen.Add(this.gameObject);
-                    GM_script.current_labels.Add (current_num);
+                    set_number (current_num);
+                    if (GM_script.current_labels.Contains(current_num))
+                    {
+                        need_reset = true;
+                    }
+                    else
+                    {
+                        Camera.main.GetComponent<SoundManager>().play_ding();
+                    }
                 }
                 else
                 {
-                    need_reset = true;
+                    if (
+                        get_my_num() == current_num &&
+                        !GM_script.seen.Contains(this.gameObject) &&
+                        (
+                        !GM_script.current_labels.Contains(current_num) ||
+                        labled
+                        )
+                    )
+                    {
+                        Camera.main.GetComponent<SoundManager>().play_ding();
+                        check_up();
+                        GM_script.seen.Add(this.gameObject);
+                        GM_script.current_labels.Add (current_num);
+                    }
+                    else
+                    {
+                        need_reset = true;
+                    }
                 }
+            }
+            else
+            {
+                // accessmode game
+                if (get_my_num() == 999)
+                    //if it is untouchable (infinite)
+                    need_reset = true;
+
+				else{
+					 Camera.main.GetComponent<SoundManager>().play_ding();
+                        check_up();
+				}
             }
         }
 
@@ -122,11 +168,9 @@ public class pivotActions : MonoBehaviour
             mill.GetComponent<rotate>().set_pivot(this.gameObject, false);
         if (need_reset)
         {
-           
- failed();
-    
-Debug.Log("sound");
-            
+            failed();
+
+            Debug.Log("sound");
         }
     }
 

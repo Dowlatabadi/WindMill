@@ -134,6 +134,7 @@ public class game1_manager : MonoBehaviour
                             pvt.pivot_pos.y,
                             checkpivot_pefab.transform.position.z),
                         Quaternion.identity);
+
                 go.GetComponent<pivotActions>().set_number(pvt.order_num);
 
                 current_labels.Add(pvt.order_num);
@@ -235,7 +236,7 @@ public class game1_manager : MonoBehaviour
             //     "string Info",
             //     2);
             // new Level(game_mode.pivotCreation_orderise, 5, 5, 1f);
-            new Level(game_mode.pivotCreation_orderise, 5, 5, 1f);
+            new Level(game_mode.millCreataion_inaccessible_pivots, 5, 0, 1f);
         gamemode = lvl.gamemode;
         Draw_level (lvl);
     }
