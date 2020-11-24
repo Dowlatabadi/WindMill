@@ -173,7 +173,7 @@ namespace Classes
                 >();
             var tot = input.Count();
             var next_index = UnityEngine.Random.Range(0, tot);
-            var total_steps = Mathf.Min(10, tot);
+            var total_steps = Mathf.Max(15, tot);
             var l1 = new Vector2(0, 1);
             int i = 1;
             List<int> seen = new List<int>();
@@ -201,7 +201,7 @@ namespace Classes
                 l1 = -input[next_index].pivot_pos + prev_point;
 
                 Clocksign = (int) input[next_index].pivot_type;
-                if (seen.Contains(next_index)) break;
+                //if (seen.Contains(next_index)) break;
 
                 //todo
                 seen.Add (next_index);

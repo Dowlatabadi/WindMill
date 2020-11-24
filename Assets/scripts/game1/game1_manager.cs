@@ -32,10 +32,7 @@ public class game1_manager : MonoBehaviour
 
     public List<GameObject> seen = new List<GameObject>();
 
-    public void quit_level()
-    {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("intro");
-    }
+   
 
     public int OneHitOccured(GameObject pivot)
     {
@@ -236,7 +233,7 @@ public class game1_manager : MonoBehaviour
             //     "string Info",
             //     2);
             // new Level(game_mode.pivotCreation_orderise, 5, 5, 1f);
-            new Level(game_mode.millCreataion_inaccessible_pivots, 5, 0, 1f);
+            new Level(game_mode.millCreataion_inaccessible_pivots, 6, 0, 1f);
         gamemode = lvl.gamemode;
         Draw_level (lvl);
     }
