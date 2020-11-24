@@ -32,8 +32,6 @@ public class game1_manager : MonoBehaviour
 
     public List<GameObject> seen = new List<GameObject>();
 
-   
-
     public int OneHitOccured(GameObject pivot)
     {
         //shouldn't some labled pivot be qual in number
@@ -111,6 +109,14 @@ public class game1_manager : MonoBehaviour
 
     void Draw_level(Level lvl)
     {
+        //hide cross
+        var needs_cross =
+            (
+            gamemode == game_mode.pivotCreation_orderise ||
+            gamemode == game_mode.pivotCreation_inaccessible_pivots
+            );
+        if (!needs_cross) GetComponent<LineRenderer>().enabled = false;
+
         UnityEngine.Debug.Log("all lvl pivots: " + lvl.Pivots.Count());
         var cyl_parent = GameObject.FindGameObjectsWithTag("cylinderparent")[0];
         gos = new List<GameObject>();
@@ -184,6 +190,7 @@ public class game1_manager : MonoBehaviour
     }
 
     public game_mode gamemode;
+	
 
     // Start is called before the first frame update
     void Start()
@@ -215,25 +222,45 @@ public class game1_manager : MonoBehaviour
         //         .LinePointGetDist(new Vector2(1, 1.5f),
         //         new Line { m_slope = 1, b = 0 }));
         // lvl=new Level(5);
-        lvl =
-            // new Level(game_mode.pivotCreation,
-            //     new List<(
-            //             Vector2 pivot_pos,
-            //             Pivot_type pivot_type,
-            //             bool labeled
-            //         )
-            //     > {
-            //         (new Vector2(1, 1), Pivot_type.ClockWise, true),
-            //         (new Vector2(0, 0), Pivot_type.CounterClockWise, false),
-            //         (new Vector2(-1, 2), Pivot_type.ClockWise, true),
-            //         (new Vector2(-2, 3), Pivot_type.ClockWise, true),
-            //         (new Vector2(2f, -2.5f), Pivot_type.ClockWise, false),
-            //         (new Vector2(1.5f, -3.5f), Pivot_type.ClockWise, false)
-            //     },
-            //     "string Info",
-            //     2);
-            // new Level(game_mode.pivotCreation_orderise, 5, 5, 1f);
-            new Level(game_mode.millCreataion_inaccessible_pivots, 6, 0, 1f);
+        var temp_prefs_is_set = PlayerPrefs.HasKey("temp_cc");
+        if (temp_prefs_is_set)
+        {
+            ///PlayerPrefs.SetInt("temp_cc", cc);
+            //  PlayerPrefs.SetInt("temp_gamemode", (int)gamemode);
+            //  PlayerPrefs.SetInt("temp_c", c);
+            //  PlayerPrefs.SetFloat("temp_ratio", lb_ratio);
+            lvl =
+                new Level((game_mode) PlayerPrefs.GetInt("temp_gamemode"),
+                    PlayerPrefs.GetInt("temp_c"),
+                    PlayerPrefs.GetInt("temp_cc"),
+                    PlayerPrefs.GetFloat("temp_ratio"));
+        }
+        else
+        {
+            lvl =
+                // new Level(game_mode.pivotCreation,
+                //     new List<(
+                //             Vector2 pivot_pos,
+                //             Pivot_type pivot_type,
+                //             bool labeled
+                //         )
+                //     > {
+                //         (new Vector2(1, 1), Pivot_type.ClockWise, true),
+                //         (new Vector2(0, 0), Pivot_type.CounterClockWise, false),
+                //         (new Vector2(-1, 2), Pivot_type.ClockWise, true),
+                //         (new Vector2(-2, 3), Pivot_type.ClockWise, true),
+                //         (new Vector2(2f, -2.5f), Pivot_type.ClockWise, false),
+                //         (new Vector2(1.5f, -3.5f), Pivot_type.ClockWise, false)
+                //     },
+                //     "string Info",
+                //     2);
+                // new Level(game_mode.pivotCreation_orderise, 5, 5, 1f);
+                new Level(game_mode.millCreataion_inaccessible_pivots,
+                    6,
+                    0,
+                    1f);
+        }
+
         gamemode = lvl.gamemode;
         Draw_level (lvl);
     }

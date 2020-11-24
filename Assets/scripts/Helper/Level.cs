@@ -201,10 +201,12 @@ namespace Classes
                 l1 = -input[next_index].pivot_pos + prev_point;
 
                 Clocksign = (int) input[next_index].pivot_type;
-                //if (seen.Contains(next_index)) break;
+                var is_seen=(seen.Contains(next_index)) ;
 
                 //todo
-                seen.Add (next_index);
+               if (!is_seen){
+
+				    seen.Add (next_index);
 
                 res
                     .Add((
@@ -212,7 +214,9 @@ namespace Classes
                         input[next_index].pivot_type,
                         input[next_index].labeled,
                         i
-                    ));
+                    )); 
+			   }
+			  
                 // UnityEngine.Debug.Log("next index: " + next_index);
             }
             var debug_labeleds = 0;
