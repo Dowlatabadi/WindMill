@@ -92,12 +92,7 @@ public class pivotActions : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D col)
     {
-        var gamemode = Camera.main.GetComponent<game1_manager>().gamemode;
-        var AccessModeGame =
-            (
-            gamemode == game_mode.pivotCreation_inaccessible_pivots ||
-            gamemode == game_mode.millCreataion_inaccessible_pivots
-            );
+      
 
         var need_reset = false;
         GameObject mill = null;
@@ -110,6 +105,12 @@ public class pivotActions : MonoBehaviour
         if (mill.GetComponent<rotate>().stopped) return;
         if (!intro)
         {
+			  var gamemode = Camera.main.GetComponent<game1_manager>().gamemode;
+        var AccessModeGame =
+            (
+            gamemode == game_mode.pivotCreation_inaccessible_pivots ||
+            gamemode == game_mode.millCreataion_inaccessible_pivots
+            );
             var GM_script = Camera.main.GetComponent<game1_manager>();
             var current_num = GM_script.OneHitOccured(this.gameObject);
             if (!AccessModeGame)
