@@ -11,10 +11,10 @@ public class About_manager : MonoBehaviour
     }
 
     // Update is called once per frame
-    int signal=0;
+    public int signal=0;
 	void Update()
     {
-        if (mousedown(0))
+        if (Input.GetMouseButtonDown(0))
 		{
 signal++;
 		}

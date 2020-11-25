@@ -1042,8 +1042,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 100, y: -100}
-  m_SizeDelta: {x: 96.88214, y: 99.78076}
+  m_AnchoredPosition: {x: 99.82, y: -63.46}
+  m_SizeDelta: {x: 153.32391, y: 89.626495}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1094950394
 MonoBehaviour:
@@ -1128,8 +1128,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9facdbc1d528860119dbfa725b139849, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 859c1c0171170eccdb3a5adcca7615a2, type: 3}
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1200,7 +1200,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: <>
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1269,13 +1269,13 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1147153020}
-    characterCount: 2
+    characterCount: 0
     spriteCount: 0
     spaceCount: 0
-    wordCount: 1
+    wordCount: 0
     linkCount: 0
-    lineCount: 1
-    pageCount: 1
+    lineCount: 0
+    pageCount: 0
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
@@ -2163,3 +2163,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 137fdb45ad5ea9af795d1c652fb87e63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  signal: 0
