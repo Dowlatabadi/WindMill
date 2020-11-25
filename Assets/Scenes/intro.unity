@@ -2597,7 +2597,7 @@ AudioSource:
   m_Volume: 0.333
   m_Pitch: 1
   Loop: 0
-  Mute: 1
+  Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
@@ -2693,7 +2693,7 @@ MonoBehaviour:
   musixMuted: 0
   AudioClips:
   - {fileID: 8300000, guid: 6fbdba1dea24c1b8a880f256d34ba699, type: 3}
-  - {fileID: 8300000, guid: 3b18fec7f439ea8e0a373ebd9d3e4ae3, type: 3}
+  - {fileID: 8300000, guid: 940bfe513384e597e85a374ad9cbd914, type: 3}
   - {fileID: 8300000, guid: 6028e5e512e3c1b139d8c3c308013da7, type: 3}
   - {fileID: 8300000, guid: 7cd60af8e521eb034a51905bfd9fe890, type: 3}
   - {fileID: 8300000, guid: 7cd60af8e521eb034a51905bfd9fe890, type: 3}

@@ -11,7 +11,16 @@ public class fade_in : MonoBehaviour
     {
         if (auto_start) Start_coloring();
     }
-
+int get_my_num(){
+	var par=gameObject.transform.parent;
+	int i=0;
+foreach (Transform child in par) {
+i++;
+if (par.getChild(i)==transform)
+return i;
+return -1;
+}
+}
     public bool start = false;
 
     public bool auto_start = false;
@@ -40,7 +49,7 @@ bool fired=false;
                     .Lerp(textmeshPro.color,
                     new Color(textmeshPro.color.r,textmeshPro.color.g,textmeshPro.color.b,.98f),
                     Time.deltaTime);
-            if (SW.Elapsed.TotalSeconds > 1)
+            if (SW.Elapsed.TotalSeconds > 7 || )
             {
                 if (next != null && !fired)
                 {
