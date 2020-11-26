@@ -9,6 +9,7 @@ TagManager:
   - counterclockwise
   - Canvas
   - DialogueBox
+  - SelectionBar
   layers:
   - Default
   - TransparentFX
