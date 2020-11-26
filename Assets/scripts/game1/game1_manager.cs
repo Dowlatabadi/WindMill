@@ -87,6 +87,16 @@ public class game1_manager : MonoBehaviour
         }
     }
 
+    public void check_success()
+    {
+        var lvl_solved = gos.All(x => x.GetComponent<pivotActions>().solved);
+        if (lvl_solved)
+		{
+			
+		UnityEngine.Debug.Log("endddddddd");
+		}
+    }
+
     void renew()
     {
     }
@@ -190,7 +200,6 @@ public class game1_manager : MonoBehaviour
     }
 
     public game_mode gamemode;
-	
 
     // Start is called before the first frame update
     void Start()

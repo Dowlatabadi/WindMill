@@ -15,13 +15,17 @@ public class pivotActions : MonoBehaviour
 
     public bool labled;
 
+    public bool solved=false;
+
     public void check_up()
     {
+		if (solved) return;
         gameObject
             .transform
             .Find("check")
             .GetComponent<Animator>()
             .SetBool("grow", true);
+			Camera.main.GetComponent<game1_manager>().check_success();
     }
 
     public void failed()
@@ -92,8 +96,6 @@ public class pivotActions : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D col)
     {
-      
-
         var need_reset = false;
         GameObject mill = null;
         if (col != null)
@@ -105,12 +107,12 @@ public class pivotActions : MonoBehaviour
         if (mill.GetComponent<rotate>().stopped) return;
         if (!intro)
         {
-			  var gamemode = Camera.main.GetComponent<game1_manager>().gamemode;
-        var AccessModeGame =
-            (
-            gamemode == game_mode.pivotCreation_inaccessible_pivots ||
-            gamemode == game_mode.millCreataion_inaccessible_pivots
-            );
+            var gamemode = Camera.main.GetComponent<game1_manager>().gamemode;
+            var AccessModeGame =
+                (
+                gamemode == game_mode.pivotCreation_inaccessible_pivots ||
+                gamemode == game_mode.millCreataion_inaccessible_pivots
+                );
             var GM_script = Camera.main.GetComponent<game1_manager>();
             var current_num = GM_script.OneHitOccured(this.gameObject);
             if (!AccessModeGame)
@@ -124,10 +126,13 @@ public class pivotActions : MonoBehaviour
                     }
                     else
                     {
+
                         Camera.main.GetComponent<SoundManager>().play_ding();
+						check_up();
+						solved=true;
                     }
                 }
-                else
+                else//is labeled
                 {
                     if (
                         get_my_num() == current_num &&
@@ -140,9 +145,17 @@ public class pivotActions : MonoBehaviour
                     {
                         Camera.main.GetComponent<SoundManager>().play_ding();
                         check_up();
+						solved=true;
                         GM_script.seen.Add(this.gameObject);
                         GM_script.current_labels.Add (current_num);
                     }
+					else if (solved && !GM_script.current_labels.Contains(current_num))
+					{
+						check_up();
+						 set_number (current_num);
+                        Camera.main.GetComponent<SoundManager>().play_ding();
+						GM_script.current_labels.Add (current_num);
+					}
                     else
                     {
                         need_reset = true;
@@ -155,11 +168,11 @@ public class pivotActions : MonoBehaviour
                 if (get_my_num() == 999)
                     //if it is untouchable (infinite)
                     need_reset = true;
-
-				else{
-					 Camera.main.GetComponent<SoundManager>().play_ding();
-                        check_up();
-				}
+                else
+                {
+                    Camera.main.GetComponent<SoundManager>().play_ding();
+                    check_up();
+                }
             }
         }
 
@@ -173,6 +186,10 @@ public class pivotActions : MonoBehaviour
 
             Debug.Log("sound");
         }
+		// else
+		// {
+		// 	check_up();
+		// }
     }
 
     // Update is called once per frame
