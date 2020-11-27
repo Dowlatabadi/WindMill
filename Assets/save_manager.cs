@@ -18,7 +18,7 @@ public class save_manager : MonoBehaviour
 			return false;
     }
 
-    public void Unlock_ans_save(int lvl_num)
+    public void Unlock_and_save(int lvl_num)
     {
         PlayerPrefs.SetInt("Progress_lvl", lvl_num);
         PlayerPrefs.SetInt("is_last_lvl_seen_yet", 0);

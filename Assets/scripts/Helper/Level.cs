@@ -35,6 +35,7 @@ namespace Classes
         Pivots { get; set; }
 
         public string Info { get; set; }
+        public string End_Info { get; set; }
 
         public int Known_pivots { get; set; }
 
@@ -62,7 +63,8 @@ namespace Classes
             game_mode game_mode,
             int number_of_C,
             int number_of_CC,
-            float label_portion
+            float label_portion,
+			string Info, string End_Info
         )
         {
             var total_points = number_of_C + number_of_CC;
@@ -129,6 +131,8 @@ namespace Classes
             Pivots = result;
             this.Known_pivots = labeled_number;
             this.gamemode = game_mode;
+            this.Info = Info;
+            this.End_Info = End_Info;
         }
 
         //sets the order num for all pivots

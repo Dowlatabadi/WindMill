@@ -96,7 +96,8 @@ public class game1_manager : MonoBehaviour
         }
         else
         {
-            var p = gos.Where(x => !x.GetComponent<pivotActions>().solved).Count();
+            var p =
+                gos.Where(x => !x.GetComponent<pivotActions>().solved).Count();
             UnityEngine.Debug.Log($"nt solvd,gos={gos.Count()}, faults={p}");
         }
     }
@@ -242,11 +243,27 @@ public class game1_manager : MonoBehaviour
             //  PlayerPrefs.SetInt("temp_gamemode", (int)gamemode);
             //  PlayerPrefs.SetInt("temp_c", c);
             //  PlayerPrefs.SetFloat("temp_ratio", lb_ratio);
+            var temp_lvl = PlayerPrefs.GetInt("temp_lvl_num");
+            var lvl_details =
+                Levels_Data.FirstOrDefault(x => x.lvl_num == temp_lvl);
             lvl =
-                new Level((game_mode) PlayerPrefs.GetInt("temp_gamemode"),
-                    PlayerPrefs.GetInt("temp_c"),
-                    PlayerPrefs.GetInt("temp_cc"),
-                    PlayerPrefs.GetFloat("temp_ratio"));
+                new Level((game_mode) lvl_details.gamemode,
+                    lvl_details.c,
+                    lvl_details.cc,
+                    lvl_details.labeled_ratio,
+                    lvl_details.Info,
+                    lvl_details.End_Info);
+            if (!SM.is_last_lvl_seen())
+            {
+                var SM = Camera.main.GetComponent<save_manager>();
+                var last_progress = SM.get_progress_lvl();
+                if (last_progress == temp_lvl)
+                {
+                    //show dialogue
+                    show(lvl.Info);
+                    PlayerPrefs.SetInt("is_last_lvl_seen_yet", 1);
+                }
+            }
         }
         else
         {
