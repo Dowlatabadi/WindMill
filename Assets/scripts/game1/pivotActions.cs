@@ -15,17 +15,20 @@ public class pivotActions : MonoBehaviour
 
     public bool labled;
 
-    public bool solved=false;
+    public bool solved = false;
 
-    public void check_up()
+    public void check_up(bool animate)
     {
-		if (solved) return;
-        gameObject
-            .transform
-            .Find("check")
-            .GetComponent<Animator>()
-            .SetBool("grow", true);
-			Camera.main.GetComponent<game1_manager>().check_success();
+        if (animate)
+        {
+            gameObject
+                .transform
+                .Find("check")
+                .GetComponent<Animator>()
+                .SetBool("grow", true);
+            solved = true;
+        }
+        Camera.main.GetComponent<game1_manager>().check_success();
     }
 
     public void failed()
@@ -126,13 +129,12 @@ public class pivotActions : MonoBehaviour
                     }
                     else
                     {
-
                         Camera.main.GetComponent<SoundManager>().play_ding();
-						check_up();
-						solved=true;
+                        solved = true;
+                        check_up(true);
                     }
-                }
-                else//is labeled
+                } //is labeled
+                else
                 {
                     if (
                         get_my_num() == current_num &&
@@ -144,18 +146,21 @@ public class pivotActions : MonoBehaviour
                     )
                     {
                         Camera.main.GetComponent<SoundManager>().play_ding();
-                        check_up();
-						solved=true;
+                        solved = true;
+                        check_up(true);
                         GM_script.seen.Add(this.gameObject);
                         GM_script.current_labels.Add (current_num);
                     }
-					else if (solved && !GM_script.current_labels.Contains(current_num))
-					{
-						check_up();
-						 set_number (current_num);
+                    else if (
+                        solved &&
+                        !GM_script.current_labels.Contains(current_num)
+                    )
+                    {
+                        check_up(false);
+                        set_number (current_num);
                         Camera.main.GetComponent<SoundManager>().play_ding();
-						GM_script.current_labels.Add (current_num);
-					}
+                        GM_script.current_labels.Add (current_num);
+                    }
                     else
                     {
                         need_reset = true;
@@ -171,7 +176,7 @@ public class pivotActions : MonoBehaviour
                 else
                 {
                     Camera.main.GetComponent<SoundManager>().play_ding();
-                    check_up();
+                    check_up(!solved);
                 }
             }
         }
@@ -186,10 +191,10 @@ public class pivotActions : MonoBehaviour
 
             Debug.Log("sound");
         }
-		// else
-		// {
-		// 	check_up();
-		// }
+        // else
+        // {
+        // 	check_up();
+        // }
     }
 
     // Update is called once per frame

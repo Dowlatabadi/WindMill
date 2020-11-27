@@ -91,10 +91,14 @@ public class game1_manager : MonoBehaviour
     {
         var lvl_solved = gos.All(x => x.GetComponent<pivotActions>().solved);
         if (lvl_solved)
-		{
-			
-		UnityEngine.Debug.Log("endddddddd");
-		}
+        {
+            UnityEngine.Debug.Log("endddddddd");
+        }
+        else
+        {
+            var p = gos.Where(x => !x.GetComponent<pivotActions>().solved).Count();
+            UnityEngine.Debug.Log($"nt solvd,gos={gos.Count()}, faults={p}");
+        }
     }
 
     void renew()

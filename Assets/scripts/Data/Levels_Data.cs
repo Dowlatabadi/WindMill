@@ -7,7 +7,7 @@ public static class Levels_Data
 {
 public static List<(int lvl_num,int c,int cc,float labeled_ratio ,game_mode gamemode, string welcome_info)> levels_info=
 new List<(int lvl_num, int c, int cc, float labeled_ratio, game_mode gamemode, string welcome_info)>(){
-(1,3,1,.5f,game_mode.millCreataion_orderise,"This is the first level.\n "),
+(1,3,0,.5f,game_mode.pivotCreation_orderise,"This is the first level.\n "),
 (2,2,1,.5f,game_mode.millCreataion_inaccessible_pivots,"This is the second level.\n "),
 (3,3,1,.5f,game_mode.millCreataion_orderise,"This is the third level.\n "),
 (4,5,1,.5f,game_mode.pivotCreation_orderise,"This is the forth level.\n "),
