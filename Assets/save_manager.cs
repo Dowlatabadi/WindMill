@@ -24,7 +24,7 @@ public class save_manager : MonoBehaviour
         PlayerPrefs.SetInt("is_last_lvl_seen_yet", 0);
     }
 
-    public void auto_int_shown()
+    public void auto_inf_shown()
     {
         PlayerPrefs.SetInt("is_last_lvl_seen_yet", 1);
     }

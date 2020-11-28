@@ -18,6 +18,8 @@ public class game1_manager : MonoBehaviour
 
     public GameObject DialoguePrefab;
 
+    public GameObject W_DialoguePrefab;
+
     int current_order;
 
     int failure_counter;
@@ -41,7 +43,7 @@ public class game1_manager : MonoBehaviour
 
     string current_message = "default";
 
-    public void show(string st)
+    public void show(string st, bool white = false)
     {
         gameObject.GetComponent<PauseManager>().PauseifPlaying();
 
@@ -57,7 +59,7 @@ public class game1_manager : MonoBehaviour
         if (st == null) st = current_message;
         var go =
             GameObject
-                .Instantiate(DialoguePrefab,
+                .Instantiate(white ? W_DialoguePrefab : DialoguePrefab,
                 new Vector3(0, 0, DialoguePrefab.transform.position.z),
                 Quaternion.identity);
         go.GetComponent<Dialogue_script>().show(st);
@@ -87,19 +89,93 @@ public class game1_manager : MonoBehaviour
         }
     }
 
-    public void check_success()
+    public void goto_last_lvl()
+    {
+        var temp_prefs_is_set = PlayerPrefs.HasKey("temp_lvl_num");
+        if (temp_prefs_is_set)
+        {
+            var temp_lvl = PlayerPrefs.GetInt("temp_lvl_num");
+            var lvl_details =
+                Levels_Data
+                    .levels_info
+                    .FirstOrDefault(x => x.lvl_num == temp_lvl);
+            lvl =
+                new Level(lvl_details.gamemode,
+                    lvl_details.c,
+                    lvl_details.cc,
+                    lvl_details.labeled_ratio,
+                    lvl_details.welcome_info,
+                    lvl_details.end_info);
+            var SM = Camera.main.GetComponent<save_manager>();
+            if (!SM.is_last_lvl_seen())
+            {
+                var last_progress = SM.get_progress_lvl();
+                if (last_progress == temp_lvl)
+                {
+                    //show dialogue
+                    show(lvl.Info);
+                    PlayerPrefs.SetInt("is_last_lvl_seen_yet", 1);
+                }
+            }
+        }
+        else
+        {
+            lvl =
+                new Level(game_mode.millCreataion_inaccessible_pivots,
+                    6,
+                    0,
+                    1f,
+                    "",
+                    "");
+        }
+
+        gamemode = lvl.gamemode;
+        reset();
+    }
+
+    bool is_end_message_shown_once = false;
+
+    public bool check_success()
     {
         var lvl_solved = gos.All(x => x.GetComponent<pivotActions>().solved);
         if (lvl_solved)
         {
             UnityEngine.Debug.Log("endddddddd");
+
+            //show end dialogue
+            var temp_prefs_is_set = PlayerPrefs.HasKey("temp_lvl_num");
+            if (temp_prefs_is_set)
+            {
+                var temp_lvl = PlayerPrefs.GetInt("temp_lvl_num");
+                var lvl_details =
+                    Levels_Data
+                        .levels_info
+                        .FirstOrDefault(x => x.lvl_num == temp_lvl);
+                if (!is_end_message_shown_once)
+                {
+                    show(lvl_details.end_info, true);
+                    is_end_message_shown_once = true;
+                }
+
+                var SV = Camera.main.GetComponent<save_manager>();
+
+                //set max level for next level
+                if (temp_lvl + 1 > SV.get_progress_lvl())
+                    SV.Unlock_and_save(temp_lvl + 1);
+            }
+            else
+            {
+                var p =
+                    gos
+                        .Where(x => !x.GetComponent<pivotActions>().solved)
+                        .Count();
+                UnityEngine
+                    .Debug
+                    .Log($"nt solvd,gos={gos.Count()}, faults={p}");
+            }
+            return true;
         }
-        else
-        {
-            var p =
-                gos.Where(x => !x.GetComponent<pivotActions>().solved).Count();
-            UnityEngine.Debug.Log($"nt solvd,gos={gos.Count()}, faults={p}");
-        }
+        return false;
     }
 
     void renew()
@@ -108,6 +184,7 @@ public class game1_manager : MonoBehaviour
 
     void reset()
     {
+        is_end_message_shown_once = false;
         current_labels = new List<int>();
         seen = new List<GameObject>();
         var cyl_parent = GameObject.FindGameObjectsWithTag("cylinderparent")[0];
@@ -230,69 +307,7 @@ public class game1_manager : MonoBehaviour
         failure_counter = 0;
         current_order = 0;
 
-        // UnityEngine
-        //     .Debug
-        //     .Log(Helper
-        //         .LinePointGetDist(new Vector2(1, 1.5f),
-        //         new Line { m_slope = 1, b = 0 }));
-        // lvl=new Level(5);
-        var temp_prefs_is_set = PlayerPrefs.HasKey("temp_cc");
-        if (temp_prefs_is_set)
-        {
-            ///PlayerPrefs.SetInt("temp_cc", cc);
-            //  PlayerPrefs.SetInt("temp_gamemode", (int)gamemode);
-            //  PlayerPrefs.SetInt("temp_c", c);
-            //  PlayerPrefs.SetFloat("temp_ratio", lb_ratio);
-            var temp_lvl = PlayerPrefs.GetInt("temp_lvl_num");
-            var lvl_details =
-                Levels_Data.FirstOrDefault(x => x.lvl_num == temp_lvl);
-            lvl =
-                new Level((game_mode) lvl_details.gamemode,
-                    lvl_details.c,
-                    lvl_details.cc,
-                    lvl_details.labeled_ratio,
-                    lvl_details.Info,
-                    lvl_details.End_Info);
-            if (!SM.is_last_lvl_seen())
-            {
-                var SM = Camera.main.GetComponent<save_manager>();
-                var last_progress = SM.get_progress_lvl();
-                if (last_progress == temp_lvl)
-                {
-                    //show dialogue
-                    show(lvl.Info);
-                    PlayerPrefs.SetInt("is_last_lvl_seen_yet", 1);
-                }
-            }
-        }
-        else
-        {
-            lvl =
-                // new Level(game_mode.pivotCreation,
-                //     new List<(
-                //             Vector2 pivot_pos,
-                //             Pivot_type pivot_type,
-                //             bool labeled
-                //         )
-                //     > {
-                //         (new Vector2(1, 1), Pivot_type.ClockWise, true),
-                //         (new Vector2(0, 0), Pivot_type.CounterClockWise, false),
-                //         (new Vector2(-1, 2), Pivot_type.ClockWise, true),
-                //         (new Vector2(-2, 3), Pivot_type.ClockWise, true),
-                //         (new Vector2(2f, -2.5f), Pivot_type.ClockWise, false),
-                //         (new Vector2(1.5f, -3.5f), Pivot_type.ClockWise, false)
-                //     },
-                //     "string Info",
-                //     2);
-                // new Level(game_mode.pivotCreation_orderise, 5, 5, 1f);
-                new Level(game_mode.millCreataion_inaccessible_pivots,
-                    6,
-                    0,
-                    1f);
-        }
-
-        gamemode = lvl.gamemode;
-        Draw_level (lvl);
+        goto_last_lvl();
     }
 
     // Update is called once per frame

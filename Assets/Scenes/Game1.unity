@@ -1537,6 +1537,8 @@ MonoBehaviour:
   pivots_pos: []
   DialoguePrefab: {fileID: 9013008239022693986, guid: 45a3d735bc1fe373396c3bc8900ee522,
     type: 3}
+  W_DialoguePrefab: {fileID: 9013008239022693986, guid: 3dfe23c9fcbaacf7fa1c7a31f7cee494,
+    type: 3}
   spawn_location: {fileID: 2009265639}
   current_labels: 
   seen: []

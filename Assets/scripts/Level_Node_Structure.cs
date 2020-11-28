@@ -22,7 +22,7 @@ public class Level_Node_Structure : MonoBehaviour
         Camera
             .main
             .GetComponent<Scene_manager>()
-            .Scene_Playground_LevelParameters(cc, c, gamemode, ratio);
+            .Scene_Playground_LevelParameters(lvl_num);
     }
 
     void Start()

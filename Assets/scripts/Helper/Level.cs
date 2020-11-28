@@ -11,8 +11,8 @@ namespace Classes
     {
         millCreataion_orderise,
         pivotCreation_orderise,
-		millCreataion_inaccessible_pivots,
-		pivotCreation_inaccessible_pivots,
+        millCreataion_inaccessible_pivots,
+        pivotCreation_inaccessible_pivots
     }
 
     public enum Pivot_type
@@ -35,6 +35,7 @@ namespace Classes
         Pivots { get; set; }
 
         public string Info { get; set; }
+
         public string End_Info { get; set; }
 
         public int Known_pivots { get; set; }
@@ -64,7 +65,8 @@ namespace Classes
             int number_of_C,
             int number_of_CC,
             float label_portion,
-			string Info, string End_Info
+            string Info,
+            string End_Info
         )
         {
             var total_points = number_of_C + number_of_CC;
@@ -102,8 +104,8 @@ namespace Classes
                 var point_pos =
                     Helper
                         .find_next_point(res.Select(x => x.pivot_pos).ToList(),
-                        5f,
-                        20f);
+                        2f,
+                        10f);
                 cur_tuple.pivot_pos = point_pos;
 
                 //rotation
@@ -151,7 +153,8 @@ namespace Classes
                 .Select(x => (x.pivot_pos, x.pivot_type, x.labeled, -1000))
                 .ToList();
         }
- private List<(
+
+        private List<(
                 Vector2 pivot_pos,
                 Pivot_type pivot_type,
                 bool labeled,
@@ -205,22 +208,22 @@ namespace Classes
                 l1 = -input[next_index].pivot_pos + prev_point;
 
                 Clocksign = (int) input[next_index].pivot_type;
-                var is_seen=(seen.Contains(next_index)) ;
+                var is_seen = (seen.Contains(next_index));
 
                 //todo
-               if (!is_seen){
+                if (!is_seen)
+                {
+                    seen.Add (next_index);
 
-				    seen.Add (next_index);
+                    res
+                        .Add((
+                            input[next_index].pivot_pos,
+                            input[next_index].pivot_type,
+                            input[next_index].labeled,
+                            i
+                        ));
+                }
 
-                res
-                    .Add((
-                        input[next_index].pivot_pos,
-                        input[next_index].pivot_type,
-                        input[next_index].labeled,
-                        i
-                    )); 
-			   }
-			  
                 // UnityEngine.Debug.Log("next index: " + next_index);
             }
             var debug_labeleds = 0;
@@ -254,7 +257,7 @@ namespace Classes
         )
         {
             //Clocksign=-Clocksign;
-            l1 = new Vector2(l1.x , l1.y );
+            l1 = new Vector2(l1.x, l1.y);
             var min_diff = 1f;
 
             var res = -180;
@@ -263,24 +266,33 @@ namespace Classes
                 if (i == start_index) continue;
 
                 //order of point 1 and 2 is important==direction of line
-				var mapped_and_maybe_reflected= -positions[start_index] + positions[i];
-			if (Vector2.SignedAngle(l1,mapped_and_maybe_reflected)*Clocksign<0)
-			mapped_and_maybe_reflected=new Vector2(-mapped_and_maybe_reflected.x,-mapped_and_maybe_reflected.y);
+                var mapped_and_maybe_reflected =
+                    -positions[start_index] + positions[i];
+                if (
+                    Vector2.SignedAngle(l1, mapped_and_maybe_reflected) *
+                    Clocksign <
+                    0
+                )
+                    mapped_and_maybe_reflected =
+                        new Vector2(-mapped_and_maybe_reflected.x,
+                            -mapped_and_maybe_reflected.y);
                 var AngelBetween =
-                    Vector2
-                        .SignedAngle(l1,
-                       mapped_and_maybe_reflected);
-UnityEngine.Debug.Log("new ang: "+AngelBetween);
+                    Vector2.SignedAngle(l1, mapped_and_maybe_reflected);
+                UnityEngine.Debug.Log("new ang: " + AngelBetween);
                 if (
                     AngelBetween != 0 &&
                     AngelBetween != 180 &&
                     AngelBetween != -180
                 )
                 {
-                    if (/*AngelBetween * min_diff> 0 && */ Math.Abs(AngelBetween) > Math.Abs(min_diff)){
-res=i;
-min_diff=AngelBetween;
-					}
+                    if (
+                        /*AngelBetween * min_diff> 0 && */
+                        Math.Abs(AngelBetween) > Math.Abs(min_diff)
+                    )
+                    {
+                        res = i;
+                        min_diff = AngelBetween;
+                    }
                     // {
                     //     UnityEngine
                     //         .Debug

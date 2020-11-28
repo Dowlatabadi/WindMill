@@ -76,7 +76,7 @@ var angle1 =
         public static Vector2
         find_next_point(List<Vector2> points, float min_dist, float min_slope)
         {
-			var min_margin=.1f;
+			var min_margin=.01f;
             List<(Vector2, float, float,float)> result_points =
                 new List<(Vector2, float, float,float)>();
             Stopwatch stopWatch = new Stopwatch();
