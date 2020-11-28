@@ -106,7 +106,8 @@ public class game1_manager : MonoBehaviour
                     lvl_details.cc,
                     lvl_details.labeled_ratio,
                     lvl_details.welcome_info,
-                    lvl_details.end_info);
+                    lvl_details.end_info,
+                    lvl_details.predefined_locations);
             var SM = Camera.main.GetComponent<save_manager>();
             if (!SM.is_last_lvl_seen())
             {
@@ -157,7 +158,10 @@ public class game1_manager : MonoBehaviour
                 if (!is_end_message_shown_once)
                 {
                     show(lvl_details.end_info, true);
-				 Camera.main.GetComponent<SoundManager>().play_successSound();
+                    Camera
+                        .main
+                        .GetComponent<SoundManager>()
+                        .play_successSound();
                     is_end_message_shown_once = true;
                 }
 
@@ -181,6 +185,8 @@ public class game1_manager : MonoBehaviour
                     .Debug
                     .Log($"nt solvd,gos={gos.Count()}, faults={p}");
             }
+            Camera.main.GetComponent<PauseManager>().Stops();
+
             return true;
         }
         return false;
@@ -192,6 +198,8 @@ public class game1_manager : MonoBehaviour
 
     void reset()
     {
+        failure_counter = 0;
+
         is_lvl_solved = false;
         is_end_message_shown_once = false;
         current_labels = new List<int>();
@@ -315,7 +323,7 @@ public class game1_manager : MonoBehaviour
         // UnityEngine.Debug.Log("test slope="+Helper.PointsGetSlopeCloseness(new Vector2(0,0),new Vector2(1,0),new Vector2(0,1)));
         failure_counter = 0;
         current_order = 0;
-        PlayerPrefs.SetInt("temp_lvl_num", 1);
+        //PlayerPrefs.SetInt("temp_lvl_num", 1);
         goto_last_lvl();
     }
 

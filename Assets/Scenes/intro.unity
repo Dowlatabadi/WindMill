@@ -2916,7 +2916,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1628066474}
-        m_MethodName: Scene_Playground
+        m_MethodName: Scene_LastLvlPlay
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -38,7 +38,13 @@ void Awake(){
         Application.Quit();
     }
 
-   
+   public void Scene_LastLvlPlay()
+    {
+		PlayerPrefs.SetInt("temp_lvl_num", Camera.main.GetComponent<save_manager>().get_progress_lvl());
+		Debug.Log("saved last: "+ Camera.main.GetComponent<save_manager>().get_progress_lvl());
+        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Game1");
+        
+    }
 
  public void Scene_Playground_LevelParameters(
         int Lvl_num

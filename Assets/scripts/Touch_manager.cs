@@ -114,6 +114,7 @@ public class Touch_manager : MonoBehaviour
                     )
 					{
 						var Mousepos=Input.mousePosition;
+						//UnityEngine.Debug.Log("posssssssssssssssssss: "+Mousepos);
 						var Wpos=Camera.main.ScreenToWorldPoint(Mousepos);
 						draw_cross(new Vector3(Wpos.x,Wpos.y,0));
 					}

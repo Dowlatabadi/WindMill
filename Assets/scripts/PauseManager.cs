@@ -23,13 +23,19 @@ public class PauseManager : MonoBehaviour
         Playing = true;
     }
 
+    public void Stops()
+    {
+        Playing = false;
+        Paused = false;
+
+    }
+
     public void PauseifPlaying()
     {
         if (!Playing) return;
         var cyl_parent = GameObject.FindGameObjectsWithTag("cylinderparent")[0];
         Paused = true;
-		if (cyl_parent!=null)
-        cyl_parent.GetComponent<rotate>().stop();
+        if (cyl_parent != null) cyl_parent.GetComponent<rotate>().stop();
     }
 
     public void ResumeifPaused()
@@ -38,8 +44,6 @@ public class PauseManager : MonoBehaviour
         Paused = false;
         Playing = true;
         var cyl_parent = GameObject.FindGameObjectsWithTag("cylinderparent")[0];
-		if (cyl_parent!=null)
-
-        cyl_parent.GetComponent<rotate>().start();
+        if (cyl_parent != null) cyl_parent.GetComponent<rotate>().start();
     }
 }

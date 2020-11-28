@@ -66,7 +66,8 @@ namespace Classes
             int number_of_CC,
             float label_portion,
             string Info,
-            string End_Info
+            string End_Info,
+            List<(int x, int y, bool centerised)> predefined_locations = null
         )
         {
             var total_points = number_of_C + number_of_CC;
@@ -101,11 +102,27 @@ namespace Classes
                     Pivot_type pivot_type,
                     bool labeled
                 ) cur_tuple;
-                var point_pos =
-                    Helper
-                        .find_next_point(res.Select(x => x.pivot_pos).ToList(),
-                        2f,
-                        10f);
+                var point_pos = new Vector2(0, 0);
+                if (predefined_locations == null)
+                {
+                    point_pos =
+                        Helper
+                            .find_next_point(res
+                                .Select(x => x.pivot_pos)
+                                .ToList(),
+                            2f,
+                            10f);
+                }
+                else//get predefined positions
+                {
+                    var ith_element = predefined_locations.ElementAt(i);
+                    point_pos =
+                        Helper
+                            .get_squared_pos(ith_element.x,
+                            ith_element.y,
+                            ith_element.centerised);
+                }
+
                 cur_tuple.pivot_pos = point_pos;
 
                 //rotation
@@ -280,7 +297,7 @@ namespace Classes
                     Vector2.SignedAngle(l1, mapped_and_maybe_reflected);
                 UnityEngine.Debug.Log("new ang: " + AngelBetween);
                 if (
-                    AngelBetween != 0 &&
+                     AngelBetween != 0 &&
                     AngelBetween != 180 &&
                     AngelBetween != -180
                 )
@@ -290,25 +307,18 @@ namespace Classes
                         Math.Abs(AngelBetween) > Math.Abs(min_diff)
                     )
                     {
+                UnityEngine.Debug.Log($"correct condition: {Math.Abs(AngelBetween)} > {Math.Abs(min_diff)}");
+
                         res = i;
                         min_diff = AngelBetween;
                     }
-                    // {
-                    //     UnityEngine
-                    //         .Debug
-                    //         .Log($" same signs and {AngelBetween} > {min_diff}");
-                    //     res = i;
-                    //     min_diff = AngelBetween;
-                    // }
-                    // else if (AngelBetween * min_diff < 0 && AngelBetween < 0)
-                    // {
-                    //     UnityEngine
-                    //         .Debug
-                    //         .Log($" different signs and {AngelBetween} is better than {min_diff}");
-                    //     res = i;
-                    //     min_diff = AngelBetween;
-                    // }
+				
+                 
                 }
+					// else if(AngelBetween == 0){
+					// 			res = i;
+					// 			min_diff = AngelBetween;
+					// }
             }
             UnityEngine
                 .Debug

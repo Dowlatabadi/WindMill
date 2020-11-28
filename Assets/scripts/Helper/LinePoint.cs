@@ -32,14 +32,17 @@ namespace LinePoint
 
             return Mathf.Abs((angle1 * 180) / Mathf.PI);
         }
-public static float LinesAngelBetween(Line line1,Line l2){
-var angle1 =
+
+        public static float LinesAngelBetween(Line line1, Line l2)
+        {
+            var angle1 =
                 Mathf
                     .Atan((l2.m_slope - line1.m_slope) /
                     (1f + l2.m_slope * line1.m_slope));
 
             return ((angle1 * 180) / Mathf.PI);
-}
+        }
+
         public static float LinePointGetDist(Vector2 point, Line line)
         {
             var b1 = point.y + (point.x / line.m_slope);
@@ -64,21 +67,21 @@ var angle1 =
 
         public static Line GetLine(Vector2 point1, Vector2 point2)
         {
-            var slope = (float)(point1.y - point2.y) / (float)(point1.x - point2.x);
+            var slope =
+                (float)(point1.y - point2.y) / (float)(point1.x - point2.x);
             if (point1.x - point2.x == 0) slope = 10000f;
             return new Line {
                 m_slope = slope,
-                b =
-                   point1.y-( slope*point1.x )
+                b = point1.y - (slope * point1.x)
             };
         }
 
         public static Vector2
         find_next_point(List<Vector2> points, float min_dist, float min_slope)
         {
-			var min_margin=.01f;
-            List<(Vector2, float, float,float)> result_points =
-                new List<(Vector2, float, float,float)>();
+            var min_margin = .01f;
+            List<(Vector2, float, float, float)> result_points =
+                new List<(Vector2, float, float, float)>();
             Stopwatch stopWatch = new Stopwatch();
             stopWatch.Start();
             float distance = 0;
@@ -93,14 +96,13 @@ var angle1 =
             }
             if (points.Count() == 1)
             {
-                while (distance < min_dist || margin<min_margin)
+                while (distance < min_dist || margin < min_margin)
                 {
                     x = Random.Range(-1.5f, 1.5f);
                     y = Random.Range(-3.5f, 3.5f);
                     point = new Vector2(x, y);
                     distance = Vector2.Distance(points[0], point);
-						margin=Mathf.Abs(point.x-points[0].x);
-
+                    margin = Mathf.Abs(point.x - points[0].x);
                 }
 
                 return point;
@@ -109,7 +111,10 @@ var angle1 =
             bool is_ok = false;
             int try1 = 0;
             bool timeOut = false;
-            while (distance < min_dist || Slope_diff < min_slope  ||margin < min_margin )
+            while (distance < min_dist ||
+                Slope_diff < min_slope ||
+                margin < min_margin
+            )
             {
                 try1++;
                 if (stopWatch.ElapsedMilliseconds > 100)
@@ -123,7 +128,8 @@ var angle1 =
                 point = new Vector2(x, y);
                 is_ok = true;
 
-                List<(float, float,float)> so_far_worst = new List<(float, float,float)>();
+                List<(float, float, float)> so_far_worst =
+                    new List<(float, float, float)>();
                 for (int i = 0; i < points.Count(); i++)
                 {
                     //if (is_ok == false) break;
@@ -135,13 +141,20 @@ var angle1 =
                         var point2 = points.ElementAt(j);
                         var line = Helper.GetLine(point1, point2);
                         distance = Helper.TriDist(point, point1, point2);
-						margin=Mathf.Min(Mathf.Abs(point.x-point1.x),Mathf.Abs(point.x-point2.x));
+                        margin =
+                            Mathf
+                                .Min(Mathf.Abs(point.x - point1.x),
+                                Mathf.Abs(point.x - point2.x));
                         Slope_diff =
                             Helper
                                 .PointsGetSlopeCloseness(point, point1, point2);
-                        if (distance < min_dist || Slope_diff < min_slope ||margin < min_margin  )
+                        if (
+                            distance < min_dist ||
+                            Slope_diff < min_slope ||
+                            margin < min_margin
+                        )
                         {
-                            so_far_worst.Add((distance, Slope_diff,margin));
+                            so_far_worst.Add((distance, Slope_diff, margin));
                             is_ok = false;
                             // break;
                         }
@@ -153,10 +166,21 @@ var angle1 =
                 }
                 if (!is_ok)
                 {
-                    var worst = so_far_worst.OrderBy(w => w.Item1*w.Item1+w.Item2+(50/*factor of margin*/*(w.Item3))).First();
-                    result_points.Add((point, worst.Item1, worst.Item2,worst.Item3));
+                    var worst =
+                        so_far_worst
+                            .OrderBy(w =>
+                                w.Item1 * w.Item1 +
+                                w.Item2 +
+                                (
+                                50 * /*factor of margin*/
+                                (w.Item3)
+                                ))
+                            .First();
+                    result_points
+                        .Add((point, worst.Item1, worst.Item2, worst.Item3));
                 }
             }
+
             // UnityEngine.Debug.Log($"{Slope_diff}>{min_slope}" + "slope");
             // UnityEngine.Debug.Log($"{distance}>{min_dist}" + "dist");
             // UnityEngine.Debug.Log("try1=" + try1);
@@ -165,7 +189,8 @@ var angle1 =
             {
                 chosen =
                     result_points
-                        .OrderByDescending(yy => yy.Item2*yy.Item2+yy.Item3+(50*(yy.Item4)))
+                        .OrderByDescending(yy =>
+                            yy.Item2 * yy.Item2 + yy.Item3 + (50 * (yy.Item4)))
                         .First()
                         .Item1;
             }
@@ -174,6 +199,35 @@ var angle1 =
                 chosen = point;
             }
             return chosen;
+        }
+
+        public static Vector2 get_squared_pos(int row_num, int col_num, bool centerised=true)
+        {
+            //starting bottom left
+            var rows = 16;
+            var columns = 8;
+            var width = Screen.width;
+            var height = Screen.height;
+            var width_unit = width / columns;
+            var height_unit = height / rows;
+
+            if (centerised)
+            {
+                var temp =
+                    new Vector2((col_num-1) * width_unit + width_unit / 2,
+                        (row_num-1) * height_unit + height_unit / 2
+                        );
+                return Camera.main.ScreenToWorldPoint(temp);
+            }
+            else
+            {
+				var random_x_off= Random.Range(0f, width_unit);
+				var random_y_off= Random.Range(0f, height_unit);
+                var temp =
+                    new Vector2((col_num-1) * width_unit + random_x_off ,
+                       (row_num-1) * height_unit + random_y_off);
+                return Camera.main.ScreenToWorldPoint(temp);
+            }
         }
     }
 }
