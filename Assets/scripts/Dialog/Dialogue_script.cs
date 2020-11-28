@@ -16,7 +16,7 @@ public class Dialogue_script : MonoBehaviour
                 Camera.main.GetComponent<PauseManager>().ResumeifPaused();
 				else
 				{
-					Camera.main.GetComponent<game1_manager>().check_success();
+					//Camera.main.GetComponent<game1_manager>().check_success();
 					Camera.main.GetComponent<game1_manager>().goto_last_lvl();
 				}
         }

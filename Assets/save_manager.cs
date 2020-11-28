@@ -20,8 +20,11 @@ public class save_manager : MonoBehaviour
 
     public void Unlock_and_save(int lvl_num)
     {
+		if (lvl_num>get_progress_lvl())
         PlayerPrefs.SetInt("Progress_lvl", lvl_num);
+        PlayerPrefs.SetInt("temp_lvl_num", lvl_num);
         PlayerPrefs.SetInt("is_last_lvl_seen_yet", 0);
+		
     }
 
     public void auto_inf_shown()

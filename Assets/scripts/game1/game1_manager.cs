@@ -91,6 +91,7 @@ public class game1_manager : MonoBehaviour
 
     public void goto_last_lvl()
     {
+        Camera.main.GetComponent<Notation_manager>().Update_Notations();
         var temp_prefs_is_set = PlayerPrefs.HasKey("temp_lvl_num");
         if (temp_prefs_is_set)
         {
@@ -133,6 +134,8 @@ public class game1_manager : MonoBehaviour
         reset();
     }
 
+    public bool is_lvl_solved;
+
     bool is_end_message_shown_once = false;
 
     public bool check_success()
@@ -160,8 +163,12 @@ public class game1_manager : MonoBehaviour
                 var SV = Camera.main.GetComponent<save_manager>();
 
                 //set max level for next level
-                if (temp_lvl + 1 > SV.get_progress_lvl())
+                if (!is_lvl_solved)
+                {
                     SV.Unlock_and_save(temp_lvl + 1);
+                    UnityEngine.Debug.Log($"unlocked {temp_lvl + 1}");
+                    is_lvl_solved = true;
+                }
             }
             else
             {
@@ -184,6 +191,7 @@ public class game1_manager : MonoBehaviour
 
     void reset()
     {
+        is_lvl_solved = false;
         is_end_message_shown_once = false;
         current_labels = new List<int>();
         seen = new List<GameObject>();
@@ -306,7 +314,7 @@ public class game1_manager : MonoBehaviour
         // UnityEngine.Debug.Log("test slope="+Helper.PointsGetSlopeCloseness(new Vector2(0,0),new Vector2(1,0),new Vector2(0,1)));
         failure_counter = 0;
         current_order = 0;
-
+        PlayerPrefs.SetInt("temp_lvl_num", 1);
         goto_last_lvl();
     }
 
