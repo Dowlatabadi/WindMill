@@ -157,6 +157,7 @@ public class game1_manager : MonoBehaviour
                 if (!is_end_message_shown_once)
                 {
                     show(lvl_details.end_info, true);
+				 Camera.main.GetComponent<SoundManager>().play_successSound();
                     is_end_message_shown_once = true;
                 }
 
