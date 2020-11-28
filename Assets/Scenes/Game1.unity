@@ -1543,6 +1543,7 @@ MonoBehaviour:
   spawn_location: {fileID: 2009265639}
   current_labels: 
   seen: []
+  is_lvl_solved: 0
   gamemode: 0
 --- !u!82 &1628066471
 AudioSource:
@@ -1658,7 +1659,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3b18fec7f439ea8e0a373ebd9d3e4ae3, type: 3}
   - {fileID: 8300000, guid: 6028e5e512e3c1b139d8c3c308013da7, type: 3}
   - {fileID: 8300000, guid: 7cd60af8e521eb034a51905bfd9fe890, type: 3}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 37e1f7d90a4790cf8a3b1cd3768329b4, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
