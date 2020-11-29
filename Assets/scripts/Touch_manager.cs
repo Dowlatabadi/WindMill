@@ -2,22 +2,22 @@
 using System.Collections.Generic;
 using Classes;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Touch_manager : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
     {
-		
     }
-  public void draw_cross(Vector3 v3)
+
+    public void draw_cross(Vector3 v3)
     {
         LineRenderer lineRenderer = GetComponent<LineRenderer>();
 
-	
         var offset = v3;
-        var x = 2*4;
-        var y = 2*7;
+        var x = 2 * 4;
+        var y = 2 * 7;
         lineRenderer
             .SetPosition(0, new Vector3(0 + offset.x, 0 + offset.y, 0.0f));
         lineRenderer
@@ -27,21 +27,25 @@ public class Touch_manager : MonoBehaviour
         lineRenderer
             .SetPosition(3, new Vector3(0 + offset.x, 0 + offset.y, 0.0f));
         lineRenderer
-            .SetPosition(4, new Vector3(0 + offset.x,y + offset.y, 0.0f));
+            .SetPosition(4, new Vector3(0 + offset.x, y + offset.y, 0.0f));
         lineRenderer
             .SetPosition(5, new Vector3(0 + offset.x, -y + offset.y, 0.0f));
         lineRenderer
             .SetPosition(6, new Vector3(0 + offset.x, 0 + offset.y, 0.0f));
-    
     }
+
     bool dragging = false;
 
     Vector3 drag_pos = Vector3.zero;
 
-    
-
     void Update()
     {
+        if ( Input.GetMouseButton(0) && is_mouse_in_ui())
+        {
+            Debug.Log("ignored!!!!!!!!!00 ui");
+            return;
+        }
+
         switch (Camera.main.GetComponent<game1_manager>().gamemode)
         {
             case game_mode.millCreataion_orderise:
@@ -103,23 +107,37 @@ public class Touch_manager : MonoBehaviour
             case game_mode.pivotCreation_orderise:
             case game_mode.pivotCreation_inaccessible_pivots:
                 {
-				
+                    //set cross single touch
+                    if (Input.GetMouseButtonDown(0) || Input.GetMouseButton(0))
+                    {
+                        var Mousepos = Input.mousePosition;
 
-
-
-					//set cross single touch
-					
-                    if (
-                        Input.GetMouseButtonDown(0) || Input.GetMouseButton(0)
-                    )
-					{
-						var Mousepos=Input.mousePosition;
-						//UnityEngine.Debug.Log("posssssssssssssssssss: "+Mousepos);
-						var Wpos=Camera.main.ScreenToWorldPoint(Mousepos);
-						draw_cross(new Vector3(Wpos.x,Wpos.y,0));
-					}
+                        //UnityEngine.Debug.Log("posssssssssssssssssss: "+Mousepos);
+                        var Wpos = Camera.main.ScreenToWorldPoint(Mousepos);
+                        draw_cross(new Vector3(Wpos.x, Wpos.y, 0));
+                    }
                     break;
                 }
         }
+    }
+
+    bool is_mouse_in_ui()
+    {
+        var m_pos = Input.mousePosition;
+        var canvas = GameObject.FindGameObjectWithTag("Canvas");
+        foreach (Transform uigo in canvas.transform)
+        {
+            var rectTransform = uigo.gameObject.GetComponent<RectTransform>();
+            var width = rectTransform.rect.width;
+            var height = rectTransform.rect.height;
+            var pos = rectTransform.position;
+            if (
+                m_pos.x < pos.x + (width / 2) &&
+                m_pos.x > pos.x - (width / 2) &&
+                m_pos.y > pos.y - (height / 2) &&
+                m_pos.y < pos.y + (height / 2)
+            ) return true;
+        }
+        return false;
     }
 }

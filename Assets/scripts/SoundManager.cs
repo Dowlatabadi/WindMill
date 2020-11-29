@@ -30,6 +30,7 @@ public class SoundManager : MonoBehaviour
 
 		   if (!musixMuted)
         {
+			gameObject.GetComponent<AudioSource>().volume = .2f;
             gameObject.GetComponent<AudioSource>().Play();
         }
     }
