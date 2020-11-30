@@ -11,9 +11,9 @@ new List<(int lvl_num, int c, int cc, float labeled_ratio, game_mode gamemode, s
 "This is the first level. The logic is simple; The mill would rotate around a pivot.\n If the mill meets another pivot, active pivot would switch to newly touched pivot.\n This level is only showing the logic.",
 "\nMathematics is a game played according to certain simple rules with meaningless marks on paper. \n\n- David Hilbert.\n ",
 new List<(int x, int y, bool centerised)>(){
-	(6,4,true),
-	(14,6,true),
-	(8,8,true),
+	(6,4,false),
+	(14,6,false),
+	(8,8,false),
 
 }
 ),
