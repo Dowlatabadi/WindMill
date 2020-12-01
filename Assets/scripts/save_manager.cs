@@ -57,7 +57,7 @@ public class save_manager : MonoBehaviour
     {
         if (PlayerPrefs.HasKey("music_vol"))
             return PlayerPrefs.GetFloat("music_vol");
-        return 1;
+        return .3f;
     }
 
     public void set_effects_vol(float percent)

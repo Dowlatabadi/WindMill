@@ -279,7 +279,7 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -163.71545, y: -515.40063, z: -310.6505, w: 553.23517}
+  m_margin: {x: -191.60013, y: -515.40063, z: -310.6505, w: 554.5026}
   m_textInfo:
     textComponent: {fileID: 601060186644072304}
     characterCount: 13
@@ -1551,7 +1551,7 @@ RectTransform:
   m_GameObject: {fileID: 6052768289161647050}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.575, y: 1, z: 1}
   m_Children:
   - {fileID: 6052768288517853686}
   - {fileID: 6052768288682066474}
@@ -1661,7 +1661,7 @@ RectTransform:
   m_GameObject: {fileID: 6052768289233733767}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5625, y: 1, z: 1}
   m_Children:
   - {fileID: 6052768289321665359}
   - {fileID: 6052768289011288946}
@@ -1671,7 +1671,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 231.4, y: 540}
+  m_AnchoredPosition: {x: 231.4, y: 546}
   m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6052768289233733769
@@ -2072,7 +2072,7 @@ RectTransform:
   m_GameObject: {fileID: 6052768289430571984}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.340576, y: 2.340576, z: 2.340576}
+  m_LocalScale: {x: 2.4576046, y: 2.340576, z: 2.340576}
   m_Children:
   - {fileID: 6052768288656004208}
   - {fileID: 6052768288702211516}
@@ -2082,7 +2082,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 242.1, y: 545.3}
+  m_AnchoredPosition: {x: 218, y: 545.3}
   m_SizeDelta: {x: 157.1737, y: 32.683205}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6052768289430571988
@@ -2141,7 +2141,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0, g: 0.046890974, b: 0.55300224, a: 0.21176471}
-    m_HighlightedColor: {r: 0, g: 0.046890974, b: 0.55300224, a: 0.5294118}
+    m_HighlightedColor: {r: 0.7176318, g: 0.7019913, b: 0.7215381, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -2817,7 +2817,7 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -163.71545, y: -515.40063, z: -310.6505, w: 549.47595}
+  m_margin: {x: -190.33261, y: -515.40063, z: -310.6505, w: 549.47595}
   m_textInfo:
     textComponent: {fileID: 6052768290116106868}
     characterCount: 11
@@ -3150,7 +3150,7 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -163.71545, y: -515.40063, z: -310.6505, w: 549.476}
+  m_margin: {x: -187.79764, y: -509.06317, z: -310.6505, w: 549.476}
   m_textInfo:
     textComponent: {fileID: 6052768290492420359}
     characterCount: 15
