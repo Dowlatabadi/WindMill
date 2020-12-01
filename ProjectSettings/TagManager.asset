@@ -10,6 +10,7 @@ TagManager:
   - Canvas
   - DialogueBox
   - SelectionBar
+  - Settings
   layers:
   - Default
   - TransparentFX

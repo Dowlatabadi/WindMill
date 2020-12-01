@@ -11,6 +11,7 @@ public class game_manager : MonoBehaviour
 	public List<Vector2> pivots_pos;
 	public int number = 0;
 	public GameObject DialoguePrefab;
+	public GameObject SettingsPrefab;
 	// Start is called before the first frame update
 	public void show(string st){
 	var go = GameObject.Instantiate(DialoguePrefab, new Vector3(0, 0, DialoguePrefab.transform.position.z), Quaternion.identity);
@@ -18,7 +19,11 @@ public class game_manager : MonoBehaviour
 	 go.transform.SetParent (GameObject.FindGameObjectWithTag("Canvas").transform, false);
 	}
 	
-  
+  public void show_settings_window(){
+	var go = GameObject.Instantiate(SettingsPrefab, new Vector3(0, 0, SettingsPrefab.transform.position.z), Quaternion.identity);
+	
+	 go.transform.SetParent (GameObject.FindGameObjectWithTag("Canvas").transform, false);
+	}
 	void Start()
 	{
 	

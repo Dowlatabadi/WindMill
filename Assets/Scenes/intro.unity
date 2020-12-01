@@ -377,6 +377,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &238766370
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 238766371}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &238766371
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 238766370}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 95, y: 268.59998, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &314547560 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3981381762903689905, guid: 55d0aba9e36783d9185a8861bd39adef,
@@ -2584,6 +2614,8 @@ MonoBehaviour:
   number: 0
   DialoguePrefab: {fileID: 9013008239022693986, guid: 45a3d735bc1fe373396c3bc8900ee522,
     type: 3}
+  SettingsPrefab: {fileID: 601060187528372893, guid: 0e189701be9cc6b5d95e888ade0c03e6,
+    type: 3}
 --- !u!82 &1628066471
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2594,7 +2626,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 940bfe513384e597e85a374ad9cbd914, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 0.333
   m_Pitch: 1
@@ -2699,9 +2731,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 6028e5e512e3c1b139d8c3c308013da7, type: 3}
   - {fileID: 8300000, guid: 7cd60af8e521eb034a51905bfd9fe890, type: 3}
   - {fileID: 8300000, guid: 7cd60af8e521eb034a51905bfd9fe890, type: 3}
+  - {fileID: 8300000, guid: 3b18fec7f439ea8e0a373ebd9d3e4ae3, type: 3}
   - {fileID: 8300000, guid: 7cd60af8e521eb034a51905bfd9fe890, type: 3}
-  - {fileID: 8300000, guid: 7cd60af8e521eb034a51905bfd9fe890, type: 3}
-  - {fileID: 8300000, guid: 7cd60af8e521eb034a51905bfd9fe890, type: 3}
+  - {fileID: 8300000, guid: f15b4c97d4bf83feea02ff274440a1bd, type: 3}
+  fx_vol: 1
 --- !u!114 &1628066473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3605,8 +3638,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1628066474}
-        m_MethodName: Scene_Playground
+      - m_Target: {fileID: 1628066470}
+        m_MethodName: show_settings_window
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

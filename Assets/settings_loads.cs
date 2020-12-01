@@ -1,0 +1,45 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class settings_loads : MonoBehaviour
+{
+    // Start is called before the first frame update
+    void Start()
+    {
+        var music_name = Camera.main.GetComponent<save_manager>().get_music();
+        var music_vol =
+            Camera.main.GetComponent<save_manager>().get_music_vol();
+        var fx_vol = Camera.main.GetComponent<save_manager>().get_effects_vol();
+        var res = 0;
+        switch (music_name)
+        {
+            case "Supersonic":
+                res = 0;
+                break;
+            case "Morrow":
+                res = 1;
+                break;
+            case "ForgottenLand":
+                res = 2;
+                break;
+            default:
+                res = 0;
+                break;
+        }
+        music_dropDown.value = res;
+        music_slider.value = music_vol;
+        fx_slider.value = fx_vol;
+    }
+
+    public TMPro.TMP_Dropdown music_dropDown;
+
+    public UnityEngine.UI.Slider music_slider;
+
+    public UnityEngine.UI.Slider fx_slider;
+
+    // Update is called once per frame
+    void Update()
+    {
+    }
+}
