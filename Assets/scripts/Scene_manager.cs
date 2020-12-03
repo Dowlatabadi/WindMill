@@ -65,6 +65,7 @@ public class Scene_manager : MonoBehaviour
     {
         PlayerPrefs.SetInt("temp_lvl_num", Lvl_num);
         Camera.main.GetComponent<loading_manager>().fade_in_blur();
+        Camera.main.GetComponent<SoundManager>().play_clickSound();
 
         UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Game1");
     }
