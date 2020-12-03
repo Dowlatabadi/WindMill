@@ -1470,6 +1470,8 @@ GameObject:
   - component: {fileID: 1628066477}
   - component: {fileID: 1628066478}
   - component: {fileID: 1628066479}
+  - component: {fileID: 1628066481}
+  - component: {fileID: 1628066480}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1683,6 +1685,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  fx_vol: 1
 --- !u!114 &1628066473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1858,6 +1861,39 @@ MonoBehaviour:
   lvl_indicator: {fileID: 59669083}
   life_prefab_alive: {fileID: 0}
   life_prefab_dead: {fileID: 0}
+--- !u!114 &1628066480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1628066466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4fe295621ccb48d8bc23b4cc9fb5874, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SuperBlurFastScript: {fileID: 0}
+--- !u!114 &1628066481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1628066466}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e281a0d7bd66caa4e9aac66eb703b6d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderMode: 0
+  kernelSize: 0
+  interpolation: 0
+  downsample: 2
+  iterations: 3
+  gammaCorrection: 0
+  blurMaterial: {fileID: 2100000, guid: 82ae7f14a2d746e3d8125b82d6686edf, type: 2}
+  UIMaterial: {fileID: 2100000, guid: 3559eb303253e2e12a4c41f930ce8065, type: 2}
 --- !u!1 &1696037601
 GameObject:
   m_ObjectHideFlags: 0

@@ -1042,7 +1042,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 99.82, y: -63.46}
+  m_AnchoredPosition: {x: 99.82001, y: -63.460022}
   m_SizeDelta: {x: 153.32391, y: 89.626495}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1094950394
@@ -2068,6 +2068,8 @@ GameObject:
   - component: {fileID: 1927204342}
   - component: {fileID: 1927204345}
   - component: {fileID: 1927204346}
+  - component: {fileID: 1927204348}
+  - component: {fileID: 1927204347}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2164,3 +2166,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   signal: 0
+--- !u!114 &1927204347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1927204341}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e281a0d7bd66caa4e9aac66eb703b6d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderMode: 0
+  kernelSize: 0
+  interpolation: 0
+  downsample: 2
+  iterations: 3
+  gammaCorrection: 0
+  blurMaterial: {fileID: 2100000, guid: 82ae7f14a2d746e3d8125b82d6686edf, type: 2}
+  UIMaterial: {fileID: 2100000, guid: 3559eb303253e2e12a4c41f930ce8065, type: 2}
+--- !u!114 &1927204348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1927204341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4fe295621ccb48d8bc23b4cc9fb5874, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SuperBlurFastScript: {fileID: 0}
