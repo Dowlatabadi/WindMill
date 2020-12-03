@@ -17,6 +17,7 @@ public class Close_settings : MonoBehaviour
     }
 	public void close(){
 		var obj=GameObject.FindWithTag("Settings");
+		Camera.main.GetComponent<SoundManager>().play_clickSound();
 		Destroy(obj);
 	}
 }

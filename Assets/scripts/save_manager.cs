@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class save_manager : MonoBehaviour
 {
-	 void Start()
+    void Start()
     {
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
     }
+
     // Start is called before the first frame update
     public bool is_first_time()
     {
@@ -60,16 +59,18 @@ public class save_manager : MonoBehaviour
         return .3f;
     }
 
+    public float fx_ampli_factor = 4f;
+
     public void set_effects_vol(float percent)
     {
-        PlayerPrefs.SetFloat("effects_vol", percent);
+        PlayerPrefs.SetFloat("effects_vol", percent * fx_ampli_factor);
     }
 
     public float get_effects_vol()
     {
         if (PlayerPrefs.HasKey("effects_vol"))
-            return PlayerPrefs.GetFloat("effects_vol");
-        return 1f;
+            return PlayerPrefs.GetFloat("effects_vol") ;
+        return fx_ampli_factor;
     }
 
     public void set_music(string music_name)

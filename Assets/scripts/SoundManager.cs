@@ -12,7 +12,7 @@ public class SoundManager : MonoBehaviour
     {
         gameObject
             .GetComponent<AudioSource>()
-            .PlayOneShot(AudioClips[2], 3f * fx_vol);
+            .PlayOneShot(AudioClips[2], 6f * fx_vol);
     }
 
     public void play_successSound()
