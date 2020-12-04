@@ -36,10 +36,24 @@ public class Scene_manager : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("About");
     }
 
-    public void Scene_Intro()
+    public void Scene_Intro(bool stop_current_scene = false)
     {
         Camera.main.GetComponent<loading_manager>().fade_in_blur();
-
+        if (stop_current_scene)
+        {
+            try
+            {
+                var cyl_gos =
+                    GameObject.FindGameObjectsWithTag("cylinderparent");
+                foreach (var item in cyl_gos)
+                {
+                    item.GetComponent<rotate>().enabled = false;
+                }
+            }
+            catch (System.Exception)
+            {
+            }
+        }
         UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("intro");
     }
 

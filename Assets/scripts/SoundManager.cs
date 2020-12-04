@@ -19,21 +19,21 @@ public class SoundManager : MonoBehaviour
     {
         gameObject
             .GetComponent<AudioSource>()
-            .PlayOneShot(AudioClips[4], 1f * fx_vol);
+            .PlayOneShot(AudioClips[4], Mathf.Min(.3f * fx_vol,3));
     }
 
     public void play_ding()
     {
         gameObject
             .GetComponent<AudioSource>()
-            .PlayOneShot(AudioClips[0], 1f * fx_vol);
+            .PlayOneShot(AudioClips[0], Mathf.Min(.4f * fx_vol,6));
     }
 
     public void play_failure()
     {
         gameObject
             .GetComponent<AudioSource>()
-            .PlayOneShot(AudioClips[3], 2f * fx_vol);
+            .PlayOneShot(AudioClips[3],Mathf.Min(.3f * fx_vol,3) );
     }
 
     public float fx_vol = 1f;

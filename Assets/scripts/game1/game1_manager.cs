@@ -4,10 +4,15 @@ using System.Diagnostics;
 using System.Linq;
 using Classes;
 using LinePoint;
+using TMPro;
 using UnityEngine;
 
 public class game1_manager : MonoBehaviour
 {
+    public GameObject sub_1;
+
+    public GameObject sub_2;
+
     //-3,3 x
     //-2,2 y
     public GameObject checkpivot_pefab;
@@ -42,6 +47,56 @@ public class game1_manager : MonoBehaviour
     }
 
     string current_message = "default";
+
+    public void first_button_pressed()
+    {
+        var pivot_creation =
+            (
+            gamemode == game_mode.pivotCreation_orderise ||
+            gamemode == game_mode.pivotCreation_inaccessible_pivots
+            );
+
+        //if pivot creation choose out of two type pivots
+        if (pivot_creation)
+        {
+            //popup two choices
+            sub_1.GetComponent<btn_hid_show>().grow();
+            sub_2.GetComponent<btn_hid_show>().grow();
+        }
+        else
+        //else if mill creation
+        {
+            var mill = GameObject.FindWithTag("cylinderparent");
+            mill.GetComponent<rotate>().start();
+        }
+    }
+
+    public void spawn_pivot_at_cross_loc(bool clockWise)
+    {
+        var position = GetComponent<LineRenderer>().GetPosition(0);
+        var go =
+            GameObject
+                .Instantiate(checkpivot_pefab, position, Quaternion.identity);
+
+        if (clockWise)
+        {
+            go.gameObject.tag = "clockwise";
+            go.GetComponent<SpriteRenderer>().color = Color.red;
+        }
+        else
+        {
+            go.GetComponent<SpriteRenderer>().color = Color.blue;
+            go.gameObject.tag = "counterclockwise";
+        }
+        sub_1.GetComponent<btn_hid_show>().shrink();
+        sub_2.GetComponent<btn_hid_show>().shrink();
+        GetComponent<LineRenderer>().enabled = false;
+
+        //spund maybe
+        //a little delay todo
+        var mill = GameObject.FindWithTag("cylinderparent");
+        mill.GetComponent<rotate>().start();
+    }
 
     public void show(string st, bool white = false)
     {
@@ -88,6 +143,8 @@ public class game1_manager : MonoBehaviour
             reset();
         }
     }
+
+    public GameObject First_button;
 
     public void goto_last_lvl()
     {
@@ -207,13 +264,21 @@ public class game1_manager : MonoBehaviour
         var cyl_parent = GameObject.FindGameObjectsWithTag("cylinderparent")[0];
         cyl_parent.GetComponent<rotate>().stop();
         current_order = 0;
+        destroy_all(gos.ToArray());
+        var cs = GameObject.FindGameObjectsWithTag("clockwise");
+        destroy_all (cs);
+        var ccs = GameObject.FindGameObjectsWithTag("counterclockwise");
+        destroy_all (ccs);
+        UnityEngine.Debug.Log("reset");
+        Draw_level (lvl);
+    }
+
+    void destroy_all(GameObject[] gos)
+    {
         foreach (var pvt_go in gos)
         {
             GameObject.Destroy (pvt_go);
         }
-
-        UnityEngine.Debug.Log("reset");
-        Draw_level (lvl);
     }
 
     void Draw_level(Level lvl)
@@ -224,7 +289,18 @@ public class game1_manager : MonoBehaviour
             gamemode == game_mode.pivotCreation_orderise ||
             gamemode == game_mode.pivotCreation_inaccessible_pivots
             );
-        if (!needs_cross) GetComponent<LineRenderer>().enabled = false;
+        var text = First_button.GetComponentInChildren<TextMeshProUGUI>();
+
+        if (!needs_cross)
+        {
+            GetComponent<LineRenderer>().enabled = false;
+            text.text = "Start";
+        }
+        else
+        {
+            GetComponent<LineRenderer>().enabled = true;
+            text.text = "Create";
+        }
 
         UnityEngine.Debug.Log("all lvl pivots: " + lvl.Pivots.Count());
         var cyl_parent = GameObject.FindGameObjectsWithTag("cylinderparent")[0];
@@ -323,6 +399,7 @@ public class game1_manager : MonoBehaviour
         // UnityEngine.Debug.Log("test slope="+Helper.PointsGetSlopeCloseness(new Vector2(0,0),new Vector2(1,0),new Vector2(0,1)));
         failure_counter = 0;
         current_order = 0;
+
         //PlayerPrefs.SetInt("temp_lvl_num", 1);
         goto_last_lvl();
     }

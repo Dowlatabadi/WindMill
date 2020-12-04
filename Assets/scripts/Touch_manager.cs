@@ -10,12 +10,12 @@ public class Touch_manager : MonoBehaviour
     void Start()
     {
     }
-
+public float aim_higher_offset; 
     public void draw_cross(Vector3 v3)
     {
         LineRenderer lineRenderer = GetComponent<LineRenderer>();
 
-        var offset = v3;
+        var offset = v3+(new Vector3(0,aim_higher_offset,0));
         var x = 2 * 4;
         var y = 2 * 7;
         lineRenderer
