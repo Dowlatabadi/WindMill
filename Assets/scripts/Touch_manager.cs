@@ -10,12 +10,14 @@ public class Touch_manager : MonoBehaviour
     void Start()
     {
     }
-public float aim_higher_offset; 
+
+    public float aim_higher_offset;
+
     public void draw_cross(Vector3 v3)
     {
         LineRenderer lineRenderer = GetComponent<LineRenderer>();
 
-        var offset = v3+(new Vector3(0,aim_higher_offset,0));
+        var offset = v3 + (new Vector3(0, aim_higher_offset, 0));
         var x = 2 * 4;
         var y = 2 * 7;
         lineRenderer
@@ -40,12 +42,15 @@ public float aim_higher_offset;
 
     void Update()
     {
-        if ( Input.GetMouseButton(0) && is_mouse_in_ui())
+        if (Input.GetMouseButton(0))
         {
-            Debug.Log("ignored!!!!!!!!!00 ui");
-            return;
+            var canvas = GameObject.FindGameObjectWithTag("Canvas");
+            if (is_mouse_in_ui(canvas))
+            {
+                Debug.Log("ignored!!!!!!!!!00 ui");
+                return;
+            }
         }
-
         switch (Camera.main.GetComponent<game1_manager>().gamemode)
         {
             case game_mode.millCreataion_orderise:
@@ -121,22 +126,38 @@ public float aim_higher_offset;
         }
     }
 
-    bool is_mouse_in_ui()
+    bool is_mouse_in_ui(GameObject parent)
     {
         var m_pos = Input.mousePosition;
-        var canvas = GameObject.FindGameObjectWithTag("Canvas");
-        foreach (Transform uigo in canvas.transform)
+        foreach (Transform uigo in parent.transform)
         {
-            var rectTransform = uigo.gameObject.GetComponent<RectTransform>();
-            var width = rectTransform.rect.width;
-            var height = rectTransform.rect.height;
-            var pos = rectTransform.position;
-            if (
-                m_pos.x < pos.x + (width / 2) &&
-                m_pos.x > pos.x - (width / 2) &&
-                m_pos.y > pos.y - (height / 2) &&
-                m_pos.y < pos.y + (height / 2)
-            ) return true;
+            try
+            {
+                var rectTransform =
+                    uigo.gameObject.GetComponent<RectTransform>();
+                var width = rectTransform.rect.width;
+                var height = rectTransform.rect.height;
+                var pos = rectTransform.position;
+                if (
+                    m_pos.x < pos.x + (width / 2) &&
+                    m_pos.x > pos.x - (width / 2) &&
+                    m_pos.y > pos.y - (height / 2) &&
+                    m_pos.y < pos.y + (height / 2)
+                ) return true;
+            }
+            catch
+            {
+            }
+            try
+            {
+                foreach (Transform sub_uigo in uigo.transform)
+                {
+                    if (is_mouse_in_ui(sub_uigo.gameObject)) return true;
+                }
+            }
+            catch
+            {
+            }
         }
         return false;
     }
