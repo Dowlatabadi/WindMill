@@ -701,7 +701,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 217
+  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -722,7 +722,7 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -163.71545, y: -515.40063, z: -448.70154, w: 130.34796}
+  m_margin: {x: -163.71545, y: -515.40063, z: -355.4237, w: -18.89618}
   m_textInfo:
     textComponent: {fileID: 9013008240880073615}
     characterCount: 271

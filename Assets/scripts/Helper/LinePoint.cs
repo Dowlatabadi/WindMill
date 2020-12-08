@@ -201,11 +201,13 @@ namespace LinePoint
             return chosen;
         }
 
-        public static Vector2 get_squared_pos(int row_num, int col_num, bool centerised=true)
+        public static Vector2
+        get_squared_pos(int row_num, int col_num, bool centerised = true)
         {
+			var precision=10;
             //starting bottom left
-            var rows = 16;
-            var columns = 8;
+            var rows = 32*precision;
+            var columns = 16*precision;
             var width = Screen.width;
             var height = Screen.height;
             var width_unit = width / columns;
@@ -214,20 +216,43 @@ namespace LinePoint
             if (centerised)
             {
                 var temp =
-                    new Vector2((col_num-1) * width_unit + width_unit / 2,
-                        (row_num-1) * height_unit + height_unit / 2
-                        );
+                    new Vector2((col_num - 1) * width_unit + width_unit / 2,
+                        (row_num - 1) * height_unit + height_unit / 2);
                 return Camera.main.ScreenToWorldPoint(temp);
             }
             else
             {
-				var random_x_off= Random.Range(0f, width_unit);
-				var random_y_off= Random.Range(0f, height_unit);
+                var random_x_off = Random.Range(0f, width_unit);
+                var random_y_off = Random.Range(0f, height_unit);
                 var temp =
-                    new Vector2((col_num-1) * width_unit + random_x_off ,
-                       (row_num-1) * height_unit + random_y_off);
+                    new Vector2((col_num - 1) * width_unit + random_x_off,
+                        (row_num - 1) * height_unit + random_y_off);
                 return Camera.main.ScreenToWorldPoint(temp);
             }
+        }
+
+        public static List<(int x, int y)>
+        get_asymetric_poses(int start_angle, int point_number,int scale_factor=6,float y_scale=1)
+        {
+			
+			var precision=10;
+			(int x,int y) offset=(9*precision,16*precision);
+            var scale = scale_factor*precision; //from 8;
+            var result = new List<(int x, int y)>();
+            var angle_share = 360 / point_number;
+            var next_angle = start_angle;
+            UnityEngine.Debug.Log($"angle share is {angle_share}");
+
+            for (int i = 0; i < point_number; i++)
+            {
+          
+                var x = (int) Mathf.Round(Mathf.Cos(next_angle* (Mathf.PI / 180) ) * scale)+offset.x;
+                var y = (int) (Mathf.Round(Mathf.Sin(next_angle* (Mathf.PI / 180) ) * scale*y_scale)+offset.y);
+                result.Add((y,x));
+            UnityEngine.Debug.Log($"for angle {next_angle} generated {i}::: ({x}, {y}), sin(-180) {Mathf.Sin(-180* Mathf.PI)}");
+                next_angle = (next_angle + angle_share) ;
+            }
+            return result;
         }
     }
 }

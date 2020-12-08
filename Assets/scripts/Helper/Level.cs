@@ -35,30 +35,31 @@ namespace Classes
         Pivots { get; set; }
 
         public string Info { get; set; }
+        public Vector2 start_vct { get; set; }
 
         public string End_Info { get; set; }
 
         public int Known_pivots { get; set; }
 
-        public Level(
-            game_mode game_mode,
-            List<(
-                    Vector2 pivot_pos,
-                    Pivot_type pivot_type,
-                    bool labeled,
-                    int order_num
-                )
-            >
-            Pivots,
-            string Info,
-            int Known_pivots
-        )
-        {
-            this.gamemode = game_mode;
-            this.Pivots = Pivots;
-            this.Info = Info;
-            this.Known_pivots = Known_pivots;
-        }
+        // public Level(
+        //     game_mode game_mode,
+        //     List<(
+        //             Vector2 pivot_pos,
+        //             Pivot_type pivot_type,
+        //             bool labeled,
+        //             int order_num
+        //         )
+        //     >
+        //     Pivots,
+        //     string Info,
+        //     int Known_pivots
+        // )
+        // {
+        //     this.gamemode = game_mode;
+        //     this.Pivots = Pivots;
+        //     this.Info = Info;
+        //     this.Known_pivots = Known_pivots;
+        // }
 
         public Level(
             game_mode game_mode,
@@ -67,6 +68,8 @@ namespace Classes
             float label_portion,
             string Info,
             string End_Info,
+			Vector2 start_vct
+			,
             List<(int x, int y, bool centerised)> predefined_locations = null
         )
         {
@@ -75,6 +78,8 @@ namespace Classes
             List<int> indexes = Enumerable.Range(0, total_points).ToList();
             List<int> Labeled_indexes =
                 indexes
+				//if can first one is not labeled
+				.Skip((labeled_number<total_points)?1:0)
                     .OrderBy(x => UnityEngine.Random.value)
                     .Take(labeled_number)
                     .ToList();
@@ -144,7 +149,7 @@ namespace Classes
             UnityEngine.Debug.Log("before orderise pivots: " + res.Count());
 
             // var result = FakeOrderise(res);
-            var result = Orderise(res);
+            var result = Orderise(res,start_vct);
             UnityEngine.Debug.Log("After orderise pivots: " + result.Count());
 
             Pivots = result;
@@ -179,7 +184,7 @@ namespace Classes
             )
         >
         Orderise(
-            List<(Vector2 pivot_pos, Pivot_type pivot_type, bool labeled)> input
+            List<(Vector2 pivot_pos, Pivot_type pivot_type, bool labeled)> input,Vector2 l1
         )
         {
             UnityEngine
@@ -196,9 +201,9 @@ namespace Classes
                     )
                 >();
             var tot = input.Count();
-            var next_index = UnityEngine.Random.Range(0, tot);
+            var next_index =0;// UnityEngine.Random.Range(0, tot);
             var total_steps = Mathf.Max(15, tot);
-            var l1 = new Vector2(0, 1);
+            // l1 = ;
             int i = 1;
             List<int> seen = new List<int>();
             res
@@ -277,7 +282,7 @@ namespace Classes
             l1 = new Vector2(l1.x, l1.y);
             var min_diff = 1f;
 
-            var res = -180;
+            var res = start_index;
             for (int i = 0; i < positions.Count(); i++)
             {
                 if (i == start_index) continue;

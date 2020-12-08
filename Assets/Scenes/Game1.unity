@@ -2230,8 +2230,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 37e1f7d90a4790cf8a3b1cd3768329b4, type: 3}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: f15b4c97d4bf83feea02ff274440a1bd, type: 3}
+  - {fileID: 8300000, guid: a0e64d3aee60b899985e1a51241f25f2, type: 3}
   fx_vol: 1
+  game_ground: 1
 --- !u!114 &1628066473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2968,6 +2970,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4510869152659804131, guid: 4439f3dd142bbadf0ad8284138540079,
+        type: 3}
+      propertyPath: speed
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4510869152659804133, guid: 4439f3dd142bbadf0ad8284138540079,
         type: 3}

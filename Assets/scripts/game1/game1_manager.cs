@@ -81,11 +81,11 @@ public class game1_manager : MonoBehaviour
         if (clockWise)
         {
             go.gameObject.tag = "clockwise";
-            go.GetComponent<SpriteRenderer>().color = Color.red;
+            go.GetComponent<SpriteRenderer>().color = Color.blue;
         }
         else
         {
-            go.GetComponent<SpriteRenderer>().color = Color.blue;
+            go.GetComponent<SpriteRenderer>().color = Color.red;
             go.gameObject.tag = "counterclockwise";
         }
         sub_1.GetComponent<btn_hid_show>().shrink();
@@ -98,9 +98,26 @@ public class game1_manager : MonoBehaviour
         mill.GetComponent<rotate>().start();
     }
 
-    public void show(string st, bool white = false)
+    public IEnumerator wait(int secs)
     {
-        gameObject.GetComponent<PauseManager>().PauseifPlaying();
+        yield return new WaitForSeconds(secs);
+        if (!Camera.main.GetComponent<game1_manager>().check_success())
+            Camera.main.GetComponent<PauseManager>().ResumeifPaused();
+        else
+        {
+            //Camera.main.GetComponent<game1_manager>().check_success();
+            Camera.main.GetComponent<game1_manager>().goto_last_lvl();
+        }
+        UnityEngine.Debug.Log($"string show was empty. white ={22} and ");
+    }
+
+    public IEnumerator wait_and_show(string st, bool white)
+    {
+        var temp_lvl = PlayerPrefs.GetInt("temp_lvl_num");
+        var lvl_details =
+            Levels_Data.levels_info.FirstOrDefault(x => x.lvl_num == temp_lvl);
+
+        if (white) yield return new WaitForSeconds(lvl_details.finish_delay);
 
         //destroy other messages
         var prev_go = GameObject.FindGameObjectWithTag("DialogueBox");
@@ -117,11 +134,27 @@ public class game1_manager : MonoBehaviour
                 .Instantiate(white ? W_DialoguePrefab : DialoguePrefab,
                 new Vector3(0, 0, DialoguePrefab.transform.position.z),
                 Quaternion.identity);
+        gameObject.GetComponent<PauseManager>().PauseifPlaying();
+
         go.GetComponent<Dialogue_script>().show(st);
         go
             .transform
             .SetParent(GameObject.FindGameObjectWithTag("Canvas").transform,
             false);
+        Camera.main.GetComponent<PauseManager>().Stops();
+    }
+
+    public void show(string st, bool white = false)
+    {
+        if (st.Contains("empty"))
+        {
+            var wait = 0;
+
+            StartCoroutine("wait", 5);
+
+            return;
+        }
+        StartCoroutine(wait_and_show(st, white));
     }
 
     public void OneMistakeOccured()
@@ -164,6 +197,7 @@ public class game1_manager : MonoBehaviour
                     lvl_details.labeled_ratio,
                     lvl_details.welcome_info,
                     lvl_details.end_info,
+                    lvl_details.start_vct,
                     lvl_details.predefined_locations);
             var SM = Camera.main.GetComponent<save_manager>();
             if (!SM.is_last_lvl_seen())
@@ -185,7 +219,8 @@ public class game1_manager : MonoBehaviour
                     0,
                     1f,
                     "",
-                    "");
+                    "",
+                    new Vector2(0, 1));
         }
 
         gamemode = lvl.gamemode;
@@ -242,7 +277,6 @@ public class game1_manager : MonoBehaviour
                     .Debug
                     .Log($"nt solvd,gos={gos.Count()}, faults={p}");
             }
-            Camera.main.GetComponent<PauseManager>().Stops();
 
             return true;
         }
@@ -348,11 +382,11 @@ public class game1_manager : MonoBehaviour
             {
                 go.gameObject.tag = "clockwise";
 
-                go.GetComponent<SpriteRenderer>().color = Color.red;
+                go.GetComponent<SpriteRenderer>().color = Color.blue;
             }
             else
             {
-                go.GetComponent<SpriteRenderer>().color = Color.blue;
+                go.GetComponent<SpriteRenderer>().color = Color.red;
                 go.gameObject.tag = "counterclockwise";
             }
             gos.Add (go);

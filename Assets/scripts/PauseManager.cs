@@ -32,7 +32,10 @@ public class PauseManager : MonoBehaviour
 
     public void PauseifPlaying()
     {
-        if (!Playing) return;
+        if (!Playing) {
+			
+			UnityEngine.Debug.Log("not playin");
+			return;}
         var cyl_parent = GameObject.FindGameObjectsWithTag("cylinderparent")[0];
         Paused = true;
         if (cyl_parent != null) cyl_parent.GetComponent<rotate>().stop();

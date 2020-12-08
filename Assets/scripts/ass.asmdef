@@ -1,0 +1,15 @@
+{
+    "name": "ass",
+    "references": [
+        "Unity.TextMeshPro",
+        "blur"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
+}

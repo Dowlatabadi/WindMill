@@ -37,10 +37,12 @@ public class SoundManager : MonoBehaviour
     }
 
     public float fx_vol = 1f;
-
+public bool game_ground;
     public void AdjustSoundPreferences()
     {
         var music_name = gameObject.GetComponent<save_manager>().get_music();
+		if (game_ground)
+		music_name="Adrift";
         var music_vol = gameObject.GetComponent<save_manager>().get_music_vol();
         fx_vol = gameObject.GetComponent<save_manager>().get_effects_vol();
         switch (music_name)
@@ -57,6 +59,9 @@ public class SoundManager : MonoBehaviour
                 gameObject.GetComponent<AudioSource>().clip = AudioClips[7];
 
                 break;
+				case "Adrift":
+                gameObject.GetComponent<AudioSource>().clip = AudioClips[8];
+break;
             default:
                 gameObject.GetComponent<AudioSource>().clip = AudioClips[1];
 
@@ -75,6 +80,7 @@ public class SoundManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+		
         AdjustSoundPreferences();
     }
 
