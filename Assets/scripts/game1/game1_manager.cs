@@ -233,6 +233,25 @@ public class game1_manager : MonoBehaviour
 
     bool is_end_message_shown_once = false;
 
+    public void show_current_info()
+    {
+        show (current_message);
+        info_btn.GetComponent<Animator>().SetBool("Blink", false);
+    }
+
+    public GameObject info_btn;
+
+    public void info_charged()
+    {
+		  var temp_lvl = PlayerPrefs.GetInt("temp_lvl_num");
+            var lvl_details =
+                Levels_Data
+                    .levels_info
+                    .FirstOrDefault(x => x.lvl_num == temp_lvl);
+        current_message =lvl_details.welcome_info;
+        info_btn.GetComponent<Animator>().SetBool("Blink", true);
+    }
+
     public bool check_success()
     {
         var lvl_solved = gos.All(x => x.GetComponent<pivotActions>().solved);
@@ -289,8 +308,10 @@ public class game1_manager : MonoBehaviour
     {
     }
 
+  
     void reset()
     {
+        
         failure_counter = 0;
 
         is_lvl_solved = false;
@@ -407,10 +428,10 @@ public class game1_manager : MonoBehaviour
             new Vector3(cyl_parent.transform.eulerAngles.x,
                 cyl_parent.transform.eulerAngles.y,
                 0);
-        
+
         cyl_parent.GetComponent<rotate>().stop();
-		cyl_parent.GetComponent<Animator>().enabled=true;
-		if (!needs_cross)
+        cyl_parent.GetComponent<Animator>().enabled = true;
+        if (!needs_cross)
         {
             cyl_parent.GetComponent<rotate>().blink();
         }
@@ -450,5 +471,5 @@ public class game1_manager : MonoBehaviour
         goto_last_lvl();
     }
 
-    // Update is called once per frame
+    
 }

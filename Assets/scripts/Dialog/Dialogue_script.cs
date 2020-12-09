@@ -9,16 +9,17 @@ public class Dialogue_script : MonoBehaviour
 
     public void destroy()
     {
+        Camera.main.GetComponent<PauseManager>().Reset_Thinking();
         try
         {
             Camera.main.GetComponent<SoundManager>().play_clickSound();
             if (!Camera.main.GetComponent<game1_manager>().check_success())
                 Camera.main.GetComponent<PauseManager>().ResumeifPaused();
-				else
-				{
-					//Camera.main.GetComponent<game1_manager>().check_success();
-					Camera.main.GetComponent<game1_manager>().goto_last_lvl();
-				}
+            else
+            {
+                //Camera.main.GetComponent<game1_manager>().check_success();
+                Camera.main.GetComponent<game1_manager>().goto_last_lvl();
+            }
         }
         catch
         {
