@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4510869152659804130}
   - component: {fileID: 4510869152659804131}
+  - component: {fileID: 3812756260594036994}
   m_Layer: 0
   m_Name: millparent
   m_TagString: cylinderparent
@@ -47,6 +48,25 @@ MonoBehaviour:
   speed: 15
   pivot: {fileID: 0}
   stopped: 0
+--- !u!95 &3812756260594036994
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4510869152659804133}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c710544eab7f2d78197185307ec7b40a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4510869153604508461
 GameObject:
   m_ObjectHideFlags: 0
@@ -118,7 +138,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b800e16ab6acdf1198b0f0c7fc19c207, type: 3}
-  m_Color: {r: 0.23850012, g: 0, b: 1, a: 0.32156864}
+  m_Color: {r: 0.23850012, g: 0, b: 1, a: 0.4627451}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

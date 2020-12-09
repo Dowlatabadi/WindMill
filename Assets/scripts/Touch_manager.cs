@@ -87,11 +87,11 @@ public class Touch_manager : MonoBehaviour
                                 .FindGameObjectsWithTag("cylinderparent")[0];
 
                         var currpos = Input.mousePosition;
-                        var amount = (currpos.y - drag_pos.y > 0) ? 1f : -1f;
+                        var amount = Mathf.Clamp(.002f*(currpos.y - drag_pos.y) , -6f,6f);
                         mill.transform.eulerAngles =
                             new Vector3(mill.transform.eulerAngles.x,
                                 mill.transform.eulerAngles.y,
-                                mill.transform.eulerAngles.z + .3f * amount);
+                                mill.transform.eulerAngles.z +  amount);
                     }
                     if (
                         Input.GetMouseButtonUp(0) &&

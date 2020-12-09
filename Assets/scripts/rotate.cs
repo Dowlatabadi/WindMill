@@ -13,6 +13,15 @@ public class rotate : MonoBehaviour
 
     Transform child_transform;
 
+    public void blink()
+    {
+        GetComponent<Animator>().SetBool("should_blibk", true);
+    }
+	 public void blink_off()
+    {
+        GetComponent<Animator>().SetBool("should_blibk", false);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,7 +46,7 @@ public class rotate : MonoBehaviour
             .GetComponent<pivotActions>()
             .OnTriggerEnter2D(this.gameObject.GetComponent<BoxCollider2D>());
         Camera.main.GetComponent<PauseManager>().Plays();
-		this.enabled=true;
+        this.enabled = true;
     }
 
     public void SPAWN_pivot(GameObject pivot1)
@@ -74,13 +83,11 @@ public class rotate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		
         if (pivot == null || stopped)
         {
             // UnityEngine
             //     .Debug
             //     .Log($"rotate condition faile {pivot == null} || {stopped}");
-
             return;
         }
         transform.Rotate(Vector3.back * speed * Time.deltaTime * rotationSign);

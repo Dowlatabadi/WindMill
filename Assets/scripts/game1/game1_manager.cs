@@ -68,6 +68,7 @@ public class game1_manager : MonoBehaviour
         {
             var mill = GameObject.FindWithTag("cylinderparent");
             mill.GetComponent<rotate>().start();
+            mill.GetComponent<rotate>().blink_off();
         }
     }
 
@@ -81,11 +82,11 @@ public class game1_manager : MonoBehaviour
         if (clockWise)
         {
             go.gameObject.tag = "clockwise";
-            go.GetComponent<SpriteRenderer>().color = Color.blue;
+            go.GetComponent<SpriteRenderer>().color = Color.red;
         }
         else
         {
-            go.GetComponent<SpriteRenderer>().color = Color.red;
+            go.GetComponent<SpriteRenderer>().color = Color.blue;
             go.gameObject.tag = "counterclockwise";
         }
         sub_1.GetComponent<btn_hid_show>().shrink();
@@ -96,6 +97,7 @@ public class game1_manager : MonoBehaviour
         //a little delay todo
         var mill = GameObject.FindWithTag("cylinderparent");
         mill.GetComponent<rotate>().start();
+        GetComponent<line_blink>().blink_off();
     }
 
     public IEnumerator wait(int secs)
@@ -382,11 +384,11 @@ public class game1_manager : MonoBehaviour
             {
                 go.gameObject.tag = "clockwise";
 
-                go.GetComponent<SpriteRenderer>().color = Color.blue;
+                go.GetComponent<SpriteRenderer>().color = Color.red;
             }
             else
             {
-                go.GetComponent<SpriteRenderer>().color = Color.red;
+                go.GetComponent<SpriteRenderer>().color = Color.blue;
                 go.gameObject.tag = "counterclockwise";
             }
             gos.Add (go);
@@ -405,7 +407,17 @@ public class game1_manager : MonoBehaviour
             new Vector3(cyl_parent.transform.eulerAngles.x,
                 cyl_parent.transform.eulerAngles.y,
                 0);
+        
         cyl_parent.GetComponent<rotate>().stop();
+		cyl_parent.GetComponent<Animator>().enabled=true;
+		if (!needs_cross)
+        {
+            cyl_parent.GetComponent<rotate>().blink();
+        }
+        else
+        {
+            GetComponent<line_blink>().blink();
+        }
     }
 
     public game_mode gamemode;
