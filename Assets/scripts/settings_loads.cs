@@ -12,7 +12,10 @@ public class settings_loads : MonoBehaviour
             Camera.main.GetComponent<save_manager>().get_music_vol();
         var fx_vol = Camera.main.GetComponent<save_manager>().get_effects_vol();
         var res = 0;
-        switch (music_name)
+        var saved_side = (Camera.main.GetComponent<save_manager>().get_ui_direction()=="Lefties")?0:1;
+        side_dropDown.value = saved_side;
+      
+	    switch (music_name)
         {
             case "Supersonic":
                 res = 0;
@@ -27,12 +30,14 @@ public class settings_loads : MonoBehaviour
                 res = 0;
                 break;
         }
+		
         music_dropDown.value = res;
         music_slider.value = music_vol;
         fx_slider.value = fx_vol;
     }
 
     public TMPro.TMP_Dropdown music_dropDown;
+    public TMPro.TMP_Dropdown side_dropDown;
 
     public UnityEngine.UI.Slider music_slider;
 

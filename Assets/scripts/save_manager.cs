@@ -69,8 +69,21 @@ public class save_manager : MonoBehaviour
     public float get_effects_vol()
     {
         if (PlayerPrefs.HasKey("effects_vol"))
-            return PlayerPrefs.GetFloat("effects_vol") ;
+            return PlayerPrefs.GetFloat("effects_vol");
         return fx_ampli_factor;
+    }
+
+    public void set_ui_direction(string direction)
+    {
+        PlayerPrefs.SetString("UI_Side", direction);
+    }
+
+    public string get_ui_direction()
+    {
+		
+        if (PlayerPrefs.HasKey("UI_Side")) return PlayerPrefs.GetString("UI_Side");
+        return "Righties";
+
     }
 
     public void set_music(string music_name)

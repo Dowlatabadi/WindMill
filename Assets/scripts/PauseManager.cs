@@ -12,7 +12,7 @@ public class PauseManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!Playing)
+        if (Paused || !Playing)
         {
             //time passes in seconds!!
             thinking_duration += (int)(Time.deltaTime * 1000);

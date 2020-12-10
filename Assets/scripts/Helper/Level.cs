@@ -35,6 +35,7 @@ namespace Classes
         Pivots { get; set; }
 
         public string Info { get; set; }
+
         public Vector2 start_vct { get; set; }
 
         public string End_Info { get; set; }
@@ -60,7 +61,6 @@ namespace Classes
         //     this.Info = Info;
         //     this.Known_pivots = Known_pivots;
         // }
-
         public Level(
             game_mode game_mode,
             int number_of_C,
@@ -68,23 +68,30 @@ namespace Classes
             float label_portion,
             string Info,
             string End_Info,
-			Vector2 start_vct
-			,
+            Vector2 start_vct,
             List<(int x, int y, bool centerised)> predefined_locations = null
         )
         {
             var total_points = number_of_C + number_of_CC;
             var labeled_number = (int)(total_points * label_portion);
             List<int> indexes = Enumerable.Range(0, total_points).ToList();
+            var skip_lower_indexes =
+                (total_points - labeled_number > 0)
+                    ? total_points - labeled_number
+                    : 0;
+            UnityEngine
+                .Debug
+                .Log("skiped =======================" + skip_lower_indexes);
+
             List<int> Labeled_indexes =
-                indexes
-				//if can first one is not labeled
-				.Skip((labeled_number<total_points)?1:0)
+                indexes //if can first one is not labeled
+                    .Skip(skip_lower_indexes)
                     .OrderBy(x => UnityEngine.Random.value)
                     .Take(labeled_number)
                     .ToList();
-            UnityEngine.Debug.Log("labeled ones====" + labeled_number);
-            UnityEngine.Debug.Log(String.Join(",", Labeled_indexes));
+
+            // UnityEngine.Debug.Log("labeled ones====" + labeled_number);
+            // UnityEngine.Debug.Log(String.Join(",", Labeled_indexes));
             List<int> C_indexes =
                 indexes
                     .OrderBy(x => UnityEngine.Random.value)
@@ -117,8 +124,8 @@ namespace Classes
                                 .ToList(),
                             2f,
                             10f);
-                }
-                else//get predefined positions
+                } //get predefined positions
+                else
                 {
                     var ith_element = predefined_locations.ElementAt(i);
                     point_pos =
@@ -136,23 +143,34 @@ namespace Classes
                 else
                     cur_tuple.pivot_type = Pivot_type.CounterClockWise;
 
-                if (Labeled_indexes.Contains(i))
-                {
+               
                     cur_tuple.labeled = true;
-                }
-                else
-                {
-                    cur_tuple.labeled = false;
-                }
+               
                 res.Add (cur_tuple);
             }
             UnityEngine.Debug.Log("before orderise pivots: " + res.Count());
 
             // var result = FakeOrderise(res);
-            var result = Orderise(res,start_vct);
-            UnityEngine.Debug.Log("After orderise pivots: " + result.Count());
+            var result = Orderise(res, start_vct);
+ 			var labeled_result=new List<(Vector2 pivot_pos, Pivot_type pivot_type, bool labeled,int order_num)>();
+            //pick labeled based on order
+            for (int i = 0; i < total_points; i++)
+            {
+                var curr = result.ElementAt(i);
+                if (Labeled_indexes.Contains(i))
+                {
+                    labeled_result.Add( (curr.pivot_pos, curr.pivot_type, true,curr.order_num));
+                }
+                else
+                {
+                    labeled_result.Add( (curr.pivot_pos, curr.pivot_type, false,curr.order_num));
 
-            Pivots = result;
+                }
+            }
+
+            UnityEngine.Debug.Log("After orderise pivots: " + labeled_result.Count());
+
+            Pivots = labeled_result;
             this.Known_pivots = labeled_number;
             this.gamemode = game_mode;
             this.Info = Info;
@@ -184,7 +202,9 @@ namespace Classes
             )
         >
         Orderise(
-            List<(Vector2 pivot_pos, Pivot_type pivot_type, bool labeled)> input,Vector2 l1
+            List<(Vector2 pivot_pos, Pivot_type pivot_type, bool labeled)>
+            input,
+            Vector2 l1
         )
         {
             UnityEngine
@@ -201,8 +221,9 @@ namespace Classes
                     )
                 >();
             var tot = input.Count();
-            var next_index =0;// UnityEngine.Random.Range(0, tot);
+            var next_index = 0; // UnityEngine.Random.Range(0, tot);
             var total_steps = Mathf.Max(15, tot);
+
             // l1 = ;
             int i = 1;
             List<int> seen = new List<int>();
@@ -302,7 +323,7 @@ namespace Classes
                     Vector2.SignedAngle(l1, mapped_and_maybe_reflected);
                 UnityEngine.Debug.Log("new ang: " + AngelBetween);
                 if (
-                     AngelBetween != 0 &&
+                    AngelBetween != 0 &&
                     AngelBetween != 180 &&
                     AngelBetween != -180
                 )
@@ -312,18 +333,18 @@ namespace Classes
                         Math.Abs(AngelBetween) > Math.Abs(min_diff)
                     )
                     {
-                UnityEngine.Debug.Log($"correct condition: {Math.Abs(AngelBetween)} > {Math.Abs(min_diff)}");
+                        UnityEngine
+                            .Debug
+                            .Log($"correct condition: {Math.Abs(AngelBetween)} > {Math.Abs(min_diff)}");
 
                         res = i;
                         min_diff = AngelBetween;
                     }
-				
-                 
                 }
-					// else if(AngelBetween == 0){
-					// 			res = i;
-					// 			min_diff = AngelBetween;
-					// }
+                // else if(AngelBetween == 0){
+                // 			res = i;
+                // 			min_diff = AngelBetween;
+                // }
             }
             UnityEngine
                 .Debug

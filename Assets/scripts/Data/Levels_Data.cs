@@ -57,62 +57,106 @@ new Vector2(-1,-2)
 
 ),
 
-(6,7,1,.5f,game_mode.millCreataion_inaccessible_pivots,
+(6,5,0,.3f,game_mode.millCreataion_orderise,
 "This is the sixth level.\n ","This is the forth level.\n ",
-null,3,
+Helper.get_asymetric_poses(75,5,6,1.5f).Select(t=>(t.x,t.y,true)).ToList()
+,3,
 new Vector2(0,1)
 
 ),
-(7,1,3,.5f,game_mode.pivotCreation_orderise,
-"This is the Seventh level.\n ","This is the forth level.\n ",
-null,3,
-new Vector2(0,1)
+(7,5,0,.7f,game_mode.millCreataion_orderise,
+"This is the sixth level.\n ","This is the forth level.\n ",
+Helper.get_asymetric_poses(75,5,6,1.5f).Select(t=>(t.x,t.y,true)).ToList()
+,3,
+new Vector2(1,1)
 
 ),
-(8,1,3,.5f,game_mode.millCreataion_orderise,
-"This is the eightth level.\n ","This is the forth level.\n ",
-null,3,
-new Vector2(0,1)
+(8,5,0,.6f,game_mode.millCreataion_orderise,
+"This is the sixth level.\n ","This is the forth level.\n ",
+Helper.get_asymetric_poses(85,5,6,1.5f).Select(t=>(t.x,t.y,true)).ToList()
+,3,
+new Vector2(-3,-2)
 
 ),
-(9,1,3,.5f,game_mode.pivotCreation_orderise,
-"This is the ninth level.\n ","This is the forth level.\n ",
-null,3,
-new Vector2(0,1)
+(9,6,0,.5f,game_mode.millCreataion_orderise,
+"This is the sixth level.\n ","This is the forth level.\n ",
+Helper.get_asymetric_poses(20,6,6,1.5f).Select(t=>(t.x,t.y,true)).ToList()
+,3,
+new Vector2(-1,-3)
 
 ),
-(10,1,1,.5f,game_mode.millCreataion_inaccessible_pivots,
+(10,5,0,.5f,game_mode.millCreataion_orderise,
 "This is the 10th level.\n ","This is the forth level.\n ",
-null,3,
-new Vector2(0,1)
+new List<(int x, int y, bool centerised)>(){
+	(100,90,true),
+	(120,130,true),
+	(200,60,true),
+	(230,90,true),
+	(240,30,true),
+	
+
+}
+,3,
+new Vector2(-2,10)
 
 ),
 
-(11,1,1,.5f,game_mode.millCreataion_inaccessible_pivots,
-"This is the 11th level.\n ","This is the forth level.\n ",
-null,3,
-new Vector2(0,1)
+(11,5,0,.5f,game_mode.millCreataion_orderise,
+"This is the 10th level.\n ","This is the forth level.\n ",
+new List<(int x, int y, bool centerised)>(){
+	(100,130,true),
+	(100,50,true),
+	(140,130,true),
+	(140,50,true),
+	(250,90,true),
+	
+
+}
+,3,
+new Vector2(-2,10)
 
 ),
 
-(12,1,1,.5f,game_mode.millCreataion_inaccessible_pivots,
+(12,5,0,.5f,game_mode.millCreataion_orderise,
 "This is the 12th level.\n ","This is the forth level.\n ",
-null,3,
-new Vector2(0,1)
+new List<(int x, int y, bool centerised)>(){
+	(170,110,true),
+	(90,150,true),
+	(90,30,true),
+	(170,70,true),
+	(260,90,true),
+}
+,3,
+new Vector2(6,-1)
 
 ),
 
-(13,1,1,.5f,game_mode.millCreataion_inaccessible_pivots,
-"This is the 13th level.\n ","This is the forth level.\n ",
-null,3,
-new Vector2(0,1)
+(13,5,0,.5f,game_mode.millCreataion_orderise,
+"This is the 12th level.\n ","This is the forth level.\n ",
+new List<(int x, int y, bool centerised)>(){
+	(80,150,true),
+	(90,110,true),
+	(90,30,true),
+	(80,70,true),
+	(260,90,true),
+}
+,3,
+new Vector2(6,-1)
 
 ),
 
-(14,1,1,.5f,game_mode.millCreataion_inaccessible_pivots,
-"This is the 14th level.\n ","This is the forth level.\n ",
-null,3,
-new Vector2(0,1)
+(14,6,0,.5f,game_mode.millCreataion_orderise,
+"This is the 12th level.\n ","This is the forth level.\n ",
+new List<(int x, int y, bool centerised)>(){
+	(250,30,true),
+	(120,80,true),
+	(60,80,true),
+	(220,100,true),
+	(280,100,true),
+	(90,150,true),
+}
+,3,
+new Vector2(1,0)
 
 ),
 

@@ -201,6 +201,7 @@ public class game1_manager : MonoBehaviour
                     lvl_details.end_info,
                     lvl_details.start_vct,
                     lvl_details.predefined_locations);
+
             var SM = Camera.main.GetComponent<save_manager>();
             if (!SM.is_last_lvl_seen())
             {
@@ -212,6 +213,7 @@ public class game1_manager : MonoBehaviour
                     PlayerPrefs.SetInt("is_last_lvl_seen_yet", 1);
                 }
             }
+            current_message = lvl_details.welcome_info;
         }
         else
         {
@@ -243,12 +245,10 @@ public class game1_manager : MonoBehaviour
 
     public void info_charged()
     {
-		  var temp_lvl = PlayerPrefs.GetInt("temp_lvl_num");
-            var lvl_details =
-                Levels_Data
-                    .levels_info
-                    .FirstOrDefault(x => x.lvl_num == temp_lvl);
-        current_message =lvl_details.welcome_info;
+        var temp_lvl = PlayerPrefs.GetInt("temp_lvl_num");
+        var lvl_details =
+            Levels_Data.levels_info.FirstOrDefault(x => x.lvl_num == temp_lvl);
+        current_message = lvl_details.welcome_info;
         info_btn.GetComponent<Animator>().SetBool("Blink", true);
     }
 
@@ -308,10 +308,8 @@ public class game1_manager : MonoBehaviour
     {
     }
 
-  
     void reset()
     {
-        
         failure_counter = 0;
 
         is_lvl_solved = false;
@@ -415,12 +413,39 @@ public class game1_manager : MonoBehaviour
             gos.Add (go);
         }
 
-        cyl_parent.GetComponent<rotate>().SPAWN_pivot(gos.ElementAt(0));
+        //select starting position for mill
+		var index=0;
+        var starting_pivot = gos.ElementAt(0);
+        if (!needs_cross)
+        {
+            var is_one_labeled = lvl.Pivots.ElementAt(0).labeled;
+            if (!is_one_labeled)
+            {
+                var possible_choices =
+                    lvl.Pivots.Skip(1).Where(x => !x.labeled);
+                if (possible_choices.Any())
+                {
+                     index =
+                        lvl
+                            .Pivots
+                            .Select((x, ind) => (x, ind))
+                            .Skip(1)
+                            .Where(t => !t.x.labeled)
+                            .OrderBy(x => UnityEngine.Random.value)
+                            .FirstOrDefault()
+                            .ind;
+							UnityEngine.Debug.Log($"index srating selected {index}");
+                    starting_pivot = gos.ElementAt(index);
+                }
+            }
+        }
+
+        cyl_parent.GetComponent<rotate>().SPAWN_pivot(starting_pivot);
 
         //move effect initial
         if (failure_counter == 0)
         {
-            cyl_parent.transform.SetParent(gos.ElementAt(0).transform, true);
+            cyl_parent.transform.SetParent(gos.ElementAt(index).transform, true);
         }
 
         //UnityEngine.Debug.Log(gos.ElementAt(0).transform.position);
@@ -466,10 +491,8 @@ public class game1_manager : MonoBehaviour
         // UnityEngine.Debug.Log("test slope="+Helper.PointsGetSlopeCloseness(new Vector2(0,0),new Vector2(1,0),new Vector2(0,1)));
         failure_counter = 0;
         current_order = 0;
-
+ Camera.main.GetComponent<UIManager>().AdjustUI();
         //PlayerPrefs.SetInt("temp_lvl_num", 1);
         goto_last_lvl();
     }
-
-    
 }
