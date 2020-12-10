@@ -40,6 +40,7 @@ namespace Classes
 
         public string End_Info { get; set; }
 
+        public int Omited_answer { get; set; }
         public int Known_pivots { get; set; }
 
         // public Level(
@@ -74,21 +75,32 @@ namespace Classes
         {
             var total_points = number_of_C + number_of_CC;
             var labeled_number = (int)(total_points * label_portion);
-            List<int> indexes = Enumerable.Range(0, total_points).ToList();
-            var skip_lower_indexes =
-                (total_points - labeled_number > 0)
-                    ? total_points - labeled_number
-                    : 0;
-            UnityEngine
-                .Debug
-                .Log("skiped =======================" + skip_lower_indexes);
+            var pivot_cration =
+                (
+               game_mode== game_mode.pivotCreation_orderise ||
+                game_mode==game_mode.pivotCreation_inaccessible_pivots
+                );
 
+            List<int> indexes = Enumerable.Range(0, total_points).ToList();
+            int initial_skips = (Mathf.Min(total_points - labeled_number, 2));
+            if (pivot_cration)
+            {
+                //reserve first point
+                labeled_number = labeled_number - 1;
+				initial_skips=0;
+            }
             List<int> Labeled_indexes =
                 indexes //if can first one is not labeled
-                    .Skip(skip_lower_indexes)
+                    .Skip(initial_skips)
                     .OrderBy(x => UnityEngine.Random.value)
                     .Take(labeled_number)
                     .ToList();
+            if (pivot_cration)
+            {
+                //add start point to labeled ones
+                Labeled_indexes.Add(0);
+                labeled_number++;
+            }
 
             // UnityEngine.Debug.Log("labeled ones====" + labeled_number);
             // UnityEngine.Debug.Log(String.Join(",", Labeled_indexes));
@@ -143,38 +155,70 @@ namespace Classes
                 else
                     cur_tuple.pivot_type = Pivot_type.CounterClockWise;
 
-               
-                    cur_tuple.labeled = true;
-               
+                cur_tuple.labeled = true;
+
                 res.Add (cur_tuple);
             }
             UnityEngine.Debug.Log("before orderise pivots: " + res.Count());
 
             // var result = FakeOrderise(res);
             var result = Orderise(res, start_vct);
- 			var labeled_result=new List<(Vector2 pivot_pos, Pivot_type pivot_type, bool labeled,int order_num)>();
+
+            var labeled_result =
+                new List<(
+                        Vector2 pivot_pos,
+                        Pivot_type pivot_type,
+                        bool labeled,
+                        int order_num
+                    )
+                >();
+
             //pick labeled based on order
             for (int i = 0; i < total_points; i++)
             {
                 var curr = result.ElementAt(i);
                 if (Labeled_indexes.Contains(i))
                 {
-                    labeled_result.Add( (curr.pivot_pos, curr.pivot_type, true,curr.order_num));
+                    labeled_result
+                        .Add((
+                            curr.pivot_pos,
+                            curr.pivot_type,
+                            true,
+                            curr.order_num
+                        ));
                 }
                 else
                 {
-                    labeled_result.Add( (curr.pivot_pos, curr.pivot_type, false,curr.order_num));
-
+                    labeled_result
+                        .Add((
+                            curr.pivot_pos,
+                            curr.pivot_type,
+                            false,
+                            curr.order_num
+                        ));
                 }
             }
+            var pivot_cration_answer = 0;
+            if (pivot_cration)
+            {
+                pivot_cration_answer =
+                    indexes
+                        .Except(Labeled_indexes)
+                        .OrderBy(x => UnityEngine.Random.value)
+                        .Take(1).FirstOrDefault();
+            }
 
-            UnityEngine.Debug.Log("After orderise pivots: " + labeled_result.Count());
+            UnityEngine
+                .Debug
+                .Log("---------------------------ommited: " + pivot_cration_answer);
 
             Pivots = labeled_result;
             this.Known_pivots = labeled_number;
             this.gamemode = game_mode;
             this.Info = Info;
             this.End_Info = End_Info;
+            this.Omited_answer = pivot_cration_answer;
+			this.start_vct=start_vct;
         }
 
         //sets the order num for all pivots

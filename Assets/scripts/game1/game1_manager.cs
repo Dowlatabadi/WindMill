@@ -363,8 +363,12 @@ public class game1_manager : MonoBehaviour
         int i = 0;
         foreach (var pvt in lvl.Pivots)
         {
+            if (lvl.Omited_answer == i && needs_cross)
+            {
+                i++;
+                continue;
+            }
             i++;
-
             pivots_pos.Add(pvt.pivot_pos);
             GameObject go;
 
@@ -414,8 +418,12 @@ public class game1_manager : MonoBehaviour
         }
 
         //select starting position for mill
-		var index=0;
+        var index = 0;
         var starting_pivot = gos.ElementAt(0);
+        var mill_angle =
+            new Vector3(cyl_parent.transform.eulerAngles.x,
+                cyl_parent.transform.eulerAngles.y,
+                0);
         if (!needs_cross)
         {
             var is_one_labeled = lvl.Pivots.ElementAt(0).labeled;
@@ -425,7 +433,7 @@ public class game1_manager : MonoBehaviour
                     lvl.Pivots.Skip(1).Where(x => !x.labeled);
                 if (possible_choices.Any())
                 {
-                     index =
+                    index =
                         lvl
                             .Pivots
                             .Select((x, ind) => (x, ind))
@@ -434,10 +442,15 @@ public class game1_manager : MonoBehaviour
                             .OrderBy(x => UnityEngine.Random.value)
                             .FirstOrDefault()
                             .ind;
-							UnityEngine.Debug.Log($"index srating selected {index}");
+                    
                     starting_pivot = gos.ElementAt(index);
                 }
             }
+        }
+        else
+        {
+            mill_angle = new Vector3(0, 0,
+			Vector2.SignedAngle (lvl.start_vct,new Vector2(0,1)));
         }
 
         cyl_parent.GetComponent<rotate>().SPAWN_pivot(starting_pivot);
@@ -445,14 +458,13 @@ public class game1_manager : MonoBehaviour
         //move effect initial
         if (failure_counter == 0)
         {
-            cyl_parent.transform.SetParent(gos.ElementAt(index).transform, true);
+            cyl_parent
+                .transform
+                .SetParent(gos.ElementAt(index).transform, true);
         }
 
         //UnityEngine.Debug.Log(gos.ElementAt(0).transform.position);
-        cyl_parent.transform.eulerAngles =
-            new Vector3(cyl_parent.transform.eulerAngles.x,
-                cyl_parent.transform.eulerAngles.y,
-                0);
+        cyl_parent.transform.eulerAngles = mill_angle;
 
         cyl_parent.GetComponent<rotate>().stop();
         cyl_parent.GetComponent<Animator>().enabled = true;
@@ -491,7 +503,8 @@ public class game1_manager : MonoBehaviour
         // UnityEngine.Debug.Log("test slope="+Helper.PointsGetSlopeCloseness(new Vector2(0,0),new Vector2(1,0),new Vector2(0,1)));
         failure_counter = 0;
         current_order = 0;
- Camera.main.GetComponent<UIManager>().AdjustUI();
+        Camera.main.GetComponent<UIManager>().AdjustUI();
+
         //PlayerPrefs.SetInt("temp_lvl_num", 1);
         goto_last_lvl();
     }

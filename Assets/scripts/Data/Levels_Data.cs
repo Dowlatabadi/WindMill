@@ -57,7 +57,7 @@ new Vector2(-1,-2)
 
 ),
 
-(6,5,0,.3f,game_mode.millCreataion_orderise,
+(6,5,0,.4f,game_mode.millCreataion_orderise,
 "This is the sixth level.\n ","This is the forth level.\n ",
 Helper.get_asymetric_poses(75,5,6,1.5f).Select(t=>(t.x,t.y,true)).ToList()
 ,3,
@@ -160,24 +160,47 @@ new Vector2(1,0)
 
 ),
 
-(15,1,1,.5f,game_mode.millCreataion_inaccessible_pivots,
-"This is the 15th level.\n ","This is the forth level.\n ",
-null,3,
-new Vector2(0,1)
+(15,5,0,.5f,game_mode.millCreataion_orderise,
+"This is the 12th level.\n ","This is the forth level.\n ",
+new List<(int x, int y, bool centerised)>(){
+	(260,102,true),
+	(280,97,true),
+	(220,97,true),
+	(160,102,true),
+	(80,97,true),
+	
+}
+,3,
+new Vector2(1,0)
 
 ),
 
-(16,1,1,.5f,game_mode.millCreataion_inaccessible_pivots,
-"This is the 16th level.\n ","This is the forth level.\n ",
-null,3,
-new Vector2(0,1)
+(16,5,0,.5f,game_mode.millCreataion_orderise,
+"Mode of the current level is pivot creation.\n In this mode you need to create a pivot in a certain area which would cause the order happen.\n Simply choose your desired location to pivot spawn on. ","This was the 16 level.\n ",
+new List<(int x, int y, bool centerised)>(){
+	(260,102,true),
+	(280,97,true),
+	(220,97,true),
+	(160,102,true),
+	(80,97,true),
+	
+}
+,3,
+new Vector2(1,0)
 
 ),
 
-(17,1,1,.5f,game_mode.millCreataion_inaccessible_pivots,
-"This is the 17th level.\n ","This is the forth level.\n ",
-null,3,
-new Vector2(0,1)
+(17,5,0,.8f,game_mode.pivotCreation_orderise,
+"Mode of the current level is pivot creation.\n In this mode you need to create a pivot in a certain area which would cause the order happen.\n Simply choose your desired location to pivot spawn on. ","This was the 16 level.\n ",
+new List<(int x, int y, bool centerised)>(){
+		(100,90,true),
+	(120,130,true),
+	(200,60,true),
+	(230,90,true),
+	(240,30,true),
+}
+,3,
+new Vector2(1,0)
 
 ),
 
