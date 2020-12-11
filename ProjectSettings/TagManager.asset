@@ -11,6 +11,7 @@ TagManager:
   - DialogueBox
   - SelectionBar
   - Settings
+  - cross
   layers:
   - Default
   - TransparentFX

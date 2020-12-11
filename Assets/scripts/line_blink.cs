@@ -10,11 +10,13 @@ public class line_blink : MonoBehaviour
 
     public void blink()
     {
-        GetComponent<Animator>().SetBool("should_blink", true);
+		GameObject.FindWithTag("cross").
+        GetComponent<Animator>().SetBool("blink", true);
     }
 
     public void blink_off()
     {
-        GetComponent<Animator>().SetBool("should_blink", false);
+       	GameObject.FindWithTag("cross").
+        GetComponent<Animator>().SetBool("blink", false);
     }
 }

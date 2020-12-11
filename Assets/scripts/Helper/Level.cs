@@ -70,7 +70,8 @@ namespace Classes
             string Info,
             string End_Info,
             Vector2 start_vct,
-            List<(int x, int y, bool centerised)> predefined_locations = null
+            List<(int x, int y, bool centerised)> predefined_locations = null,
+			int pivot_cration_answer=0
         )
         {
             var total_points = number_of_C + number_of_CC;
@@ -205,10 +206,11 @@ namespace Classes
                         ));
                 }
             }
-            var pivot_cration_answer = 0;
+            
             if (pivot_cration)
             {
-			
+			if (pivot_cration_answer==0){
+
                 pivot_cration_answer =
                    indexes
                        .Skip(1)
@@ -216,6 +218,9 @@ namespace Classes
                         .OrderBy(x => UnityEngine.Random.value)
                         .Take(1).FirstOrDefault();
             }
+		
+
+			}
 
             UnityEngine
                 .Debug

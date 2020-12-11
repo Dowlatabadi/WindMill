@@ -13,30 +13,47 @@ public class Touch_manager : MonoBehaviour
 
     public float aim_higher_offset;
 
-    public void draw_cross(Vector3 v3)
+    public GameObject cross;
+
+    public void move_cross(Vector3 v3)
     {
-        LineRenderer lineRenderer = GetComponent<LineRenderer>();
-        var offset = v3 + (new Vector3(0, aim_higher_offset, 0));
-        var x = 1;
-        var y = 1;
-        Draw_vacume_bar(lineRenderer,0, offset,new Vector2(0,y));
-        Draw_vacume_bar(lineRenderer,1, offset,new Vector2(0,-y));
-        Draw_vacume_bar(lineRenderer,2, offset,new Vector2(x,0));
-        Draw_vacume_bar(lineRenderer,3, offset,new Vector2(-x,0));
+		    var offset = v3 + (new Vector3(0, aim_higher_offset, 0));
+        var cross = GameObject.FindWithTag("cross");
+        cross.transform.position = offset;
     }
-	void Draw_vacume_bar(LineRenderer lineRenderer,int number,Vector3 offset,Vector2 second_point)
-	{
-		
-	
-		lineRenderer
-		.SetPosition((number*3)+0, new Vector3(0 + offset.x, 0 + offset.y, 0.0f)+new Vector3(0,0,0));
-     lineRenderer
-		.SetPosition((number*3)+1, new Vector3(0 + offset.x, 0 + offset.y, 0.0f)+new Vector3(second_point.x,second_point.y,0));
-		  lineRenderer
-		.SetPosition((number*3)+2, new Vector3(0 + offset.x, 0 + offset.y, 0.0f)+new Vector3(0,0,0));
-		
-		
-	}
+
+    // public void draw_cross(Vector3 v3)
+    // {
+    //     LineRenderer lineRenderer = GetComponent<LineRenderer>();
+    //     var offset = v3 + (new Vector3(0, aim_higher_offset, 0));
+    //     var x = 20;
+    //     var y = 20;
+    //     Draw_vacume_bar(lineRenderer, 0, offset, new Vector2(0, y));
+    //     Draw_vacume_bar(lineRenderer, 1, offset, new Vector2(0, -y));
+    //     Draw_vacume_bar(lineRenderer, 2, offset, new Vector2(x, 0));
+    //     Draw_vacume_bar(lineRenderer, 3, offset, new Vector2(-x, 0));
+    // }
+
+    // void Draw_vacume_bar(
+    //     LineRenderer lineRenderer,
+    //     int number,
+    //     Vector3 offset,
+    //     Vector2 second_point
+    // )
+    // {
+    //     lineRenderer
+    //         .SetPosition((number * 3) + 0,
+    //         new Vector3(0 + offset.x, 0 + offset.y, 0.0f) +
+    //         new Vector3(0, 0, 0));
+    //     lineRenderer
+    //         .SetPosition((number * 3) + 1,
+    //         new Vector3(0 + offset.x, 0 + offset.y, 0.0f) +
+    //         new Vector3(second_point.x, second_point.y, 0));
+    //     lineRenderer
+    //         .SetPosition((number * 3) + 2,
+    //         new Vector3(0 + offset.x, 0 + offset.y, 0.0f) +
+    //         new Vector3(0, 0, 0));
+    // }
 
     bool dragging = false;
 
@@ -89,11 +106,15 @@ public class Touch_manager : MonoBehaviour
                                 .FindGameObjectsWithTag("cylinderparent")[0];
 
                         var currpos = Input.mousePosition;
-                        var amount = Mathf.Clamp(.002f*(currpos.y - drag_pos.y) , -6f,6f);
+                        var amount =
+                            Mathf
+                                .Clamp(.002f * (currpos.y - drag_pos.y),
+                                -6f,
+                                6f);
                         mill.transform.eulerAngles =
                             new Vector3(mill.transform.eulerAngles.x,
                                 mill.transform.eulerAngles.y,
-                                mill.transform.eulerAngles.z +  amount);
+                                mill.transform.eulerAngles.z + amount);
                     }
                     if (
                         Input.GetMouseButtonUp(0) &&
@@ -121,7 +142,7 @@ public class Touch_manager : MonoBehaviour
 
                         //UnityEngine.Debug.Log("posssssssssssssssssss: "+Mousepos);
                         var Wpos = Camera.main.ScreenToWorldPoint(Mousepos);
-                        draw_cross(new Vector3(Wpos.x, Wpos.y, 0));
+                        move_cross(new Vector3(Wpos.x, Wpos.y, 0));
                     }
                     break;
                 }

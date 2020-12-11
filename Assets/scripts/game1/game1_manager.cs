@@ -74,7 +74,8 @@ public class game1_manager : MonoBehaviour
 
     public void spawn_pivot_at_cross_loc(bool clockWise)
     {
-        var position = GetComponent<LineRenderer>().GetPosition(0);
+		var cross_sp_renderer=GameObject.FindWithTag("cross").GetComponent<SpriteRenderer>();
+        var position =  GameObject.FindWithTag("cross").transform.position;
         var go =
             GameObject
                 .Instantiate(checkpivot_pefab, position, Quaternion.identity);
@@ -91,13 +92,14 @@ public class game1_manager : MonoBehaviour
         }
         sub_1.GetComponent<btn_hid_show>().shrink();
         sub_2.GetComponent<btn_hid_show>().shrink();
-        GetComponent<LineRenderer>().enabled = false;
+        cross_sp_renderer.enabled = false;
 
         //spund maybe
         //a little delay todo
         var mill = GameObject.FindWithTag("cylinderparent");
         mill.GetComponent<rotate>().start();
-        GetComponent<line_blink>().blink_off();
+        	GameObject.FindWithTag("cross").
+        GetComponent<Animator>().SetBool("blink", false);
     }
 
     public IEnumerator wait(int secs)
@@ -200,7 +202,9 @@ public class game1_manager : MonoBehaviour
                     lvl_details.welcome_info,
                     lvl_details.end_info,
                     lvl_details.start_vct,
-                    lvl_details.predefined_locations);
+                    lvl_details.predefined_locations,
+                    lvl_details.pivot_creation_answer
+					);
 
             var SM = Camera.main.GetComponent<save_manager>();
             if (!SM.is_last_lvl_seen())
@@ -254,7 +258,8 @@ public class game1_manager : MonoBehaviour
 
     public bool check_success()
     {
-        var lvl_solved = gos.All(x => x.GetComponent<pivotActions>().solved);
+		var all_pivots=GameObject.FindGameObjectsWithTag("clockwise").Union(GameObject.FindGameObjectsWithTag("counterclockwise"));
+        var lvl_solved = all_pivots.All(x => x.GetComponent<pivotActions>().solved);
         if (lvl_solved)
         {
             UnityEngine.Debug.Log("endddddddd");
@@ -291,7 +296,7 @@ public class game1_manager : MonoBehaviour
             else
             {
                 var p =
-                    gos
+                    all_pivots
                         .Where(x => !x.GetComponent<pivotActions>().solved)
                         .Count();
                 UnityEngine
@@ -338,6 +343,8 @@ public class game1_manager : MonoBehaviour
 
     void Draw_level(Level lvl)
     {
+		var cross_sp_renderer=GameObject.FindWithTag("cross").GetComponent<SpriteRenderer>();
+
         //hide cross
         var needs_cross =
             (
@@ -348,12 +355,12 @@ public class game1_manager : MonoBehaviour
 
         if (!needs_cross)
         {
-            GetComponent<LineRenderer>().enabled = false;
+            cross_sp_renderer.enabled = false;
             text.text = "Start";
         }
         else
         {
-            GetComponent<LineRenderer>().enabled = true;
+            cross_sp_renderer.enabled = true;
             text.text = "Create";
         }
 
@@ -474,7 +481,8 @@ public class game1_manager : MonoBehaviour
         }
         else
         {
-            GetComponent<line_blink>().blink();
+           GameObject.FindWithTag("cross").
+        GetComponent<Animator>().SetBool("blink", true);
         }
     }
 
@@ -483,7 +491,7 @@ public class game1_manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-		Camera.main.GetComponent<Touch_manager>().draw_cross(new Vector3(-2,-4,0));
+		Camera.main.GetComponent<Touch_manager>().move_cross(new Vector3(0,0,0));
         UnityEngine
             .Debug
             .Log("slope is:::::" +
