@@ -450,7 +450,7 @@ public class game1_manager : MonoBehaviour
         else
         {
             mill_angle = new Vector3(0, 0,
-			Vector2.SignedAngle (lvl.start_vct,new Vector2(0,1)));
+			Vector2.SignedAngle (new Vector2(0,1),lvl.start_vct));
         }
 
         cyl_parent.GetComponent<rotate>().SPAWN_pivot(starting_pivot);
@@ -483,6 +483,7 @@ public class game1_manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+		Camera.main.GetComponent<Touch_manager>().draw_cross(new Vector3(-2,-4,0));
         UnityEngine
             .Debug
             .Log("slope is:::::" +

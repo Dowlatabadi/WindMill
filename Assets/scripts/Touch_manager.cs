@@ -16,25 +16,27 @@ public class Touch_manager : MonoBehaviour
     public void draw_cross(Vector3 v3)
     {
         LineRenderer lineRenderer = GetComponent<LineRenderer>();
-
         var offset = v3 + (new Vector3(0, aim_higher_offset, 0));
-        var x = 2 * 4;
-        var y = 2 * 7;
-        lineRenderer
-            .SetPosition(0, new Vector3(0 + offset.x, 0 + offset.y, 0.0f));
-        lineRenderer
-            .SetPosition(1, new Vector3(x + offset.x, 0 + offset.y, 0.0f));
-        lineRenderer
-            .SetPosition(2, new Vector3(-x + offset.x, 0 + offset.y, 0.0f));
-        lineRenderer
-            .SetPosition(3, new Vector3(0 + offset.x, 0 + offset.y, 0.0f));
-        lineRenderer
-            .SetPosition(4, new Vector3(0 + offset.x, y + offset.y, 0.0f));
-        lineRenderer
-            .SetPosition(5, new Vector3(0 + offset.x, -y + offset.y, 0.0f));
-        lineRenderer
-            .SetPosition(6, new Vector3(0 + offset.x, 0 + offset.y, 0.0f));
+        var x = 1;
+        var y = 1;
+        Draw_vacume_bar(lineRenderer,0, offset,new Vector2(0,y));
+        Draw_vacume_bar(lineRenderer,1, offset,new Vector2(0,-y));
+        Draw_vacume_bar(lineRenderer,2, offset,new Vector2(x,0));
+        Draw_vacume_bar(lineRenderer,3, offset,new Vector2(-x,0));
     }
+	void Draw_vacume_bar(LineRenderer lineRenderer,int number,Vector3 offset,Vector2 second_point)
+	{
+		
+	
+		lineRenderer
+		.SetPosition((number*3)+0, new Vector3(0 + offset.x, 0 + offset.y, 0.0f)+new Vector3(0,0,0));
+     lineRenderer
+		.SetPosition((number*3)+1, new Vector3(0 + offset.x, 0 + offset.y, 0.0f)+new Vector3(second_point.x,second_point.y,0));
+		  lineRenderer
+		.SetPosition((number*3)+2, new Vector3(0 + offset.x, 0 + offset.y, 0.0f)+new Vector3(0,0,0));
+		
+		
+	}
 
     bool dragging = false;
 

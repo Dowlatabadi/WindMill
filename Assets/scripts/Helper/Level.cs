@@ -83,14 +83,19 @@ namespace Classes
 
             List<int> indexes = Enumerable.Range(0, total_points).ToList();
             int initial_skips = (Mathf.Min(total_points - labeled_number, 2));
+            int take = total_points;
+
             if (pivot_cration)
             {
                 //reserve first point
-                labeled_number = labeled_number - 1;
-				initial_skips=0;
+                labeled_number = labeled_number - 2;
+				initial_skips=1;
+				//last one should be labeled
+				take = total_points-1;
             }
             List<int> Labeled_indexes =
                 indexes //if can first one is not labeled
+				.Take(take)
                     .Skip(initial_skips)
                     .OrderBy(x => UnityEngine.Random.value)
                     .Take(labeled_number)
@@ -99,10 +104,12 @@ namespace Classes
             {
                 //add start point to labeled ones
                 Labeled_indexes.Add(0);
-                labeled_number++;
+				//add last to labeled
+                Labeled_indexes.Add(total_points-1);
+                labeled_number+=2;
             }
 
-            // UnityEngine.Debug.Log("labeled ones====" + labeled_number);
+             UnityEngine.Debug.Log("labeled ones========================" + labeled_number);
             // UnityEngine.Debug.Log(String.Join(",", Labeled_indexes));
             List<int> C_indexes =
                 indexes
@@ -201,9 +208,11 @@ namespace Classes
             var pivot_cration_answer = 0;
             if (pivot_cration)
             {
+			
                 pivot_cration_answer =
-                    indexes
-                        .Except(Labeled_indexes)
+                   indexes
+                       .Skip(1)
+					   .Take(total_points-2)
                         .OrderBy(x => UnityEngine.Random.value)
                         .Take(1).FirstOrDefault();
             }

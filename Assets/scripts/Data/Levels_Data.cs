@@ -190,7 +190,7 @@ new Vector2(1,0)
 
 ),
 
-(17,5,0,.8f,game_mode.pivotCreation_orderise,
+(17,5,0,1f,game_mode.pivotCreation_orderise,
 "Mode of the current level is pivot creation.\n In this mode you need to create a pivot in a certain area which would cause the order happen.\n Simply choose your desired location to pivot spawn on. ","This was the 16 level.\n ",
 new List<(int x, int y, bool centerised)>(){
 		(100,90,true),
@@ -200,7 +200,7 @@ new List<(int x, int y, bool centerised)>(){
 	(240,30,true),
 }
 ,3,
-new Vector2(1,0)
+new Vector2(-1,20)
 
 ),
 
