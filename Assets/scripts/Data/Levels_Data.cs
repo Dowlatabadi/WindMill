@@ -177,22 +177,39 @@ new Vector2(1,0),
 (15,5,0,.5f,game_mode.millCreataion_orderise,
 "This is the 12th level.\n ","This is the forth level.\n ",
 new List<(int x, int y, bool centerised)>(){
-	(260,102,true),
-	(280,97,true),
-	(220,97,true),
-	(160,102,true),
-	(80,97,true),
+	(200,85,true),
+	(250,103,true),
+	(270,95,true),
+	(140,110,true),
+	(70,88,true),
 	
 }
 ,3,
-new Vector2(1,0),
+new Vector2(.2f,1),
+0
+
+),
+
+(16,6,0,.5f,game_mode.millCreataion_orderise,
+"This is the 12th level.\n ","This is the forth level.\n ",
+new List<(int x, int y, bool centerised)>(){
+	(135,90,true),
+	(65,25,true),
+	(135,25,true),
+	(220,90,true),
+	(220,155,true),
+	
+	(280,155,true),
+	
+}
+,3,
+new Vector2(-.2f,1),
 0
 
 ),
 
 
-
-(16,5,0,1f,game_mode.pivotCreation_orderise,
+(17,5,0,1f,game_mode.pivotCreation_orderise,
 "Mode of the current level is pivot creation.\n In this mode you need to create a pivot in a certain area which would cause the order happen.\n Simply choose your desired location to pivot spawn on. ","This was the 16 level.\n ",
 new List<(int x, int y, bool centerised)>(){
 		(100,90,true),
@@ -207,7 +224,7 @@ new Vector2(-1,20),
 
 ),
 
-(17,4,0,1f,game_mode.pivotCreation_orderise,
+(18,4,0,1f,game_mode.pivotCreation_orderise,
 "Mode of the current level is pivot creation.\n In this mode you need to create a pivot in a certain area which would cause the order happen.\n Simply choose your desired location to pivot spawn on. ","This was the 16 level.\n ",
 new List<(int x, int y, bool centerised)>(){
 		(240,40,true),
@@ -222,7 +239,7 @@ new Vector2(3,-20),
 
 ),
 
-(18,4,0,1f,game_mode.pivotCreation_orderise,
+(19,4,0,1f,game_mode.pivotCreation_orderise,
 "Mode of the current level is pivot creation.\n In this mode you need to create a pivot in a certain area which would cause the order happen.\n Simply choose your desired location to pivot spawn on. ","This was the 16 level.\n ",
 new List<(int x, int y, bool centerised)>(){
 		(240,40,true),
@@ -237,7 +254,7 @@ new Vector2(1,-.2f),
 
 ),
 
-(19,5,0,1f,game_mode.pivotCreation_orderise,
+(20,5,0,1f,game_mode.pivotCreation_orderise,
 "Mode of the current level is pivot creation.\n In this mode you need to create a pivot in a certain area which would cause the order happen.\n Simply choose your desired location to pivot spawn on. ","This was the 16 level.\n ",
 new List<(int x, int y, bool centerised)>(){
 		(70,80,true),
@@ -253,12 +270,32 @@ new Vector2(-4,3),
 
 ),
 
-(20,1,1,.5f,game_mode.millCreataion_inaccessible_pivots,
+(21,12,0,.5f,game_mode.millCreataion_orderise,
 "This is the 21th level.\n ","This is the forth level.\n ",
-null,3,
-new Vector2(0,1),
-0
+new List<(int x, int y, bool centerised)>(){
+	
+	(60,40,true),
+	(96,40,true),
+	(132,40,true),
+	(168,40,true),
+	(204,40,true),
 
+	(240,40,true),
+
+
+	(260,60,true),
+	(260,80,true),
+	(260,100,true),
+	(260,120,true),
+	(260,140,true),
+
+
+	(60,140,true),
+
+}
+,3,
+new Vector2(.2f,4),
+0
 ),
 
 
