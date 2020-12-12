@@ -426,7 +426,7 @@ new Vector2(1,-1),
 ),
 
 
-(32,3,1,1f,game_mode.millCreataion_inaccessible_pivots,
+(32,3,1,0f,game_mode.millCreataion_inaccessible_pivots,
 "Did you ever ask yourself why all the time mill rotates clockwise?\n Well, it is not a must at all, the blue pivots cause mill rottae counter clockwise! ","This is the forth level.\n ",
 new List<(int x, int y, bool centerised)>(){
 	
@@ -439,7 +439,7 @@ new List<(int x, int y, bool centerised)>(){
 
 
 },
-40,
+5,
 new Vector2(0,1),
 0
 ),

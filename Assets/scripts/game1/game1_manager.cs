@@ -285,8 +285,7 @@ public class game1_manager : MonoBehaviour
             GameObject
                 .FindGameObjectsWithTag("clockwise")
                 .Union(GameObject.FindGameObjectsWithTag("counterclockwise"));
-        var lvl_solved =
-            all_pivots.All(x => x.GetComponent<pivotActions>().solved);
+        var lvl_solved =true;//initiate value
         if (AccessModeGame)
         {
             lvl_solved =
@@ -314,6 +313,11 @@ public class game1_manager : MonoBehaviour
                 }
             }
         }
+		else
+		{
+			lvl_solved =
+            all_pivots.All(x => x.GetComponent<pivotActions>().solved);
+		}
         if (lvl_solved)
         {
             UnityEngine.Debug.Log("endddddddd");
