@@ -74,8 +74,9 @@ public class game1_manager : MonoBehaviour
 
     public void spawn_pivot_at_cross_loc(bool clockWise)
     {
-		var cross_sp_renderer=GameObject.FindWithTag("cross").GetComponent<SpriteRenderer>();
-        var position =  GameObject.FindWithTag("cross").transform.position;
+        var cross_sp_renderer =
+            GameObject.FindWithTag("cross").GetComponent<SpriteRenderer>();
+        var position = GameObject.FindWithTag("cross").transform.position;
         var go =
             GameObject
                 .Instantiate(checkpivot_pefab, position, Quaternion.identity);
@@ -98,8 +99,10 @@ public class game1_manager : MonoBehaviour
         //a little delay todo
         var mill = GameObject.FindWithTag("cylinderparent");
         mill.GetComponent<rotate>().start();
-        	GameObject.FindWithTag("cross").
-        GetComponent<Animator>().SetBool("blink", false);
+        GameObject
+            .FindWithTag("cross")
+            .GetComponent<Animator>()
+            .SetBool("blink", false);
     }
 
     public IEnumerator wait(int secs)
@@ -115,13 +118,28 @@ public class game1_manager : MonoBehaviour
         UnityEngine.Debug.Log($"string show was empty. white ={22} and ");
     }
 
+    void increase_speed()
+    {
+        speed_up = true;
+    }
+
+    bool speed_up = false;
+
+    void reset_speed()
+    {
+        speed_up = false;
+        general_mill.GetComponent<rotate>().speed = 20;
+    }
+
     public IEnumerator wait_and_show(string st, bool white)
     {
         var temp_lvl = PlayerPrefs.GetInt("temp_lvl_num");
         var lvl_details =
             Levels_Data.levels_info.FirstOrDefault(x => x.lvl_num == temp_lvl);
 
+        increase_speed();
         if (white) yield return new WaitForSeconds(lvl_details.finish_delay);
+        reset_speed();
 
         //destroy other messages
         var prev_go = GameObject.FindGameObjectWithTag("DialogueBox");
@@ -203,8 +221,7 @@ public class game1_manager : MonoBehaviour
                     lvl_details.end_info,
                     lvl_details.start_vct,
                     lvl_details.predefined_locations,
-                    lvl_details.pivot_creation_answer
-					);
+                    lvl_details.pivot_creation_answer);
 
             var SM = Camera.main.GetComponent<save_manager>();
             if (!SM.is_last_lvl_seen())
@@ -256,10 +273,47 @@ public class game1_manager : MonoBehaviour
         info_btn.GetComponent<Animator>().SetBool("Blink", true);
     }
 
-    public bool check_success()
+    public bool check_success(GameObject current_pvt = null)
     {
-		var all_pivots=GameObject.FindGameObjectsWithTag("clockwise").Union(GameObject.FindGameObjectsWithTag("counterclockwise"));
-        var lvl_solved = all_pivots.All(x => x.GetComponent<pivotActions>().solved);
+        var gamemode = Camera.main.GetComponent<game1_manager>().gamemode;
+        var AccessModeGame =
+            (
+            gamemode == game_mode.pivotCreation_inaccessible_pivots ||
+            gamemode == game_mode.millCreataion_inaccessible_pivots
+            );
+        var all_pivots =
+            GameObject
+                .FindGameObjectsWithTag("clockwise")
+                .Union(GameObject.FindGameObjectsWithTag("counterclockwise"));
+        var lvl_solved =
+            all_pivots.All(x => x.GetComponent<pivotActions>().solved);
+        if (AccessModeGame)
+        {
+            lvl_solved =
+                all_pivots
+                    .Where(x =>
+                        x.GetComponent<pivotActions>().get_my_num() != 999)
+                    .All(x => x.GetComponent<pivotActions>().solved);
+            if (lvl_solved)
+            {
+                var mill =
+                    GameObject.FindGameObjectsWithTag("cylinderparent")[0];
+
+                var mill_rotation = (int) mill.transform.rotation.z;
+                if (
+                    mill_rotation ==
+                    current_pvt.GetComponent<pivotActions>().solved_angle
+                )
+                {
+                    //meets again with same rotaion
+                    //lvl_solved stays true
+                }
+                else
+                {
+                    lvl_solved = false;
+                }
+            }
+        }
         if (lvl_solved)
         {
             UnityEngine.Debug.Log("endddddddd");
@@ -343,7 +397,8 @@ public class game1_manager : MonoBehaviour
 
     void Draw_level(Level lvl)
     {
-		var cross_sp_renderer=GameObject.FindWithTag("cross").GetComponent<SpriteRenderer>();
+        var cross_sp_renderer =
+            GameObject.FindWithTag("cross").GetComponent<SpriteRenderer>();
 
         //hide cross
         var needs_cross =
@@ -449,15 +504,17 @@ public class game1_manager : MonoBehaviour
                             .OrderBy(x => UnityEngine.Random.value)
                             .FirstOrDefault()
                             .ind;
-                    
+
                     starting_pivot = gos.ElementAt(index);
                 }
             }
         }
         else
         {
-            mill_angle = new Vector3(0, 0,
-			Vector2.SignedAngle (new Vector2(0,1),lvl.start_vct));
+            mill_angle =
+                new Vector3(0,
+                    0,
+                    Vector2.SignedAngle(new Vector2(0, 1), lvl.start_vct));
         }
 
         cyl_parent.GetComponent<rotate>().SPAWN_pivot(starting_pivot);
@@ -481,17 +538,38 @@ public class game1_manager : MonoBehaviour
         }
         else
         {
-           GameObject.FindWithTag("cross").
-        GetComponent<Animator>().SetBool("blink", true);
+            GameObject
+                .FindWithTag("cross")
+                .GetComponent<Animator>()
+                .SetBool("blink", true);
         }
     }
 
     public game_mode gamemode;
 
+    void Update()
+    {
+        if (speed_up)
+        {
+            general_mill.GetComponent<rotate>().speed =
+                Mathf
+                    .Clamp(general_mill.GetComponent<rotate>().speed + .6f,
+                    20f,
+                    60f);
+        }
+    }
+
+    GameObject general_mill;
+
     // Start is called before the first frame update
     void Start()
     {
-		Camera.main.GetComponent<Touch_manager>().move_cross(new Vector3(0,0,0));
+        general_mill = GameObject.FindGameObjectsWithTag("cylinderparent")[0];
+
+        Camera
+            .main
+            .GetComponent<Touch_manager>()
+            .move_cross(new Vector3(0, 0, 0));
         UnityEngine
             .Debug
             .Log("slope is:::::" +

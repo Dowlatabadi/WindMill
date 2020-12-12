@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class rotate : MonoBehaviour
 {
-    public int speed = 20;
+    public float speed = 20f;
 
     int rotationSign;
 

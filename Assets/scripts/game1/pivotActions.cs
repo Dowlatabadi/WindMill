@@ -16,6 +16,7 @@ public class pivotActions : MonoBehaviour
     public bool labled;
 
     public bool solved = false;
+    public int solved_angle = 370;
 
     public void check_up(bool animate)
     {
@@ -28,7 +29,21 @@ public class pivotActions : MonoBehaviour
                 .SetBool("grow", true);
             solved = true;
         }
-        Camera.main.GetComponent<game1_manager>().check_success();
+        Camera.main.GetComponent<game1_manager>().check_success(this.gameObject);
+            
+
+			 var gamemode = Camera.main.GetComponent<game1_manager>().gamemode;
+        var AccessModeGame =
+            (
+            gamemode == game_mode.pivotCreation_inaccessible_pivots ||
+            gamemode == game_mode.millCreataion_inaccessible_pivots
+            );
+			if (AccessModeGame){
+  var mill = GameObject.FindGameObjectsWithTag("cylinderparent")[0];
+
+			solved_angle =(int)mill.transform.rotation.z;
+			}
+
     }
 
     public void failed()
@@ -148,6 +163,7 @@ public class pivotActions : MonoBehaviour
                         Camera.main.GetComponent<SoundManager>().play_ding();
                         solved = true;
                         check_up(true);
+						
                         GM_script.seen.Add(this.gameObject);
                         GM_script.current_labels.Add (current_num);
                     }

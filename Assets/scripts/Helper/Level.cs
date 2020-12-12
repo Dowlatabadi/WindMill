@@ -114,7 +114,7 @@ namespace Classes
             // UnityEngine.Debug.Log(String.Join(",", Labeled_indexes));
             List<int> C_indexes =
                 indexes
-                    .OrderBy(x => UnityEngine.Random.value)
+                   // .OrderBy(x => UnityEngine.Random.value)
                     .Take(number_of_C)
                     .ToList();
 

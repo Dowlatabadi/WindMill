@@ -230,9 +230,14 @@ namespace LinePoint
                 return Camera.main.ScreenToWorldPoint(temp);
             }
         }
-
+public static List<(int x, int y)>
+        plus_points(this List<(int x, int y)> firstpoints, List<(int x, int y)> secondpoints)
+		{
+firstpoints.AddRange(secondpoints);
+return firstpoints;
+		}
         public static List<(int x, int y)>
-        get_asymetric_poses(int start_angle, int point_number,int scale_factor=6,float y_scale=1)
+        get_asymetric_poses(int start_angle, int point_number,float scale_factor=6f,float y_scale=1)
         {
 			
 			var precision=10;
