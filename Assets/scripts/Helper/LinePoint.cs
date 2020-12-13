@@ -241,7 +241,7 @@ return firstpoints;
         {
 			
 			var precision=10;
-			(int x,int y) offset=(9*precision,16*precision);
+			(int x,int y) offset=((8+1)*precision,16*precision);
             var scale = scale_factor*precision; //from 8;
             var result = new List<(int x, int y)>();
             var angle_share = 360 / point_number;

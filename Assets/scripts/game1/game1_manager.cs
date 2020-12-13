@@ -275,6 +275,7 @@ public class game1_manager : MonoBehaviour
 
     public bool check_success(GameObject current_pvt = null)
     {
+		var failed=false;
         var gamemode = Camera.main.GetComponent<game1_manager>().gamemode;
         var AccessModeGame =
             (
@@ -286,37 +287,37 @@ public class game1_manager : MonoBehaviour
                 .FindGameObjectsWithTag("clockwise")
                 .Union(GameObject.FindGameObjectsWithTag("counterclockwise"));
         var lvl_solved =true;//initiate value
+
+		 var mill =
+                    GameObject.FindGameObjectsWithTag("cylinderparent")[0];
+
+                var mill_rotation = (int) mill.transform.eulerAngles.z;
+					var loop_detected=Mathf.Abs(mill_rotation -current_pvt.GetComponent<pivotActions>().solved_angle)<=3;
+
         if (AccessModeGame)
         {
+			
             lvl_solved =
                 all_pivots
                     .Where(x =>
                         x.GetComponent<pivotActions>().get_my_num() != 999)
                     .All(x => x.GetComponent<pivotActions>().solved);
-            if (lvl_solved)
+            if (lvl_solved && !loop_detected)
             {
-                var mill =
-                    GameObject.FindGameObjectsWithTag("cylinderparent")[0];
-
-                var mill_rotation = (int) mill.transform.rotation.z;
-                if (
-                    mill_rotation ==
-                    current_pvt.GetComponent<pivotActions>().solved_angle
-                )
-                {
-                    //meets again with same rotaion
-                    //lvl_solved stays true
-                }
-                else
-                {
-                    lvl_solved = false;
-                }
+               lvl_solved=false;
             }
+			else if (!lvl_solved && loop_detected){
+				failed=true;
+			}
         }
 		else
-		{
+		{//order mode
 			lvl_solved =
             all_pivots.All(x => x.GetComponent<pivotActions>().solved);
+			if (!lvl_solved && loop_detected){
+				failed=true;
+
+			}
 		}
         if (lvl_solved)
         {
@@ -364,6 +365,10 @@ public class game1_manager : MonoBehaviour
 
             return true;
         }
+		if (failed){
+			current_pvt.GetComponent<pivotActions>().failed();
+			//call pivot failure
+		}
         return false;
     }
 

@@ -41,7 +41,8 @@ public class pivotActions : MonoBehaviour
 			if (AccessModeGame){
   var mill = GameObject.FindGameObjectsWithTag("cylinderparent")[0];
 
-			solved_angle =(int)mill.transform.rotation.z;
+			solved_angle =(int)mill.transform.eulerAngles.z;
+			Debug.Log(solved_angle+" solved at rotation");
 			}
 
     }
