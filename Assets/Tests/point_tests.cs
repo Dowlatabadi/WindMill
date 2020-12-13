@@ -34,7 +34,7 @@ namespace Tests
 			 PlayerPrefs.DeleteAll();
 		}
 		[Test]
-		public void unlock_40(){
+		public void unlock_70(){
 			 PlayerPrefs.SetInt("Progress_lvl", 70);
 		}
     }

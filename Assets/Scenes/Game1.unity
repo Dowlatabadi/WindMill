@@ -254,7 +254,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &81715180
 RectTransform:
   m_ObjectHideFlags: 0
@@ -946,7 +946,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &419800233
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1894,7 +1894,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1378616001
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2387,6 +2387,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aim_higher_offset: 1.3
   cross: {fileID: 1220302853}
+  move_target: {x: 0, y: 0, z: 0}
+  cross_move: 0
+  dragging: 0
+  drag_pos: {x: 0, y: 0, z: 0}
 --- !u!114 &1628066477
 MonoBehaviour:
   m_ObjectHideFlags: 0

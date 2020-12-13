@@ -18,10 +18,10 @@ public class Touch_manager : MonoBehaviour
 
     public void move_cross(Vector3 v3)
     {
-		v3=new Vector3(v3.x*.02f,v3.y*.04f,0);
+		v3=new Vector3(v3.x*.02f,v3.y*.03f,0);
             var cross = GameObject.FindWithTag("cross");
 		    var new_pos = cross.transform.position+v3 ;//+ (new Vector3(0, aim_higher_offset, 0));
-			move_target=new_pos;
+			move_target=new Vector3(Mathf.Clamp(new_pos.x,-2.6f,2.6f),Mathf.Clamp(new_pos.y,-4.5f,4.5f),0);
 			cross_move=true;
         //cross.transform.position = new_pos;
     }

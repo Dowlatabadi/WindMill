@@ -9,12 +9,17 @@ public class Selection_Manager : MonoBehaviour
     public Vector3 op_left_pos;
 
     public GameObject bar_prefab;
+    
 
     public GameObject Container;
-
+public bool debug_mode;
     // Start is called before the first frame update
     void Start()
     {
+		if (debug_mode){
+			//unlock
+			 PlayerPrefs.SetInt("Progress_lvl", 70);
+		}
         RectTransform rt = (RectTransform) bar_prefab.transform;
         float width = rt.rect.width*2;
         float height = rt.rect.height*2;
@@ -65,6 +70,19 @@ public class Selection_Manager : MonoBehaviour
                     .color = Color.gray;
             }
         }
+
+		//scroll to last play lvl
+		
+		var last_seen=0;
+		if (PlayerPrefs.HasKey("temp_lvl_num")){
+		last_seen=PlayerPrefs.GetInt("temp_lvl_num");
+		Debug.Log("found last "+last_seen);
+		}
+		var scroll_height=((int)(last_seen/3))*380-3225;
+		var container_rt=Container.GetComponent<RectTransform>();
+		container_rt.anchoredPosition=new Vector2(container_rt.anchoredPosition.x,scroll_height);
+		Debug.Log("scroll "+scroll_height);
+  
     }
 
     // Update is called once per frame
