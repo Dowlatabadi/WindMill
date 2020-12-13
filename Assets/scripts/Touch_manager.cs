@@ -9,6 +9,7 @@ public class Touch_manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+		cross = GameObject.FindWithTag("cross");
     }
 
     public float aim_higher_offset;
@@ -17,11 +18,15 @@ public class Touch_manager : MonoBehaviour
 
     public void move_cross(Vector3 v3)
     {
-		    var offset = v3 + (new Vector3(0, aim_higher_offset, 0));
-        var cross = GameObject.FindWithTag("cross");
-        cross.transform.position = offset;
+		v3=new Vector3(v3.x*.02f,v3.y*.04f,0);
+            var cross = GameObject.FindWithTag("cross");
+		    var new_pos = cross.transform.position+v3 ;//+ (new Vector3(0, aim_higher_offset, 0));
+			move_target=new_pos;
+			cross_move=true;
+        //cross.transform.position = new_pos;
     }
-
+public Vector3 move_target=new Vector3 (0,0,0);
+public bool cross_move=false;
     // public void draw_cross(Vector3 v3)
     // {
     //     LineRenderer lineRenderer = GetComponent<LineRenderer>();
@@ -55,12 +60,26 @@ public class Touch_manager : MonoBehaviour
     //         new Vector3(0, 0, 0));
     // }
 
-    bool dragging = false;
+    public bool dragging = false;
 
-    Vector3 drag_pos = Vector3.zero;
+    public Vector3 drag_pos = Vector3.zero;
 
     void Update()
     {
+		if (cross_move){
+
+			var new_pos = Vector3.Lerp(cross.transform.position, move_target, Time.deltaTime*5f);
+			cross.transform.position = new_pos;
+
+
+		if (Vector3.Distance(cross.transform.position, move_target) < .3f)
+			{
+		
+			cross.transform.position = move_target;
+			cross_move = false;
+			}
+		
+		}
         if (Input.GetMouseButton(0))
         {
             var canvas = GameObject.FindGameObjectWithTag("Canvas");
@@ -136,14 +155,28 @@ public class Touch_manager : MonoBehaviour
             case game_mode.pivotCreation_inaccessible_pivots:
                 {
                     //set cross single touch
-                    if (Input.GetMouseButtonDown(0) || Input.GetMouseButton(0))
+                    if ((Input.GetMouseButton(0) && Input.GetMouseButtonDown(0)) &&
+                        !dragging)
                     {
-                        var Mousepos = Input.mousePosition;
-
-                        //UnityEngine.Debug.Log("posssssssssssssssssss: "+Mousepos);
-                        var Wpos = Camera.main.ScreenToWorldPoint(Mousepos);
-                        move_cross(new Vector3(Wpos.x, Wpos.y, 0));
+						UnityEngine.Debug.Log("started for cpivot creation");
+                        dragging = true;
+                        drag_pos = Input.mousePosition;
                     }
+					 if ((Input.GetMouseButton(0) ) &&
+                        dragging)
+                    {
+ var currpos = Input.mousePosition;
+						UnityEngine.Debug.Log("dragging pivot creation "+currpos.x);
+var move_vect=Vector3.Normalize(currpos - drag_pos);
+                      
+								move_cross(move_vect);
+					}
+					 if ((Input.GetMouseButtonUp(0) ) &&
+                        dragging)
+                    {
+dragging=false;
+ drag_pos = Vector3.zero;
+					}
                     break;
                 }
         }
