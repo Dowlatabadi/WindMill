@@ -18,12 +18,18 @@ public class UIManager : MonoBehaviour
 
         foreach (Transform uigo in canvas.transform)
         {
-            var rectTransform = uigo.gameObject.GetComponent<RectTransform>();
+			try{
+				 var rectTransform = uigo.gameObject.GetComponent<RectTransform>();
             if (rectTransform.position.y < height / 2)
                 rectTransform.position =
                     new Vector3(width - rectTransform.position.x,
                         rectTransform.position.y,
                         0);
+			}
+			catch{
+				
+			}
+           
         }
     }
 

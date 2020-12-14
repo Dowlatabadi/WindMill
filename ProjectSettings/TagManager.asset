@@ -12,6 +12,7 @@ TagManager:
   - SelectionBar
   - Settings
   - cross
+  - flash_go
   layers:
   - Default
   - TransparentFX

@@ -27,6 +27,11 @@ public class pivotActions : MonoBehaviour
                 .Find("check")
                 .GetComponent<Animator>()
                 .SetBool("grow", true);
+				 gameObject
+                .transform
+                .Find("bigger_check")
+                .GetComponent<Animator>()
+                .SetBool("grow", true);
             solved = true;
         }
         Camera.main.GetComponent<game1_manager>().check_success(this.gameObject);

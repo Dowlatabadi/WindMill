@@ -138,9 +138,12 @@ public class game1_manager : MonoBehaviour
             Levels_Data.levels_info.FirstOrDefault(x => x.lvl_num == temp_lvl);
 
         increase_speed();
-        if (white) yield return new WaitForSeconds(lvl_details.finish_delay);
+        if (white) {
+			yield return new WaitForSeconds(lvl_details.finish_delay);
+		
+		};
         reset_speed();
-
+	
         //destroy other messages
         var prev_go = GameObject.FindGameObjectWithTag("DialogueBox");
 
@@ -346,6 +349,12 @@ public class game1_manager : MonoBehaviour
                         .main
                         .GetComponent<SoundManager>()
                         .play_successSound();
+						
+							//flashes
+					 Camera
+                        .main
+                        .GetComponent<effect_mananger>()
+                        .flash_blue(current_pvt);
                     is_end_message_shown_once = true;
                 }
 
