@@ -131,7 +131,7 @@ public class game1_manager : MonoBehaviour
         general_mill.GetComponent<rotate>().speed = 20;
     }
 
-    public IEnumerator wait_and_show(string st, bool white)
+    public IEnumerator wait_and_show(string st, bool white,string header="")
     {
         var temp_lvl = PlayerPrefs.GetInt("temp_lvl_num");
         var lvl_details =
@@ -158,7 +158,7 @@ public class game1_manager : MonoBehaviour
                 Quaternion.identity);
         gameObject.GetComponent<PauseManager>().PauseifPlaying();
 
-        go.GetComponent<Dialogue_script>().show(st);
+        go.GetComponent<Dialogue_script>().show(st,header);
         go
             .transform
             .SetParent(GameObject.FindGameObjectWithTag("Canvas").transform,
@@ -176,7 +176,7 @@ public class game1_manager : MonoBehaviour
 
             return;
         }
-        StartCoroutine(wait_and_show(st, white));
+        StartCoroutine(wait_and_show(st, white,header_text));
     }
 
     public void OneMistakeOccured()

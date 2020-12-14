@@ -21,7 +21,7 @@ new List<(int x, int y, bool centerised)>(){
 1,
 new Vector2(1,2),
 0,
-""
+"Lvl 1"
 //Helper.get_asymetric_poses(0,4).Select(t=>(t.x,t.y,true)).ToList()//triangle
 ),
 (2,2,0,1f,game_mode.millCreataion_orderise,
@@ -37,7 +37,7 @@ Helper.get_asymetric_poses(95,2,8).Select(t=>(t.x,t.y,true)).ToList(),
 new Vector2(-1,2),
 0
 ,
-""
+"header 2"
 ),
 (3,3,0,.35f,game_mode.millCreataion_orderise,
 "You need to find start pivot which would form the provided order.\nTouch and choose which pivot is your choose to start from. ",
