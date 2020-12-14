@@ -27,10 +27,18 @@ public class Dialogue_script : MonoBehaviour
         GameObject.Destroy (gameObject);
     }
 
-    public void show(string text)
+    public void show(string text,string title="")
     {
         var textOBJ = transform.GetChild(0);
         textOBJ.gameObject.GetComponent<TextMeshProUGUI>().text = text;
+	   var rectTransform =textOBJ.gameObject.GetComponent<RectTransform>();
+		if (title!=""){
+
+			rectTransform.anchoredPosition=new Vector2(rectTransform.anchoredPosition.x,-804);
+			var titleOBJ = transform.GetChild(1);
+			
+        titleOBJ.gameObject.GetComponent<TextMeshProUGUI>().text = title;
+		}
     }
 
     // Start is called before the first frame update

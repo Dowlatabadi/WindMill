@@ -166,7 +166,7 @@ public class game1_manager : MonoBehaviour
         Camera.main.GetComponent<PauseManager>().Stops();
     }
 
-    public void show(string st, bool white = false)
+    public void show(string st, bool white = false,string header_text="")
     {
         if (st.Contains("empty"))
         {
@@ -213,7 +213,9 @@ public class game1_manager : MonoBehaviour
                     .levels_info
                     .FirstOrDefault(x => x.lvl_num == temp_lvl);
             lvl =
-                new Level(lvl_details.gamemode,
+                new Level(
+					lvl_details.header_text,
+					lvl_details.gamemode,
                     lvl_details.c,
                     lvl_details.cc,
                     lvl_details.labeled_ratio,
@@ -230,7 +232,7 @@ public class game1_manager : MonoBehaviour
                 if (last_progress == temp_lvl)
                 {
                     //show dialogue
-                    show(lvl.Info);
+                    show(lvl.Info,false,lvl.header_text);
                     PlayerPrefs.SetInt("is_last_lvl_seen_yet", 1);
                 }
             }
@@ -239,7 +241,7 @@ public class game1_manager : MonoBehaviour
         else
         {
             lvl =
-                new Level(game_mode.millCreataion_inaccessible_pivots,
+                new Level("",game_mode.millCreataion_inaccessible_pivots,
                     6,
                     0,
                     1f,
@@ -292,7 +294,12 @@ public class game1_manager : MonoBehaviour
                     GameObject.FindGameObjectsWithTag("cylinderparent")[0];
 
                 var mill_rotation = (int) mill.transform.eulerAngles.z;
-					var loop_detected=Mathf.Abs(mill_rotation -current_pvt.GetComponent<pivotActions>().solved_angle)<=3;
+					var loop_detected=false;
+					if (current_pvt!=null)
+					{
+
+					 loop_detected=Mathf.Abs(mill_rotation -current_pvt.GetComponent<pivotActions>().solved_angle)<=3;
+					}
 
         if (AccessModeGame)
         {
@@ -564,7 +571,7 @@ public class game1_manager : MonoBehaviour
                 Mathf
                     .Clamp(general_mill.GetComponent<rotate>().speed + .6f,
                     20f,
-                    60f);
+                    50f);
         }
     }
 

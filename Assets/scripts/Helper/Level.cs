@@ -35,6 +35,7 @@ namespace Classes
         Pivots { get; set; }
 
         public string Info { get; set; }
+        public string header_text { get; set; }
 
         public Vector2 start_vct { get; set; }
 
@@ -63,6 +64,7 @@ namespace Classes
         //     this.Known_pivots = Known_pivots;
         // }
         public Level(
+			string header_text,
             game_mode game_mode,
             int number_of_C,
             int number_of_CC,
@@ -233,6 +235,7 @@ namespace Classes
             this.End_Info = End_Info;
             this.Omited_answer = pivot_cration_answer;
 			this.start_vct=start_vct;
+			this.header_text=header_text;
         }
 
         //sets the order num for all pivots

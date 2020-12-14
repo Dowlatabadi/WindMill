@@ -56,18 +56,19 @@ public bool debug_mode;
             {
                 //disable button
                 go.GetComponent<Button>().interactable = false;
-                go
+               gray( go,0);
+               gray( go,1);
+               gray( go,2);
+               gray( go,3);
+               gray( go,4);
+                    
+					//show lock
+					 go
                     .transform
-                    .GetChild(0)
+                    .GetChild(7)
                     .gameObject
-                    .GetComponent<TextMeshProUGUI>()
-                    .color = Color.gray;
-                go
-                    .transform
-                    .GetChild(1)
-                    .gameObject
-                    .GetComponent<TextMeshProUGUI>()
-                    .color = Color.gray;
+                    .GetComponent<Image>()
+                    .enabled = true;
             }
         }
 
@@ -84,7 +85,14 @@ public bool debug_mode;
 		Debug.Log("scroll "+scroll_height);
   
     }
-
+void gray(GameObject go,int child_num){
+	  go
+                    .transform
+                    .GetChild(child_num)
+                    .gameObject
+                    .GetComponent<TextMeshProUGUI>()
+                    .color = Color.gray;
+}
     // Update is called once per frame
     void Update()
     {
