@@ -446,7 +446,7 @@ new Vector2(2,-1),
 
 
 
-(33,6,0,0f,game_mode.millCreataion_orderise,
+(33,6,0,.5f,game_mode.millCreataion_orderise,
 "Did you ever ask yourself why all the time mill rotates clockwise?\n Well, it is not a must at all, the blue pivots cause mill rottae counter clockwise! ","This is the forth level.\n ",
 (Helper.get_asymetric_poses(30,5,6.5f).plus_points(new List<(int,int)>(){(160,90)}).Select(t=>(t.x,t.y,true))).ToList(),
 5,

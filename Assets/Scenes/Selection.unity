@@ -1233,7 +1233,7 @@ MonoBehaviour:
   bar_prefab: {fileID: 5967022909396139967, guid: 43d4b43e312487fe9a35eed396077155,
     type: 3}
   Container: {fileID: 567801165}
-  debug_mode: 1
+  debug_mode: 0
 --- !u!114 &1927204347
 MonoBehaviour:
   m_ObjectHideFlags: 0
