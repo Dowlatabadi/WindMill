@@ -510,6 +510,12 @@ var debug_str="";
                 go.GetComponent<SpriteRenderer>().color = Color.blue;
                 go.gameObject.tag = "counterclockwise";
             }
+			if (pvt.order_num==-1000)
+			{
+               // go.GetComponent<SpriteRenderer>().color = new Color((103f/255f), (69f/255f), (125f/255f), 1f);
+                go.GetComponent<SpriteRenderer>().color = new Color((242f/255f), (124f/255f), (34f/255f), 1f);
+
+			}
             gos.Add (go);
         }
 		var gen=$"new List<(int x,int y)>{{{System.String.Join(",", lvl.Pivots.Select(tt=>Helper.get_grid_pos(tt.pivot_pos)).Select(pv=>$"({pv.y},{pv.x})"))}}}.Select(t=>(t.x,t.y,true)).ToList()";
