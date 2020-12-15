@@ -309,16 +309,23 @@ public class game1_manager : MonoBehaviour
 			
             lvl_solved =
                 all_pivots
-                    .Where(x =>
-                        x.GetComponent<pivotActions>().get_my_num() != 999)
-                    .All(x => x.GetComponent<pivotActions>().solved);
-            if (lvl_solved && !loop_detected)
+				.Where(x =>
+					x.GetComponent<pivotActions>().get_my_num() != 999)
+				.All(x => x.GetComponent<pivotActions>().solved);
+				if (!all_pivots
+				.Any(x =>
+					x.GetComponent<pivotActions>().get_my_num() == 999) && lvl_solved)
+			{
+				lvl_solved=true;
+			}
+            else if (lvl_solved && !loop_detected)
             {
                lvl_solved=false;
             }
 			else if (!lvl_solved && loop_detected){
 				failed=true;
 			}
+			 
         }
 		else
 		{//order mode
@@ -505,8 +512,11 @@ var debug_str="";
             }
             gos.Add (go);
         }
-			UnityEngine.Debug.Log($"<color=green> point :  {System.String.Join(",", lvl.Pivots.Select(tt=>Helper.get_grid_pos(tt.pivot_pos)).Select(pv=>$"({pv.x},{pv.y})"))} </color>");
-
+		var gen=$"new List<(int x,int y)>{{{System.String.Join(",", lvl.Pivots.Select(tt=>Helper.get_grid_pos(tt.pivot_pos)).Select(pv=>$"({pv.y},{pv.x})"))}}}.Select(t=>(t.x,t.y,true)).ToList()";
+			UnityEngine.Debug.Log
+			(gen)
+			;
+ GUIUtility.systemCopyBuffer = gen;
         //select starting position for mill
         var index = 0;
         var starting_pivot = gos.ElementAt(0);

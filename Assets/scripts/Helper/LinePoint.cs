@@ -218,7 +218,7 @@ namespace LinePoint
             float height_unit = height / rows;
 UnityEngine.Debug.Log($"left bottom {left_bottom}");
             
-                return new Vector2((int)((input.x-left_bottom.x)/width_unit),(int)((input.y-left_bottom.y)/height_unit));
+                return new Vector2((int)((input.x-left_bottom.x)/width_unit-80),(int)((input.y-left_bottom.y)/height_unit-160));
             
         }
         public static Vector2

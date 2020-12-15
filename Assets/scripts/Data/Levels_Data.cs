@@ -577,7 +577,131 @@ new Vector2(1,0),
 ,
 (39,1,3,1f,game_mode.pivotCreation_orderise,
 "Did you ever ask yourself why all the time mill rotates clockwise?\n Well, it is not a must at all, the blue pivots cause mill rottae counter clockwise! ","This is the forth level.\n ",
-null,
+new List<(int x,int y)>{ (220,132),(321,138),(313,200),(212,118) }
+.Select(t=>(t.x-160,t.y-80,true)).ToList(),
+
+5,
+new Vector2(1,0),
+0
+,
+""
+)
+,
+(40,1,5,.5f,game_mode.millCreataion_orderise,
+"Did you ever ask yourself why all the time mill rotates clockwise?\n Well, it is not a must at all, the blue pivots cause mill rottae counter clockwise! ","This is the forth level.\n ",
+new List<(int x,int y)>{(135,118),(157,60),(131,38),(250,102),(75,71),(250,40)}.Select(t=>(t.x,t.y,true)).ToList()
+,
+5,
+new Vector2(1,0),
+0
+,
+""
+)
+,
+(41,5,2,1f,game_mode.millCreataion_orderise,
+"Did you ever ask yourself why all the time mill rotates clockwise?\n Well, it is not a must at all, the blue pivots cause mill rottae counter clockwise! ","This is the forth level.\n ",
+new List<(int x,int y)>{(154,118),(219,67),(263,114),(253,47),(134,99),(73,75),(56,44)}.Select(t=>(t.x,t.y,true)).ToList()
+,
+5,
+new Vector2(1,0),
+0
+,
+""
+)
+
+,
+(42,5,2,1f,game_mode.millCreataion_orderise,
+"Did you ever ask yourself why all the time mill rotates clockwise?\n Well, it is not a must at all, the blue pivots cause mill rottae counter clockwise! ","This is the forth level.\n ",
+new List<(int x,int y)>{(39,82),(84,37),(195,79),(171,103),(96,64),(102,108),(57,118)}.Select(t=>(t.x,t.y,true)).ToList()
+,
+5,
+new Vector2(1,0),
+0
+,
+""
+)
+,
+(43,3,1,1f,game_mode.millCreataion_inaccessible_pivots,
+"Did you ever ask yourself why all the time mill rotates clockwise?\n Well, it is not a must at all, the blue pivots cause mill rottae counter clockwise! ","This is the forth level.\n ",
+new List<(int x,int y)>{(184,40),(163,52),(241,93),(67,79)}.Select(t=>(t.x,t.y,true)).ToList()
+,
+5,
+new Vector2(1,0),
+0
+,
+""
+)
+,
+(44,4,1,1f,game_mode.millCreataion_inaccessible_pivots,
+"Did you ever ask yourself why all the time mill rotates clockwise?\n Well, it is not a must at all, the blue pivots cause mill rottae counter clockwise! ","This is the forth level.\n ",
+new List<(int x,int y)>{(107,78),(172,38),(85,88),(174,97),(236,75)}.Select(t=>(t.x,t.y,true)).ToList()
+,
+5,
+new Vector2(1,0),
+0
+,
+""
+)
+,
+(45,1,7,1f,game_mode.millCreataion_inaccessible_pivots,
+"Did you ever ask yourself why all the time mill rotates clockwise?\n Well, it is not a must at all, the blue pivots cause mill rottae counter clockwise! ","This is the forth level.\n ",
+new List<(int x,int y)>{(160,33),(140,117),(133,53),(161,82),(249,121),(83,56),(82,91),(250,54)}.Select(t=>(t.x,t.y,true)).ToList()
+,
+5,
+new Vector2(1,0),
+0
+,
+""
+)
+,
+(46,5,2,1f,game_mode.millCreataion_orderise,
+"Did you ever ask yourself why all the time mill rotates clockwise?\n Well, it is not a must at all, the blue pivots cause mill rottae counter clockwise! ","This is the forth level.\n ",
+null
+,
+5,
+new Vector2(1,0),
+0
+,
+""
+)
+,
+(47,5,2,1f,game_mode.millCreataion_orderise,
+"Did you ever ask yourself why all the time mill rotates clockwise?\n Well, it is not a must at all, the blue pivots cause mill rottae counter clockwise! ","This is the forth level.\n ",
+null
+,
+5,
+new Vector2(1,0),
+0
+,
+""
+)
+,
+(48,5,2,1f,game_mode.millCreataion_orderise,
+"Did you ever ask yourself why all the time mill rotates clockwise?\n Well, it is not a must at all, the blue pivots cause mill rottae counter clockwise! ","This is the forth level.\n ",
+null
+,
+5,
+new Vector2(1,0),
+0
+,
+""
+)
+,
+(49,5,2,1f,game_mode.millCreataion_orderise,
+"Did you ever ask yourself why all the time mill rotates clockwise?\n Well, it is not a must at all, the blue pivots cause mill rottae counter clockwise! ","This is the forth level.\n ",
+null
+,
+5,
+new Vector2(1,0),
+0
+,
+""
+)
+,
+(50,5,2,1f,game_mode.millCreataion_orderise,
+"Did you ever ask yourself why all the time mill rotates clockwise?\n Well, it is not a must at all, the blue pivots cause mill rottae counter clockwise! ","This is the forth level.\n ",
+null
+,
 5,
 new Vector2(1,0),
 0
