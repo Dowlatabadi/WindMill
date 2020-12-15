@@ -504,14 +504,14 @@ var debug_str="";
                 go.gameObject.tag = "clockwise";
 
                 go.GetComponent<SpriteRenderer>().color = Color.red;
-                go.transform.Find("graphics").GetComponent<SpriteRenderer>().color = Color.red;
+                go.transform.Find("graphics").GetComponent<SpriteRenderer>().color = new Color((103f/255f), (69f/255f), (125f/255f), .6f);
                 go.transform.Find("graphics").GetComponent<Animator>().SetBool("clockwise",true);
 
             }
             else
             {
                 go.GetComponent<SpriteRenderer>().color = Color.blue;
-                go.transform.Find("graphics").GetComponent<SpriteRenderer>().color = Color.blue;
+                go.transform.Find("graphics").GetComponent<SpriteRenderer>().color = new Color((103f/255f), (69f/255f), (125f/255f), .6f);
                 go.transform.Find("graphics").GetComponent<SpriteRenderer>().flipX=true;
                 go.transform.Find("graphics").GetComponent<Animator>().SetBool("clockwise",false);
 				go.gameObject.tag = "counterclockwise";
@@ -525,11 +525,7 @@ var debug_str="";
 			}
             gos.Add (go);
         }
-		var gen=$"new List<(int x,int y)>{{{System.String.Join(",", lvl.Pivots.Select(tt=>Helper.get_grid_pos(tt.pivot_pos)).Select(pv=>$"({pv.y},{pv.x})"))}}}.Select(t=>(t.x,t.y,true)).ToList()";
-			UnityEngine.Debug.Log
-			(gen)
-			;
- GUIUtility.systemCopyBuffer = gen;
+		
         //select starting position for mill
         var index = 0;
         var starting_pivot = gos.ElementAt(0);

@@ -171,6 +171,13 @@ namespace Classes
             }
             UnityEngine.Debug.Log("before orderise pivots: " + res.Count());
 
+
+var gen=$"new List<(int x,int y)>{{{System.String.Join(",", res.Select(tt=>Helper.get_grid_pos(tt.pivot_pos)).Select(pv=>$"({pv.y},{pv.x})"))}}}.Select(t=>(t.x,t.y,true)).ToList()";
+			UnityEngine.Debug.Log
+			(gen)
+			;
+ GUIUtility.systemCopyBuffer = gen;
+
             // var result = FakeOrderise(res);
             var result = Orderise(res, start_vct);
 

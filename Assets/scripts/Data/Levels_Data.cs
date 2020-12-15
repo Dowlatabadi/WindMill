@@ -687,24 +687,23 @@ new Vector2(1,0),
 ""
 )
 ,
-(49,15,0,1f,game_mode.millCreataion_inaccessible_pivots,
+(49,3,4,1f,game_mode.pivotCreation_inaccessible_pivots,
 "Did you ever ask yourself why all the time mill rotates clockwise?\n Well, it is not a must at all, the blue pivots cause mill rottae counter clockwise! ","This is the forth level.\n ",
-null
-,
+new List<(int x,int y)>{(207,77),(51,117),(84,58),(213,106),(255,38),(127,53),(260,113)}.Select(t=>(t.x,t.y,true)).ToList(),
 5,
 new Vector2(1,0),
-0
+3
 ,
 ""
 )
 ,
-(50,5,2,1f,game_mode.millCreataion_inaccessible_pivots,
+(50,3,4,1f,game_mode.pivotCreation_inaccessible_pivots,
 "Did you ever ask yourself why all the time mill rotates clockwise?\n Well, it is not a must at all, the blue pivots cause mill rottae counter clockwise! ","This is the forth level.\n ",
 null
 ,
 5,
 new Vector2(1,0),
-0
+3
 ,
 ""
 )
