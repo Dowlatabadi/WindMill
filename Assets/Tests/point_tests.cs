@@ -35,7 +35,14 @@ namespace Tests
 		}
 		[Test]
 		public void unlock_70(){
-			 PlayerPrefs.SetInt("Progress_lvl", 70);
+			 PlayerPrefs.SetInt("Progress_lvl",1);
+		}
+		[Test]
+		public void helper_point(){
+			var x= Helper.get_grid_pos(new Vector2(-2.8f,-5f));
+			var y= Helper.get_squared_pos(0,0);
+			UnityEngine.Debug.Log($"<color=blue>the grid is P{x} </color>");
+			Debug.Log($"<color=blue>160,80 P{y} </color>");
 		}
     }
 }

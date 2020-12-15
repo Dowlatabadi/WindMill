@@ -443,7 +443,7 @@ public class game1_manager : MonoBehaviour
             cross_sp_renderer.enabled = true;
             text.text = "Create";
         }
-
+var debug_str="";
         UnityEngine.Debug.Log("all lvl pivots: " + lvl.Pivots.Count());
         var cyl_parent = GameObject.FindGameObjectsWithTag("cylinderparent")[0];
         gos = new List<GameObject>();
@@ -468,6 +468,7 @@ public class game1_manager : MonoBehaviour
                             pvt.pivot_pos.y,
                             checkpivot_pefab.transform.position.z),
                         Quaternion.identity);
+				
 
                 go.GetComponent<pivotActions>().set_number(pvt.order_num);
 
@@ -483,6 +484,7 @@ public class game1_manager : MonoBehaviour
                             checkpivot_pefab.transform.position.z),
                         Quaternion.identity);
             }
+
             go.GetComponent<pivotActions>().labled = pvt.labeled;
             if (failure_counter == 0)
             {
@@ -503,6 +505,7 @@ public class game1_manager : MonoBehaviour
             }
             gos.Add (go);
         }
+			UnityEngine.Debug.Log($"<color=green> point :  {System.String.Join(",", lvl.Pivots.Select(tt=>Helper.get_grid_pos(tt.pivot_pos)).Select(pv=>$"({pv.x},{pv.y})"))} </color>");
 
         //select starting position for mill
         var index = 0;

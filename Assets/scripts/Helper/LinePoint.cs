@@ -200,7 +200,27 @@ namespace LinePoint
             }
             return chosen;
         }
+ public static Vector2
+        get_grid_pos(Vector2 input)
+        {
+			var precision=10;
+            //starting bottom left
+            var rows = 32*precision;
+            var columns = 16*precision;
+            var screen_width = Screen.width;
+            var screen_height = Screen.height;
+			var left_bottom=Camera.main.ScreenToWorldPoint(new Vector2(-screen_width/2,-screen_height/2));
+			var top_right=Camera.main.ScreenToWorldPoint(new Vector2(screen_width/2,screen_height/2));
 
+			var width = top_right.x-left_bottom.x;
+            var height = top_right.y-left_bottom.y;
+            float width_unit = width / columns;
+            float height_unit = height / rows;
+UnityEngine.Debug.Log($"left bottom {left_bottom}");
+            
+                return new Vector2((int)((input.x-left_bottom.x)/width_unit),(int)((input.y-left_bottom.y)/height_unit));
+            
+        }
         public static Vector2
         get_squared_pos(int row_num, int col_num, bool centerised = true)
         {
