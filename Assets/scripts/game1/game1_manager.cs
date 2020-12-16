@@ -47,6 +47,7 @@ public class game1_manager : MonoBehaviour
     }
 
     string current_message = "default";
+    string current_header = "";
 
     public void first_button_pressed()
     {
@@ -263,7 +264,7 @@ public class game1_manager : MonoBehaviour
 
     public void show_current_info()
     {
-        show (current_message);
+        show (current_message,false,current_header);
         info_btn.GetComponent<Animator>().SetBool("Blink", false);
     }
 
@@ -275,6 +276,7 @@ public class game1_manager : MonoBehaviour
         var lvl_details =
             Levels_Data.levels_info.FirstOrDefault(x => x.lvl_num == temp_lvl);
         current_message = lvl_details.welcome_info;
+        current_header = lvl_details.header_text;
         info_btn.GetComponent<Animator>().SetBool("Blink", true);
     }
 
@@ -330,10 +332,16 @@ public class game1_manager : MonoBehaviour
 		else
 		{//order mode
 			lvl_solved =
-            all_pivots.All(x => x.GetComponent<pivotActions>().solved);
+            all_pivots
+			
+			.All(x => x.GetComponent<pivotActions>().solved);
 			if (!lvl_solved && loop_detected){
 				failed=true;
 
+			}
+			if (loop_detected && 
+			all_pivots.Where(x =>x.GetComponent<pivotActions>().get_my_num() != 999).All(x => x.GetComponent<pivotActions>().solved)){
+lvl_solved =true;
 			}
 		}
         if (lvl_solved)

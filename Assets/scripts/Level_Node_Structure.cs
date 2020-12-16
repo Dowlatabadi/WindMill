@@ -32,7 +32,15 @@ public class Level_Node_Structure : MonoBehaviour
     public void draw_info()
     {
         Transform firstChild_lvl_bold = transform.GetChild(0);
-		 firstChild_lvl_bold.gameObject.GetComponent<TextMeshProUGUI>().text =$"Lvl {lvl_num}";
+if (lvl_num<=2)
+{
+		 firstChild_lvl_bold.gameObject.GetComponent<TextMeshProUGUI>().text =$"Intro. {lvl_num}";
+
+}
+else{
+
+		 firstChild_lvl_bold.gameObject.GetComponent<TextMeshProUGUI>().text =$"Lvl {lvl_num-2}";
+}
 
 
         Transform c_obj = transform.GetChild(1);
