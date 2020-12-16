@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Classes;
 
 public class Selection_Manager : MonoBehaviour
 {
@@ -47,6 +48,7 @@ public class Selection_Manager : MonoBehaviour
             node.ratio = info.labeled_ratio;
             node.gamemode = info.gamemode;
             node.draw_info();
+
             counter++;
         }
         var last_lvl =
@@ -56,6 +58,23 @@ public class Selection_Manager : MonoBehaviour
         //deactive_locked
         foreach (var go in all)
         {
+			//colorise rectangle
+			if (go.GetComponent<Level_Node_Structure>().gamemode==game_mode.millCreataion_inaccessible_pivots ||go.GetComponent<Level_Node_Structure>().gamemode==game_mode.millCreataion_orderise ){
+go
+                    .transform
+                    .GetChild(8)
+                    .gameObject
+					 .GetComponent<Image>()
+                    .color = new Color32(255,0,0,40);
+			}
+			else{
+				go
+                    .transform
+                    .GetChild(8)
+                    .gameObject
+					 .GetComponent<Image>()
+                    .color = new Color32(67,191,171,100);
+			}
             if (go.GetComponent<Level_Node_Structure>().lvl_num > last_lvl)
             {
                 //disable button

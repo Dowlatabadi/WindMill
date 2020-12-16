@@ -305,7 +305,7 @@ public class game1_manager : MonoBehaviour
 
 					 loop_detected=Mathf.Abs(mill_rotation -current_pvt.GetComponent<pivotActions>().solved_angle)<=3;
 					}
-					
+
 UnityEngine.Debug.Log($"<color=red> loop_detected {loop_detected} <color>");
         if (AccessModeGame)
         {
@@ -537,8 +537,25 @@ var debug_str="";
 			if (pvt.order_num==-1000)
 			{
                // go.GetComponent<SpriteRenderer>().color = new Color((103f/255f), (69f/255f), (125f/255f), 1f);
-                go.GetComponent<SpriteRenderer>().color = new Color((242f/255f), (124f/255f), (34f/255f), 1f);
+                go.GetComponent<SpriteRenderer>().enabled = false;
                 go.transform.Find("graphics").GetComponent<SpriteRenderer>().enabled = false;
+				var b1=go.transform.Find("black1");
+				var b2=go.transform.Find("black2");
+				var b3=go.transform.Find("black3");
+				var b4=go.transform.Find("black4");
+                
+				b1.GetComponent<SpriteRenderer>().enabled=true;
+				b1.GetComponent<Animator>().enabled=true;
+				b1.GetComponent<Animator>().SetBool("clockwise",true);
+                b2.GetComponent<SpriteRenderer>().enabled=true;
+				b2.GetComponent<Animator>().enabled=true;
+				b2.GetComponent<Animator>().SetBool("clockwise",false); 
+				b3.GetComponent<SpriteRenderer>().enabled=true;
+				b3.GetComponent<Animator>().enabled=true;
+				b3.GetComponent<Animator>().SetBool("clockwise",true);
+				b4.GetComponent<SpriteRenderer>().enabled=true;
+				b4.GetComponent<Animator>().enabled=true;
+				b4.GetComponent<Animator>().SetBool("clockwise",false);
 
 			}
             gos.Add (go);

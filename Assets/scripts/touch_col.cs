@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Classes;
 public class touch_col : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -21,14 +21,22 @@ public class touch_col : MonoBehaviour
             if (hit.collider != null && hit.collider.transform == this.transform
             )
             {
+				var gamemode = Camera.main.GetComponent<game1_manager>().gamemode;
+        var AccessModeGame =
+            (
+            gamemode == game_mode.pivotCreation_inaccessible_pivots ||
+            gamemode == game_mode.millCreataion_inaccessible_pivots
+            );
                 if (
                     !gameObject.GetComponentInParent<pivotActions>().labled ||
                     (
                     gameObject.GetComponentInParent<pivotActions>().labled &&
-                    gameObject
+                    (gameObject
                         .GetComponentInParent<pivotActions>()
                         .get_my_num() ==
-                    1
+                    1 || (gameObject
+                        .GetComponentInParent<pivotActions>()
+                        .get_my_num() !=999 && AccessModeGame))
                     )
                 )
                 {
