@@ -305,7 +305,8 @@ public class game1_manager : MonoBehaviour
 
 					 loop_detected=Mathf.Abs(mill_rotation -current_pvt.GetComponent<pivotActions>().solved_angle)<=3;
 					}
-
+					
+UnityEngine.Debug.Log($"<color=red> loop_detected {loop_detected} <color>");
         if (AccessModeGame)
         {
 			
@@ -333,15 +334,24 @@ public class game1_manager : MonoBehaviour
 		{//order mode
 			lvl_solved =
             all_pivots
-			
+			.Where(x =>x.GetComponent<pivotActions>().get_my_num() != 999)
 			.All(x => x.GetComponent<pivotActions>().solved);
 			if (!lvl_solved && loop_detected){
 				failed=true;
 
 			}
-			if (loop_detected && 
-			all_pivots.Where(x =>x.GetComponent<pivotActions>().get_my_num() != 999).All(x => x.GetComponent<pivotActions>().solved)){
+			else if (loop_detected && 
+			lvl_solved){
 lvl_solved =true;
+			}
+			else if (lvl_solved &&  !all_pivots
+			.Any(x =>x.GetComponent<pivotActions>().get_my_num() == 999))
+			{
+				lvl_solved =true;
+			}
+			else{
+				lvl_solved =false;
+
 			}
 		}
         if (lvl_solved)

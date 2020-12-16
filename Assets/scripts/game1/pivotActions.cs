@@ -43,12 +43,12 @@ public class pivotActions : MonoBehaviour
             gamemode == game_mode.pivotCreation_inaccessible_pivots ||
             gamemode == game_mode.millCreataion_inaccessible_pivots
             );
-			if (AccessModeGame){
+			//if (AccessModeGame){
   var mill = GameObject.FindGameObjectsWithTag("cylinderparent")[0];
 
 			solved_angle =(int)mill.transform.eulerAngles.z;
 			Debug.Log(solved_angle+" solved at rotation");
-			}
+			//}
 
     }
 
