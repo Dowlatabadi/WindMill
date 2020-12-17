@@ -484,7 +484,7 @@ var debug_str="";
             pivots_pos.Add(pvt.pivot_pos);
             GameObject go;
 
-            if (pvt.labeled)
+            if (pvt.labeled || (pvt.order_num==-1000))
             {
                 go =
                     GameObject
@@ -524,6 +524,7 @@ var debug_str="";
                 go.GetComponent<SpriteRenderer>().color = Color.red;
                 go.transform.Find("graphics").GetComponent<SpriteRenderer>().color = new Color((103f/255f), (69f/255f), (125f/255f), .6f);
                 go.transform.Find("graphics").GetComponent<Animator>().SetBool("clockwise",true);
+                go.transform.Find("bigger_check").GetComponent<SpriteRenderer>().color = new Color32(255,0,0, 30);
 
             }
             else
@@ -532,13 +533,18 @@ var debug_str="";
                 go.transform.Find("graphics").GetComponent<SpriteRenderer>().color = new Color((103f/255f), (69f/255f), (125f/255f), .6f);
                 go.transform.Find("graphics").GetComponent<SpriteRenderer>().flipX=true;
                 go.transform.Find("graphics").GetComponent<Animator>().SetBool("clockwise",false);
+                go.transform.Find("bigger_check").GetComponent<SpriteRenderer>().color = new Color32(0,0,255, 30);
+
 				go.gameObject.tag = "counterclockwise";
             }
 			if (pvt.order_num==-1000)
 			{
                // go.GetComponent<SpriteRenderer>().color = new Color((103f/255f), (69f/255f), (125f/255f), 1f);
                 go.GetComponent<SpriteRenderer>().enabled = false;
-                go.transform.Find("graphics").GetComponent<SpriteRenderer>().enabled = false;
+
+			    go.transform.Find("number").GetComponent<TextMeshPro>().color = new Color32(0,89,8,255);
+			   
+			    go.transform.Find("graphics").GetComponent<SpriteRenderer>().enabled = false;
 				var b1=go.transform.Find("black1");
 				var b2=go.transform.Find("black2");
 				var b3=go.transform.Find("black3");

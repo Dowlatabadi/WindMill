@@ -141,7 +141,10 @@ public class pivotActions : MonoBehaviour
             var current_num = GM_script.OneHitOccured(this.gameObject);
             if (!AccessModeGame)
             {
-                if (!labled)
+				if (get_my_num() == 999){
+					 need_reset = true;
+				}
+                else if (!labled)
                 {
                     set_number (current_num);
                     if (GM_script.current_labels.Contains(current_num))
