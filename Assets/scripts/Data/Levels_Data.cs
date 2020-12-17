@@ -925,5 +925,58 @@ new Vector2(3,2),
 ""
 ),
 
+(67,1,5,.4f,game_mode.millCreataion_orderise,
+"Did you ever ask yourself why all the time mill rotates clockwise?\n Well, it is not a must at all, the blue pivots cause mill rottae counter clockwise! ","This is the forth level.\n ",
+
+(new List<(int x,int y)>(){(160,90)})
+.plus_points(Helper.get_arc_poses(-40,5,30,5f))
+.Select(t=>(t.x,t.y,true)).ToList()
+,
+5,
+new Vector2(3,2),
+8
+,
+""
+),
+
+(68,2,8,.4f,game_mode.millCreataion_orderise,
+"Did you ever ask yourself why all the time mill rotates clockwise?\n Well, it is not a must at all, the blue pivots cause mill rottae counter clockwise! ","This is the forth level.\n ",
+
+(new List<(int x,int y)>(){(170,70),(150,100)})
+.plus_points(Helper.get_arc_poses(0,4,30,7f))
+.plus_points(Helper.get_arc_poses(180,4,30,7f))
+.Select(t=>(t.x,t.y,true)).ToList()
+,
+5,
+new Vector2(3,2),
+8
+,
+""
+),
+
+
+(69,0,10,.4f,game_mode.millCreataion_orderise,
+"Did you ever ask yourself why all the time mill rotates clockwise?\n Well, it is not a must at all, the blue pivots cause mill rottae counter clockwise! ","This is the forth level.\n ",
+
+// (new List<(int x,int y)>(){(170,70),(150,100)})
+Helper.get_arc_poses(0,1,36,2f)
+.plus_points(Helper.get_arc_poses(36*1,1,36,4f))
+.plus_points(Helper.get_arc_poses(36*2,1,36,5f))
+.plus_points(Helper.get_arc_poses(36*3,1,36,5.5f))
+.plus_points(Helper.get_arc_poses(36*4,1,36,6f))
+.plus_points(Helper.get_arc_poses(36*5,1,36,6.5f))
+.plus_points(Helper.get_arc_poses(36*6,1,36,7f))
+.plus_points(Helper.get_arc_poses(36*7,1,36,7.5f))
+.plus_points(Helper.get_arc_poses(36*8,1,36,8f))
+.plus_points(Helper.get_arc_poses(36*9,1,36,8.5f))
+.Select(t=>(t.x,t.y,true)).ToList()
+,
+5,
+new Vector2(2,-2),
+5
+,
+""
+),
+
 };
 }

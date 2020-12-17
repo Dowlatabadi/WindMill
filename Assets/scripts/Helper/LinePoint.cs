@@ -279,5 +279,30 @@ return firstpoints;
             }
             return result;
         }
+
+
+		 public static List<(int x, int y)>
+        get_arc_poses(int start_angle, int point_number,int angle_share,float scale_factor=6f,float y_scale=1)
+        {
+			
+			var precision=10;
+			(int x,int y) offset=((8+1)*precision,16*precision);
+            var scale = scale_factor*precision; //from 8;
+            var result = new List<(int x, int y)>();
+           // var angle_share = 360 / point_number;
+            var next_angle = start_angle;
+            UnityEngine.Debug.Log($"angle share is {angle_share}");
+
+            for (int i = 0; i < point_number; i++)
+            {
+          
+                var x = (int) Mathf.Round(Mathf.Cos(next_angle* (Mathf.PI / 180) ) * scale)+offset.x;
+                var y = (int) (Mathf.Round(Mathf.Sin(next_angle* (Mathf.PI / 180) ) * scale*y_scale)+offset.y);
+                result.Add((y,x));
+            UnityEngine.Debug.Log($"for angle {next_angle} generated {i}::: ({x}, {y}), sin(-180) {Mathf.Sin(-180* Mathf.PI)}");
+                next_angle = (next_angle + angle_share) ;
+            }
+            return result;
+        }
     }
 }

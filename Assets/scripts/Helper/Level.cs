@@ -290,7 +290,7 @@ var gen=$"new List<(int x,int y)>{{{System.String.Join(",", res.Select(tt=>Helpe
                 >();
             var tot = input.Count();
             var next_index = 0; // UnityEngine.Random.Range(0, tot);
-            var total_steps = Mathf.Max(15, tot);
+            var total_steps = Mathf.Max(25, tot);
 
             // l1 = ;
             int i = 1;
