@@ -22,7 +22,7 @@ public class Selection_Manager : MonoBehaviour
         if (debug_mode)
         {
             //unlock
-            PlayerPrefs.SetInt("Progress_lvl", 70);
+            PlayerPrefs.SetInt("Progress_lvl", 74);
         }
         RectTransform rt = (RectTransform) bar_prefab.transform;
         float width = rt.rect.width * 2;

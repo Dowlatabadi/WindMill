@@ -256,6 +256,13 @@ public static List<(int x, int y)>
 firstpoints.AddRange(secondpoints);
 return firstpoints;
 		}
+
+		public static List<(int x, int y)>
+       add_offset(this List<(int x, int y)> firstpoints, (int x,int y) offset)
+		{
+
+return firstpoints.Select<(int x, int y), (int x, int y)>(t=>(t.x+offset.x,t.y+offset.y)).ToList();
+		}
         public static List<(int x, int y)>
         get_asymetric_poses(int start_angle, int point_number,float scale_factor=6f,float y_scale=1)
         {
