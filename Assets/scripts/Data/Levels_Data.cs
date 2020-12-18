@@ -11,7 +11,7 @@ public static class Levels_Data
 public static List<(int lvl_num,int c,int cc,float labeled_ratio ,game_mode gamemode, string welcome_info, string end_info,List<(int x, int y, bool centerised)> predefined_locations ,int finish_delay,Vector2 start_vct,int pivot_creation_answer,string header_text)> levels_info=
 new List<(int lvl_num, int c, int cc, float labeled_ratio, game_mode gamemode, string welcome_info, string end_info,List<(int x, int y, bool centerised)> predefined_locations ,int finish_delay,Vector2 start_vct,int pivot_creation_answer,string header_text)>(){
 (1,1,0,0f,game_mode.millCreataion_orderise,
-"This is the first level and only a show of about the simple logic which this game is working based on.\n The logic is simple; The mill would rotate around its primary pivot.\nTo solve a level you need to green up all rotating pivots",
+"This game is based on a simple logic; The mill would rotate around its primary pivot.\n press Start button to run.",
 "empty",
 new List<(int x, int y, bool centerised)>(){
 	(160,90,true),
@@ -26,7 +26,7 @@ new Vector2(1,2),
 ),
 (2,2,0,1f,game_mode.millCreataion_orderise,
 "Let's see what happens when mill meets another pivot\n ",
-"Well, as you saw new touched pivot will be the primary pivot.\n The mill only can have one primary pivot at a time, therefor the old one is not primary anymore.",
+"Well, as you saw new touched pivot will be the primary pivot.\n The mill only can have one primary pivot at a time, therefore the old one is not primary anymore.",
 // new List<(int x, int y, bool centerised)>(){
 // 	(12,4,true),
 // 	(28,8,true),
@@ -40,7 +40,7 @@ new Vector2(-1,2),
 "Intro.."
 ),
 (3,3,0,.35f,game_mode.millCreataion_orderise,
-"You need to find start pivot which would form the provided order (3 should be met as the third pivot)\n-Touch to choose which pivot is your choose to start from(first pivot).\n-Drag to change mill starting angle ",
+"You need to find start pivot which would form the provided order (3 should be met as the third pivot)\n-Touch to choose which pivot is your chosen pivot to start from(first pivot).\n-You always can drag up/down to change mill starting angle ",
 "Well done! you got the basic idea.",
 Helper.get_asymetric_poses(70,3).Select(t=>(t.x,t.y,true)).ToList(),3,
 new Vector2(1,0),
@@ -50,23 +50,23 @@ new Vector2(1,0),
 ),
 
 (4,4,0,.5f,game_mode.millCreataion_orderise,
-"You always can change mill starting angle by draggin in vertical axis.\n ","empty",
+"ok, Lets solve this puzzle.\n ","empty",
 Helper.get_asymetric_poses(75,4,6,1.5f).Select(t=>(t.x,t.y,true)).ToList()
 ,3,
 new Vector2(-1,-2),
 0
 ,
-"Lvl 3. "
+"Lvl 2. "
 ),
 
 (5,5,0,.4f,game_mode.millCreataion_orderise,
-"This is the sixth level.\n ","This is the forth level.\n ",
+"Sometimes you can think reverse to guess the order...\n ","empty",
 Helper.get_asymetric_poses(75,5,6,1.5f).Select(t=>(t.x,t.y,true)).ToList()
 ,3,
 new Vector2(0,1),
 0
 ,
-"Lvl 4."
+"Lvl 3."
 ),
 (6,5,0,.5f,game_mode.millCreataion_orderise,
 "This is the 10th level.\n ","This is the forth level.\n ",
@@ -83,7 +83,7 @@ new List<(int x, int y, bool centerised)>(){
 new Vector2(-2,10),
 0
 ,
-"Lvl 5."
+"Lvl 4."
 ),
 
 (7,6,0,.5f,game_mode.millCreataion_orderise,
@@ -216,7 +216,7 @@ new Vector2(.2f,4),
 ),
 
 (14,0,6,.5f,game_mode.millCreataion_orderise,
-"Did you ever ask yourself why all the time mill rotates clockwise?\n Well, it is not a must at all, the blue pivots cause mill rottae counter clockwise! ","This is the forth level.\n ",
+"Did you ever ask yourself why all the time mill rotates clockwise?\n Well, it is not a must at all, the blue pivots cause mill rotate counter clockwise! ","empty",
 Helper.get_asymetric_poses(95,6,6).Select(t=>(t.x,t.y,true)).ToList(),
 5,
 new Vector2(1,-1),

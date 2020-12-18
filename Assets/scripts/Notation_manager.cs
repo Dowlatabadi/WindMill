@@ -20,8 +20,17 @@ public void Update_Notations(){
         if (temp_prefs_is_set)
         {
           var lvl=PlayerPrefs.GetInt("temp_lvl_num");
-            lvl_indicator.GetComponentInChildren<TextMeshProUGUI>().text =
-                $"L  {lvl.ToString()}";
+		  if (lvl>2){
+
+			  lvl_indicator.GetComponentInChildren<TextMeshProUGUI>().text =
+                $"L  {(lvl-2).ToString()}";
+		  }
+		  else
+		  {
+			    lvl_indicator.GetComponentInChildren<TextMeshProUGUI>().text =
+                $"Int {lvl.ToString()}";
+		  }
+            
         }
 }
     // Update is called once per frame
