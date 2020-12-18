@@ -49,19 +49,25 @@ new Vector2(1,0),
 "Lvl 1. Order guess"
 ),
 
-(4,4,0,.5f,game_mode.millCreataion_orderise,
-"ok, Lets solve this puzzle.\n ","empty",
-Helper.get_asymetric_poses(75,4,6,1.5f).Select(t=>(t.x,t.y,true)).ToList()
-,3,
-new Vector2(-1,-2),
+(4,10,0,1f,game_mode.millCreataion_inaccessible_pivots,
+"In some setups mill never meets some area, in this lvl you should start a setup wich wouldn't touch green pivots\n Well, it is not a must at all, the blue pivots cause mill rottae counter clockwise! ","This is the forth level.\n ",
+(Helper.get_asymetric_poses(30,4,8f))
+.plus_points(Helper.get_asymetric_poses(30,3,4f))
+.plus_points(Helper.get_asymetric_poses(10,3,2f))
+.add_offset((0,0))
+
+
+.Select(t=>(t.x,t.y,true)).ToList(),
+0,
+new Vector2(0,-1),
 0
 ,
-"Lvl 2. "
+"Lvl 2. touch guess"
 ),
 
 (5,5,0,.4f,game_mode.millCreataion_orderise,
 "Sometimes you can think reverse to guess the order...\n ","empty",
-Helper.get_asymetric_poses(75,5,6,1.5f).Select(t=>(t.x,t.y,true)).ToList()
+Helper.get_asymetric_poses(75,5,6,1.2f).Select(t=>(t.x,t.y,true)).ToList()
 ,3,
 new Vector2(0,1),
 0
@@ -70,15 +76,18 @@ new Vector2(0,1),
 ),
 (6,5,0,.5f,game_mode.millCreataion_orderise,
 "This is the 10th level.\n ","This is the forth level.\n ",
-new List<(int x, int y, bool centerised)>(){
-	(100,90,true),
-	(120,130,true),
-	(200,60,true),
-	(230,90,true),
-	(240,30,true),
+new List<(int x, int y)>(){
+	(100,90),
+	(120,130),
+	(200,60),
+	(230,90),
+	(240,30),
 	
 
 }
+.add_offset((0,10))
+
+.Select(t=>(t.x,t.y,true)).ToList()
 ,3,
 new Vector2(-2,10),
 0
@@ -86,19 +95,9 @@ new Vector2(-2,10),
 "Lvl 4."
 ),
 
-(7,6,0,.5f,game_mode.millCreataion_orderise,
-"This is the sixth level.\n ","This is the forth level.\n ",
-Helper.get_asymetric_poses(20,6,6,1.5f).Select(t=>(t.x,t.y,true)).ToList()
-,3,
-new Vector2(-1,-3),
-0
-,
-"Lvl 6."
-),
 
 
-
-(8,5,0,.5f,game_mode.millCreataion_orderise,
+(7,5,0,.5f,game_mode.millCreataion_orderise,
 "This is the 12th level.\n ","This is the forth level.\n ",
 new List<(int x, int y, bool centerised)>(){
 	(170,110,true),
@@ -112,6 +111,24 @@ new Vector2(6,-1),
 0
 ,
 "Lvl 7."
+),
+
+
+(8,5,0,.5f,game_mode.millCreataion_orderise,
+"This is the 12th level.\n ","This is the forth level.\n ",
+new List<(int x, int y, bool centerised)>(){
+	(200,85,true),
+	(250,103,true),
+	(270,95,true),
+	(140,110,true),
+	(70,88,true),
+	
+}
+,3,
+new Vector2(.2f,1),
+0
+,
+""
 ),
 
 (9,5,0,.5f,game_mode.millCreataion_orderise,
@@ -130,6 +147,8 @@ new Vector2(6,-1),
 "Lvl 8."
 ),
 
+
+
 (10,6,0,.5f,game_mode.millCreataion_orderise,
 "This is the 12th level.\n ","This is the forth level.\n ",
 new List<(int x, int y, bool centerised)>(){
@@ -146,25 +165,7 @@ new Vector2(1,0),
 ,
 ""
 ),
-
-(11,5,0,.5f,game_mode.millCreataion_orderise,
-"This is the 12th level.\n ","This is the forth level.\n ",
-new List<(int x, int y, bool centerised)>(){
-	(200,85,true),
-	(250,103,true),
-	(270,95,true),
-	(140,110,true),
-	(70,88,true),
-	
-}
-,3,
-new Vector2(.2f,1),
-0
-,
-""
-),
-
-(12,6,0,.5f,game_mode.millCreataion_orderise,
+(11,6,0,.5f,game_mode.millCreataion_orderise,
 "This is the 12th level.\n ","This is the forth level.\n ",
 new List<(int x, int y, bool centerised)>(){
 	(135,90,true),
@@ -185,7 +186,7 @@ new Vector2(-.2f,1),
 
 
 
-(13,12,0,.5f,game_mode.millCreataion_orderise,
+(12,12,0,.5f,game_mode.millCreataion_orderise,
 "This is the 21th level.\n ","This is the forth level.\n ",
 new List<(int x, int y, bool centerised)>(){
 	
@@ -214,10 +215,28 @@ new Vector2(.2f,4),
 ,
 ""
 ),
+(13,8,0,.5f,game_mode.millCreataion_orderise,
+"Did you ever ask yourself why all the time mill rotates clockwise?\n Well, it is not a must at all, the blue pivots cause mill rottae counter clockwise! ","This is the forth level.\n ",
+(Helper.get_asymetric_poses(90,2,10.5f))
+.plus_points(Helper.get_asymetric_poses(55,2,3f))
+.plus_points(Helper.get_asymetric_poses(70,2,5.5f))
+.plus_points(Helper.get_asymetric_poses(80,2,8f))
+// .plus_points(Helper.get_asymetric_poses(50,2,2.5f))
 
-(14,0,6,.5f,game_mode.millCreataion_orderise,
+
+.Select(t=>(t.x,t.y,true)).ToList(),
+5,
+new Vector2(1,-1),
+0
+,
+""
+),
+
+(14,0,7,.5f,game_mode.millCreataion_orderise,
 "Did you ever ask yourself why all the time mill rotates clockwise?\n Well, it is not a must at all, the blue pivots cause mill rotate counter clockwise! ","empty",
-Helper.get_asymetric_poses(95,6,6).Select(t=>(t.x,t.y,true)).ToList(),
+Helper.get_asymetric_poses(95,6,6)
+.plus_points(new List<(int,int)>(){(160,90)})
+.Select(t=>(t.x,t.y,true)).ToList(),
 5,
 new Vector2(1,-1),
 0
@@ -234,7 +253,60 @@ new Vector2(1,-1),
 ,
 ""
 ),
-(16,4,4,.4f,game_mode.millCreataion_orderise,
+(16,3,2,.5f,game_mode.millCreataion_orderise,
+"Did you ever ask yourself why all the time mill rotates clockwise?\n Well, it is not a must at all, the blue pivots cause mill rottae counter clockwise! ","This is the forth level.\n ",
+new List<(int x, int y, bool centerised)>(){
+	
+	(320-80,110,true),
+	(320-80,70,true),
+	(320-220,90,true),
+	
+	(320-240,50,true),
+	(320-240,130,true),
+
+
+},
+40,
+new Vector2(1,-1),
+0
+,
+""
+),
+(17,0,6,.5f,game_mode.millCreataion_orderise,
+"Did you ever ask yourself why all the time mill rotates clockwise?\n Well, it is not a must at all, the blue pivots cause mill rottae counter clockwise! ","This is the forth level.\n ",
+(Helper.get_asymetric_poses(50,3,6f))
+.plus_points(Helper.get_asymetric_poses(30,3,8f))
+
+
+
+.Select(t=>(t.x,t.y,true)).ToList(),
+5,
+new Vector2(0,1),
+0
+,
+""
+),
+(18,3,1,1f,game_mode.millCreataion_inaccessible_pivots,
+"Did you ever ask yourself why all the time mill rotates clockwise?\n Well, it is not a must at all, the blue pivots cause mill rottae counter clockwise! ","This is the forth level.\n ",
+new List<(int x, int y, bool centerised)>(){
+	
+	(320-80,60,true),
+	(320-80,120,true),
+	(320-220,90,true),
+	(320-130,90,true),
+	
+	
+
+
+},
+5,
+new Vector2(2,-1),
+0
+,
+""
+),
+
+(19,4,4,.4f,game_mode.millCreataion_orderise,
 "Did you ever ask yourself why all the time mill rotates clockwise?\n Well, it is not a must at all, the blue pivots cause mill rottae counter clockwise! ","This is the forth level.\n ",
 (Helper.get_asymetric_poses(180,4,3).plus_points(Helper.get_asymetric_poses(45,4,8))).Select(t=>(t.x,t.y,true)).ToList(),
 3,
@@ -243,7 +315,32 @@ new Vector2(1,-1),
 ,
 ""
 ),
-(17,4,4,.4f,game_mode.millCreataion_orderise,
+(20,1,5,.4f,game_mode.millCreataion_orderise,
+"Did you ever ask yourself why all the time mill rotates clockwise?\n Well, it is not a must at all, the blue pivots cause mill rottae counter clockwise! ","This is the forth level.\n ",
+
+(new List<(int x,int y)>(){(160,90)})
+.plus_points(Helper.get_arc_poses(-40,5,30,5f))
+.Select(t=>(t.x,t.y,true)).ToList()
+,
+5,
+new Vector2(3,2),
+8
+,
+""
+),
+(21,1,7,.4f,game_mode.millCreataion_orderise,
+"Did you ever ask yourself why all the time mill rotates clockwise?\n Well, it is not a must at all, the blue pivots cause mill rottae counter clockwise! ","This is the forth level.\n ",
+(new List<(int x,int y)>(){(190,90)})
+.plus_points(Helper.get_asymetric_poses(0,7,7f))
+.Select(t=>(t.x,t.y,true)).ToList()
+,
+5,
+new Vector2(1,1),
+8
+,
+""
+),
+(22,4,4,.4f,game_mode.millCreataion_orderise,
 "Did you ever ask yourself why all the time mill rotates clockwise?\n Well, it is not a must at all, the blue pivots cause mill rottae counter clockwise! ","This is the forth level.\n ",
 (Helper.get_asymetric_poses(225,4,4.5f).plus_points(Helper.get_asymetric_poses(180,4,8))).Select(t=>(t.x,t.y,true)).ToList(),
 3,
@@ -252,66 +349,8 @@ new Vector2(3,-1),
 ,
 ""
 ),
-(18,6,2,.4f,game_mode.millCreataion_orderise,
-"Did you ever ask yourself why all the time mill rotates clockwise?\n Well, it is not a must at all, the blue pivots cause mill rottae counter clockwise! ","This is the forth level.\n ",
-(Helper.get_asymetric_poses(30,6,6.5f).plus_points(Helper.get_asymetric_poses(0,2,7.5f))).Select(t=>(t.x,t.y,true)).ToList(),
-3,
-new Vector2(-3,3),
-0
-,
-""
-),
 
-(19,4,5,.3f,game_mode.millCreataion_orderise,
-"Did you ever ask yourself why all the time mill rotates clockwise?\n Well, it is not a must at all, the blue pivots cause mill rottae counter clockwise! ","This is the forth level.\n ",
-new List<(int x, int y, bool centerised)>(){
-	
-	(320-70,50,true),
-	(320-110,50,true),
-	(320-150,50,true),
-	(320-190,50,true),
-	
-
-	(320-50,110,true),
-	(320-90,115,true),
-	(320-130,110,true),
-	(320-170,115,true),
-	(320-210,110,true),
-
-
-},
-20,
-new Vector2(6,2),
-0
-,
-""
-),
-(20,5,5,.3f,game_mode.millCreataion_orderise,
-"Did you ever ask yourself why all the time mill rotates clockwise?\n Well, it is not a must at all, the blue pivots cause mill rottae counter clockwise! ","This is the forth level.\n ",
-new List<(int x, int y, bool centerised)>(){
-	
-	(320-80,60,true),
-	(320-120,55,true),
-	(320-160,60,true),
-	(320-200,55,true),
-	(320-240,60,true),
-	
-
-	(320-60,120,true),
-	(320-100,125,true),
-	(320-140,120,true),
-	(320-180,125,true),
-	(320-220,120,true),
-
-
-},
-40,
-new Vector2(6,2),
-0
-,
-""
-),
-(21,7,3,.3f,game_mode.millCreataion_orderise,
+(23,7,3,.3f,game_mode.millCreataion_orderise,
 "Did you ever ask yourself why all the time mill rotates clockwise?\n Well, it is not a must at all, the blue pivots cause mill rottae counter clockwise! ","This is the forth level.\n ",
 new List<(int x, int y, bool centerised)>(){
 	
@@ -336,9 +375,68 @@ new Vector2(1,3),
 ,
 ""
 ),
+(24,6,2,.4f,game_mode.millCreataion_orderise,
+"Did you ever ask yourself why all the time mill rotates clockwise?\n Well, it is not a must at all, the blue pivots cause mill rottae counter clockwise! ","This is the forth level.\n ",
+(Helper.get_asymetric_poses(30,6,6.5f).plus_points(Helper.get_asymetric_poses(0,2,7.5f))).Select(t=>(t.x,t.y,true)).ToList(),
+3,
+new Vector2(-3,3),
+0
+,
+""
+),
+(25,4,5,.3f,game_mode.millCreataion_orderise,
+"Did you ever ask yourself why all the time mill rotates clockwise?\n Well, it is not a must at all, the blue pivots cause mill rottae counter clockwise! ","This is the forth level.\n ",
+new List<(int x, int y, bool centerised)>(){
+	
+	(320-70,50,true),
+	(320-110,50,true),
+	(320-150,50,true),
+	(320-190,50,true),
+	
+
+	(320-50,110,true),
+	(320-90,115,true),
+	(320-130,110,true),
+	(320-170,115,true),
+	(320-210,110,true),
 
 
-(22,3,2,.5f,game_mode.millCreataion_orderise,
+},
+20,
+new Vector2(6,2),
+0
+,
+""
+),
+(26,5,5,.3f,game_mode.millCreataion_orderise,
+"Did you ever ask yourself why all the time mill rotates clockwise?\n Well, it is not a must at all, the blue pivots cause mill rottae counter clockwise! ","This is the forth level.\n ",
+new List<(int x, int y, bool centerised)>(){
+	
+	(320-80,60,true),
+	(320-120,55,true),
+	(320-160,60,true),
+	(320-200,55,true),
+	(320-240,60,true),
+	
+
+	(320-60,120,true),
+	(320-100,125,true),
+	(320-140,120,true),
+	(320-180,125,true),
+	(320-220,120,true),
+
+
+},
+40,
+new Vector2(6,2),
+0
+,
+""
+),
+
+
+
+(27,3,2,.5f,game_mode.millCreataion_orderise,
 "Did you ever ask yourself why all the time mill rotates clockwise?\n Well, it is not a must at all, the blue pivots cause mill rottae counter clockwise! ","This is the forth level.\n ",
 new List<(int x, int y, bool centerised)>(){
 	
@@ -358,7 +456,7 @@ new Vector2(1,-1),
 ""
 ),
 
-(23,3,1,1f,game_mode.millCreataion_inaccessible_pivots,
+(28,3,1,1f,game_mode.millCreataion_inaccessible_pivots,
 "Did you ever ask yourself why all the time mill rotates clockwise?\n Well, it is not a must at all, the blue pivots cause mill rottae counter clockwise! ","This is the forth level.\n ",
 new List<(int x, int y, bool centerised)>(){
 	
@@ -380,7 +478,7 @@ new Vector2(2,-1),
 
 
 
-(24,6,0,.5f,game_mode.millCreataion_orderise,
+(26,6,0,.5f,game_mode.millCreataion_orderise,
 "Did you ever ask yourself why all the time mill rotates clockwise?\n Well, it is not a must at all, the blue pivots cause mill rottae counter clockwise! ","This is the forth level.\n ",
 (Helper.get_asymetric_poses(30,5,6.5f).plus_points(new List<(int,int)>(){(160,90)}).Select(t=>(t.x,t.y,true))).ToList(),
 5,
@@ -390,9 +488,32 @@ new Vector2(0,1),
 ""
 ),
 
+(27,4,5,.3f,game_mode.millCreataion_orderise,
+"Did you ever ask yourself why all the time mill rotates clockwise?\n Well, it is not a must at all, the blue pivots cause mill rottae counter clockwise! ","This is the forth level.\n ",
+new List<(int x, int y, bool centerised)>(){
+	
+	(320-70,50,true),
+	(320-110,50,true),
+	(320-150,50,true),
+	(320-190,50,true),
+	
+
+	(320-50,110,true),
+	(320-90,115,true),
+	(320-130,110,true),
+	(320-170,115,true),
+	(320-210,110,true),
 
 
-(25,10,0,0f,game_mode.millCreataion_orderise,
+},
+20,
+new Vector2(6,2),
+0
+,
+""
+),
+
+(28,10,0,0f,game_mode.millCreataion_orderise,
 "Did you ever ask yourself why all the time mill rotates clockwise?\n Well, it is not a must at all, the blue pivots cause mill rottae counter clockwise! ","This is the forth level.\n ",
 (Helper.get_asymetric_poses(30,9,6.5f).plus_points(new List<(int,int)>(){(160,90)}).Select(t=>(t.x,t.y,true))).ToList(),
 5,
@@ -403,7 +524,7 @@ new Vector2(0,1),
 ),
 
 
-(26,1,9,0f,game_mode.millCreataion_orderise,
+(29,1,9,0f,game_mode.millCreataion_orderise,
 "Did you ever ask yourself why all the time mill rotates clockwise?\n Well, it is not a must at all, the blue pivots cause mill rottae counter clockwise! ","This is the forth level.\n ",
 (new List<(int,int)>(){(160,90)}).plus_points(Helper.get_asymetric_poses(30,9,6.5f)).Select(t=>(t.x,t.y,true)).ToList(),
 5,
@@ -415,7 +536,7 @@ new Vector2(0,1),
 
 
 
-(27,8,0,.5f,game_mode.millCreataion_orderise,
+(29,8,0,.5f,game_mode.millCreataion_orderise,
 "Did you ever ask yourself why all the time mill rotates clockwise?\n Well, it is not a must at all, the blue pivots cause mill rottae counter clockwise! ","This is the forth level.\n ",
 (Helper.get_asymetric_poses(90,2,10.5f))
 .plus_points(Helper.get_asymetric_poses(55,2,3f))
@@ -435,7 +556,7 @@ new Vector2(1,-1),
 
 
 
-(28,3,3,.5f,game_mode.millCreataion_orderise,
+(30,3,3,.5f,game_mode.millCreataion_orderise,
 "Did you ever ask yourself why all the time mill rotates clockwise?\n Well, it is not a must at all, the blue pivots cause mill rottae counter clockwise! ","This is the forth level.\n ",
 (Helper.get_asymetric_poses(55,3,4f))
 .plus_points(Helper.get_asymetric_poses(30,3,8f))

@@ -2744,7 +2744,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b3736fee8e76df4390fc9643b39fd45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musixMuted: 0
+  musixMuted: 1
   AudioClips:
   - {fileID: 8300000, guid: 6fbdba1dea24c1b8a880f256d34ba699, type: 3}
   - {fileID: 8300000, guid: 940bfe513384e597e85a374ad9cbd914, type: 3}
