@@ -131,7 +131,7 @@ public class game1_manager : MonoBehaviour
 
     void increase_speed()
     {
-		speed_up_fact=50f;
+		speed_up_fact=70f;
         speed_up = true;
     }
 
@@ -316,7 +316,7 @@ public GameObject primary_pvt;
 					if (current_pvt!=null)
 					{
 
-					 loop_detected=Mathf.Abs(mill_rotation -current_pvt.GetComponent<pivotActions>().solved_angle)<=3;
+					 loop_detected=current_pvt.GetComponent<pivotActions>().solved_angle.Any(A=>Mathf.Abs(mill_rotation -A)<=3)  ;
 					}
 
 UnityEngine.Debug.Log($"<color=red> loop_detected {loop_detected} <color>");
@@ -667,8 +667,11 @@ if (primary_pvt==null )
             mill_vect
         );
 		//debug only
-	next_pvt.GetComponent<SpriteRenderer>().color=Color.black;
+		if (debug){
+next_pvt.GetComponent<SpriteRenderer>().color=Color.black;
 	primary_pvt.GetComponent<SpriteRenderer>().color=Color.white;
+		}
+	
 	
 ///
 var arrow= next_pvt.transform.position-primary_pvt.transform.position;
@@ -710,7 +713,7 @@ public float speed_up_fact=35f;
         //             50f);
         // }
     }
-
+public bool debug=false;
     GameObject general_mill;
 
     // Start is called before the first frame update

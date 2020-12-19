@@ -2227,8 +2227,11 @@ MonoBehaviour:
   seen: []
   First_button: {fileID: 1755696177}
   is_lvl_solved: 0
+  primary_pvt: {fileID: 0}
   info_btn: {fileID: 1108832952}
   gamemode: 0
+  speed_up_fact: 55
+  debug: 0
 --- !u!82 &1628066471
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3051,7 +3054,7 @@ PrefabInstance:
     - target: {fileID: 4510869152659804131, guid: 4439f3dd142bbadf0ad8284138540079,
         type: 3}
       propertyPath: speed
-      value: 20
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4510869152659804133, guid: 4439f3dd142bbadf0ad8284138540079,
         type: 3}

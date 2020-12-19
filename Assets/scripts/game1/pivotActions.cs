@@ -16,7 +16,7 @@ public class pivotActions : MonoBehaviour
     public bool labled;
 
     public bool solved = false;
-    public int solved_angle = 370;
+    public List<int> solved_angle = new List<int>(){370};
 
     public void check_up(bool animate)
     {
@@ -46,8 +46,9 @@ public class pivotActions : MonoBehaviour
 			//if (AccessModeGame){
   var mill = GameObject.FindGameObjectsWithTag("cylinderparent")[0];
 
-			solved_angle =(int)mill.transform.eulerAngles.z;
-			Debug.Log(solved_angle+" solved at rotation");
+if (!solved_angle.Contains((int)mill.transform.eulerAngles.z))
+			solved_angle.Add((int)mill.transform.eulerAngles.z);
+			//Debug.Log(solved_angle+" solved at rotation");
 			//}
 
     }
