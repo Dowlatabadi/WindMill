@@ -46,8 +46,36 @@ namespace Tests
 		}
 		[Test]
 		public void test_dist(){
-var x=Helper.FindNearestPointOnLine(new Vector2(1,1),new Vector2(1,1),new Vector2(0,1));
-			Debug.Log($"<color=blue>distance is {x} </color>");
+var x=Helper.FindNearestPointOnLine(new Vector2(1,1),new Vector2(1,0),new Vector2(0,0));
+			// Debug.Log($"<color=blue>distance is {x} </color>");
+			// Debug.Log($"<color=blue>sin(30) {Mathf.Sin(30)} </color>");
+	var bet_ang= Vector2.SignedAngle(new Vector2(0,1f),new Vector2(1f,1f));
+
+			Debug.Log($"<color=blue> {bet_ang} </color>");
+
+		}
+		[Test]
+		public void next_test(){
+
+var go1= new GameObject("go1");
+go1.transform.position=new Vector3(0,0,0);
+var go2= new GameObject("go2");
+go2.transform.position=new Vector3(-1.2f,-5,0);
+var go3= new GameObject("go3");
+go3.transform.position=new Vector3(1,5,0);
+var go4= new GameObject("go4");
+go4.transform.position=new Vector3(-1,5,0);
+
+var pvts=new List<GameObject>(){go1,go2,go3,go4};
+
+			var (next_pvt,angle_dist) =Helper.next_order(
+            pvts,
+            go1,
+            1,
+            new Vector2(0,-1)
+        );
+		
+			Debug.Log($"<color=blue> {next_pvt.transform.position} </color>");
 
 		}
     }

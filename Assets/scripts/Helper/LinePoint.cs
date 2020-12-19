@@ -323,7 +323,7 @@ return firstpoints.Select<(int x, int y), (int x, int y)>(t=>(t.x+offset.x,t.y+o
         }
 
 
-		public static GameObject 
+		public static (GameObject next_go,float angle_dist) 
         next_order(
             IEnumerable<GameObject> pvt_gos,
             GameObject start_go,
@@ -335,7 +335,7 @@ return firstpoints.Select<(int x, int y), (int x, int y)>(t=>(t.x+offset.x,t.y+o
             l1 = new Vector2(l1.x, l1.y);
             var min_diff = 1f;
 
-            var res = start_go;
+            var res = (start_go,180f);
             foreach (var go in pvt_gos)
             {
                 if (GameObject.ReferenceEquals( start_go, go)) continue;
@@ -369,8 +369,8 @@ return firstpoints.Select<(int x, int y), (int x, int y)>(t=>(t.x+offset.x,t.y+o
                         //     .Debug
                         //     .Log($"correct condition: {Math.Abs(AngelBetween)} > {Math.Abs(min_diff)}");
 
-                        res = go;
                         min_diff = AngelBetween;
+                        res = (go,Math.Abs(min_diff));
                     }
                 }
                 // else if(AngelBetween == 0){

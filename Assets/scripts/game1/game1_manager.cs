@@ -43,9 +43,16 @@ public class game1_manager : MonoBehaviour
     {
         //shouldn't some labled pivot be qual in number
         //shouldn't be met again
+		
+		 StartCoroutine(waitandAdjustSpeed());
         return ++current_order;
     }
-
+ public IEnumerator waitandAdjustSpeed()
+    {
+        yield return new WaitForSeconds(.6f);
+       
+		MillSpeedAdjust();
+    }
     string current_message = "default";
     string current_header = "";
 
@@ -636,50 +643,56 @@ var debug_str="";
     public game_mode gamemode;
 	
 public void MillSpeedAdjust(){
-	var unit_speed=5;
-	var least_dist=100f;
-	if (primary_pvt==null)
+if (primary_pvt==null )
 	{
-		  UnityEngine
-            .Debug
-            .Log("<color=blue> primarty pvt is null </color>" );
+		 
 		return;
 	}
 	 var all_pivots =
             GameObject
                 .FindGameObjectsWithTag("clockwise")
                 .Union(GameObject.FindGameObjectsWithTag("counterclockwise"));
-	var mill_vect=new Vector2(Mathf.Cos(general_mill.transform.eulerAngles.z* (Mathf.PI / 180) ) ,Mathf.Sin(general_mill.transform.eulerAngles.z* (Mathf.PI / 180) ));
+	var mill_vect=new Vector2(-Mathf.Sin(general_mill.transform.eulerAngles.z *Mathf.Deg2Rad ) ,Mathf.Cos(general_mill.transform.eulerAngles.z*Mathf.Deg2Rad ));
 	var Clocksign=(primary_pvt.tag=="clockwise"?1:-1);
-	var next_pvt =Helper.next_order(
+	var (next_pvt,angle_dist) =Helper.next_order(
             all_pivots,
             primary_pvt,
             Clocksign,
             mill_vect
         );
+	next_pvt.GetComponent<SpriteRenderer>().color=Color.black;
+	primary_pvt.GetComponent<SpriteRenderer>().color=Color.white;
 	
+///
+var arrow= next_pvt.transform.position-primary_pvt.transform.position;
+var arrow_2d=new Vector2(arrow.x,arrow.y);
+	var bet_ang= Vector2.SignedAngle(mill_vect,arrow_2d);
+	if (bet_ang*Clocksign>0){
+		arrow_2d=new Vector2(-arrow.x,-arrow.y);
+	}
+	var norm_dist=Mathf.Abs(Vector2.SignedAngle(mill_vect,arrow_2d));//between 0 and 180
+		UnityEngine.Debug.Log($"<color=yellow>bet_ang({mill_vect},{arrow})={norm_dist}</color>");
 
-		var dist=Helper.FindNearestPointOnLine(new Vector2(primary_pvt.transform.position.x,primary_pvt.transform.position.y),mill_vect,new Vector2(next_pvt.transform.position.x,next_pvt.transform.position.y));
-	var diff=0;
-	if (dist>.3)
-	{
-		diff=1;
-	}
-	else{
-		diff=-1;
-	}
+	///
+		//var dist=Helper.FindNearestPointOnLine(new Vector2(primary_pvt.transform.position.x,primary_pvt.transform.position.y),mill_vect,new Vector2(next_pvt.transform.position.x,next_pvt.transform.position.y));
+	var diff=0f;
+	// if (Mathf.Abs(dist)<0.3f)
+	// {
+	// 	return;
+	// }
+	
 	var next_speed= Mathf
-                    .Clamp( general_mill.GetComponent<rotate>().speed+diff,
-                    1f,
-                    40f);;
-		UnityEngine.Debug.Log($"<color=blue>dist is ={dist}</color>");
+                    .Clamp(((float)norm_dist/180f)*20f+10f,
+                    10f,
+                    30f);;
+		UnityEngine.Debug.Log($"<color=blue>spd={next_speed} dist={angle_dist} mill_vect is {mill_vect}</color>");
 	 general_mill.GetComponent<rotate>().speed =next_speed
 	
                ;
 }
     void Update()
     {
-		    InvokeRepeating("MillSpeedAdjust", .1f, 1f);
+		   // InvokeRepeating("MillSpeedAdjust", .1f, 1f);
         if (speed_up)
         {
             general_mill.GetComponent<rotate>().speed =
