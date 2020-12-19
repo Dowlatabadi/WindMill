@@ -78,6 +78,7 @@ public class pivotActions : MonoBehaviour
 
     public void set_number(int num)
     {
+
         var gamemode = Camera.main.GetComponent<game1_manager>().gamemode;
         var AccessModeGame =
             (
@@ -153,6 +154,7 @@ public class pivotActions : MonoBehaviour
                     }
                     else
                     {
+						Camera.main.GetComponent<game1_manager>().primary_pvt=gameObject;
                         Camera.main.GetComponent<SoundManager>().play_ding();
                         solved = true;
                         check_up(true);
@@ -169,6 +171,8 @@ public class pivotActions : MonoBehaviour
                         )
                     )
                     {
+						Camera.main.GetComponent<game1_manager>().primary_pvt=gameObject;
+
                         Camera.main.GetComponent<SoundManager>().play_ding();
                         solved = true;
                         check_up(true);
@@ -183,6 +187,8 @@ public class pivotActions : MonoBehaviour
                     {
                         check_up(false);
                         set_number (current_num);
+						Camera.main.GetComponent<game1_manager>().primary_pvt=gameObject;
+
                         Camera.main.GetComponent<SoundManager>().play_ding();
                         GM_script.current_labels.Add (current_num);
                     }
@@ -200,6 +206,8 @@ public class pivotActions : MonoBehaviour
                     need_reset = true;
                 else
                 {
+						Camera.main.GetComponent<game1_manager>().primary_pvt=gameObject;
+
                     Camera.main.GetComponent<SoundManager>().play_ding();
                     check_up(!solved);
                 }

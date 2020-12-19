@@ -44,5 +44,11 @@ namespace Tests
 			UnityEngine.Debug.Log($"<color=blue>the grid is P{x} </color>");
 			Debug.Log($"<color=blue>160,80 P{y} </color>");
 		}
+		[Test]
+		public void test_dist(){
+var x=Helper.FindNearestPointOnLine(new Vector2(1,1),new Vector2(1,1),new Vector2(0,1));
+			Debug.Log($"<color=blue>distance is {x} </color>");
+
+		}
     }
 }

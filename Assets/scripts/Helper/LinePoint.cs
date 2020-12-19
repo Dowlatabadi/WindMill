@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -42,7 +43,16 @@ namespace LinePoint
 
             return ((angle1 * 180) / Mathf.PI);
         }
+public static float FindNearestPointOnLine(Vector2 origin, Vector2 direction, Vector2 point)
+{
+    var prj_mg=Vector3.Project(new Vector3((point-origin).x,(point-origin).y,0),new Vector3(direction.x,direction.y,0)).magnitude;
+		//	UnityEngine.Debug.Log($"<color=blue>prj is {prj_mg} </color>");
 
+var vatar=(point-origin).magnitude;
+
+    
+    return Mathf.Sqrt(vatar*vatar-prj_mg*prj_mg);
+}
         public static float LinePointGetDist(Vector2 point, Line line)
         {
             var b1 = point.y + (point.x / line.m_slope);
@@ -87,8 +97,8 @@ namespace LinePoint
             float distance = 0;
             float margin = 0f;
             float Slope_diff = 0;
-            var x = Random.Range(-2f, 2f);
-            var y = Random.Range(-4f, 4f);
+            var x = UnityEngine.Random.Range(-2f, 2f);
+            var y =  UnityEngine.Random.Range(-4f, 4f);
             var point = new Vector2(x, y);
             if (points.Count() == 0)
             {
@@ -98,8 +108,8 @@ namespace LinePoint
             {
                 while (distance < min_dist || margin < min_margin)
                 {
-                    x = Random.Range(-1.5f, 1.5f);
-                    y = Random.Range(-3.5f, 3.5f);
+                    x = UnityEngine.Random.Range(-1.5f, 1.5f);
+                    y = UnityEngine.Random.Range(-3.5f, 3.5f);
                     point = new Vector2(x, y);
                     distance = Vector2.Distance(points[0], point);
                     margin = Mathf.Abs(point.x - points[0].x);
@@ -123,8 +133,8 @@ namespace LinePoint
                     timeOut = true;
                     break;
                 }
-                x = Random.Range(-1.5f, 1.5f);
-                y = Random.Range(-3.5f, 3.5f);
+                x = UnityEngine.Random.Range(-1.5f, 1.5f);
+                y = UnityEngine.Random.Range(-3.5f, 3.5f);
                 point = new Vector2(x, y);
                 is_ok = true;
 
@@ -242,8 +252,8 @@ UnityEngine.Debug.Log($"left bottom {left_bottom}");
             }
             else
             {
-                var random_x_off = Random.Range(0f, width_unit);
-                var random_y_off = Random.Range(0f, height_unit);
+                var random_x_off = UnityEngine.Random.Range(0f, width_unit);
+                var random_y_off = UnityEngine.Random.Range(0f, height_unit);
                 var temp =
                     new Vector2((col_num - 1) * width_unit + random_x_off,
                         (row_num - 1) * height_unit + random_y_off);
@@ -310,6 +320,66 @@ return firstpoints.Select<(int x, int y), (int x, int y)>(t=>(t.x+offset.x,t.y+o
                 next_angle = (next_angle + angle_share) ;
             }
             return result;
+        }
+
+
+		public static GameObject 
+        next_order(
+            IEnumerable<GameObject> pvt_gos,
+            GameObject start_go,
+            int Clocksign,
+            Vector2 l1
+        )
+        {
+			//Clocksign=-Clocksign;
+            l1 = new Vector2(l1.x, l1.y);
+            var min_diff = 1f;
+
+            var res = start_go;
+            foreach (var go in pvt_gos)
+            {
+                if (GameObject.ReferenceEquals( start_go, go)) continue;
+
+                //order of point 1 and 2 is important==direction of line
+                var mapped_and_maybe_reflected =
+                    -new Vector2(start_go.transform.position.x,start_go.transform.position.y) + new Vector2(go.transform.position.x,go.transform.position.y);
+                if (
+                    Vector2.SignedAngle(l1, mapped_and_maybe_reflected) *
+                    Clocksign <
+                    0
+                )
+                    mapped_and_maybe_reflected =
+                        new Vector2(-mapped_and_maybe_reflected.x,
+                            -mapped_and_maybe_reflected.y);
+                var AngelBetween =
+                    Vector2.SignedAngle(l1, mapped_and_maybe_reflected);
+                // UnityEngine.Debug.Log("new ang: " + AngelBetween);
+                if (
+                    AngelBetween != 0 &&
+                    AngelBetween != 180 &&
+                    AngelBetween != -180
+                )
+                {
+                    if (
+                        /*AngelBetween * min_diff> 0 && */
+                        Math.Abs(AngelBetween) > Math.Abs(min_diff)
+                    )
+                    {
+                        // UnityEngine
+                        //     .Debug
+                        //     .Log($"correct condition: {Math.Abs(AngelBetween)} > {Math.Abs(min_diff)}");
+
+                        res = go;
+                        min_diff = AngelBetween;
+                    }
+                }
+                // else if(AngelBetween == 0){
+                // 			res = i;
+                // 			min_diff = AngelBetween;
+                // }
+            }
+           
+            return res;
         }
     }
 }

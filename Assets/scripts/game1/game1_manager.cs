@@ -259,7 +259,7 @@ public class game1_manager : MonoBehaviour
     }
 
     public bool is_lvl_solved;
-
+public GameObject primary_pvt;
     bool is_end_message_shown_once = false;
 
     public void show_current_info()
@@ -634,9 +634,52 @@ var debug_str="";
     }
 
     public game_mode gamemode;
+	
+public void MillSpeedAdjust(){
+	var unit_speed=5;
+	var least_dist=100f;
+	if (primary_pvt==null)
+	{
+		  UnityEngine
+            .Debug
+            .Log("<color=blue> primarty pvt is null </color>" );
+		return;
+	}
+	 var all_pivots =
+            GameObject
+                .FindGameObjectsWithTag("clockwise")
+                .Union(GameObject.FindGameObjectsWithTag("counterclockwise"));
+	var mill_vect=new Vector2(Mathf.Cos(general_mill.transform.eulerAngles.z* (Mathf.PI / 180) ) ,Mathf.Sin(general_mill.transform.eulerAngles.z* (Mathf.PI / 180) ));
+	var Clocksign=(primary_pvt.tag=="clockwise"?1:-1);
+	var next_pvt =Helper.next_order(
+            all_pivots,
+            primary_pvt,
+            Clocksign,
+            mill_vect
+        );
+	
 
+		var dist=Helper.FindNearestPointOnLine(new Vector2(primary_pvt.transform.position.x,primary_pvt.transform.position.y),mill_vect,new Vector2(next_pvt.transform.position.x,next_pvt.transform.position.y));
+	var diff=0;
+	if (dist>.3)
+	{
+		diff=1;
+	}
+	else{
+		diff=-1;
+	}
+	var next_speed= Mathf
+                    .Clamp( general_mill.GetComponent<rotate>().speed+diff,
+                    1f,
+                    40f);;
+		UnityEngine.Debug.Log($"<color=blue>dist is ={dist}</color>");
+	 general_mill.GetComponent<rotate>().speed =next_speed
+	
+               ;
+}
     void Update()
     {
+		    InvokeRepeating("MillSpeedAdjust", .1f, 1f);
         if (speed_up)
         {
             general_mill.GetComponent<rotate>().speed =
