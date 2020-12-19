@@ -652,6 +652,8 @@ var debug_str="";
     // Start is called before the first frame update
     void Start()
     {
+		Stopwatch SW = new Stopwatch();
+		SW.Restart();
         general_mill = GameObject.FindGameObjectsWithTag("cylinderparent")[0];
 
         Camera
@@ -682,5 +684,6 @@ var debug_str="";
 
         //PlayerPrefs.SetInt("temp_lvl_num", 1);
         goto_last_lvl();
+		UnityEngine.Debug.Log($"<color=red> debug took {SW.Elapsed.Milliseconds} milli </color>");
     }
 }
