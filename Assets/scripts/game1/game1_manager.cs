@@ -49,9 +49,12 @@ public class game1_manager : MonoBehaviour
     }
  public IEnumerator waitandAdjustSpeed()
     {
-        yield return new WaitForSeconds(.6f);
-       
+        yield return new WaitForSeconds(.2f);
+       MillSpeedAdjust();
+        yield return new WaitForSeconds(.2f);
 		MillSpeedAdjust();
+
+
     }
     string current_message = "default";
     string current_header = "";
