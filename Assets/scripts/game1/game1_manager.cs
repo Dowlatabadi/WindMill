@@ -131,6 +131,7 @@ public class game1_manager : MonoBehaviour
 
     void increase_speed()
     {
+		speed_up_fact=50f;
         speed_up = true;
     }
 
@@ -138,6 +139,8 @@ public class game1_manager : MonoBehaviour
 
     void reset_speed()
     {
+		speed_up_fact=35f;
+
         speed_up = false;
         general_mill.GetComponent<rotate>().speed = 20;
     }
@@ -663,6 +666,7 @@ if (primary_pvt==null )
             Clocksign,
             mill_vect
         );
+		//debug only
 	next_pvt.GetComponent<SpriteRenderer>().color=Color.black;
 	primary_pvt.GetComponent<SpriteRenderer>().color=Color.white;
 	
@@ -685,25 +689,26 @@ var arrow_2d=new Vector2(arrow.x,arrow.y);
 	// }
 	
 	var next_speed= Mathf
-                    .Clamp(((float)norm_dist/180f)*20f+10f,
-                    10f,
-                    30f);;
+                    .Clamp(((float)norm_dist/180f)*speed_up_fact+5f,
+                    5f,
+                    40f);;
 		UnityEngine.Debug.Log($"<color=blue>spd={next_speed} dist={angle_dist} mill_vect is {mill_vect}</color>");
 	 general_mill.GetComponent<rotate>().speed =next_speed
 	
                ;
 }
+public float speed_up_fact=35f;
     void Update()
     {
 		   // InvokeRepeating("MillSpeedAdjust", .1f, 1f);
-        if (speed_up)
-        {
-            general_mill.GetComponent<rotate>().speed =
-                Mathf
-                    .Clamp(general_mill.GetComponent<rotate>().speed + .6f,
-                    20f,
-                    50f);
-        }
+        // if (speed_up)
+        // {
+        //     general_mill.GetComponent<rotate>().speed =
+        //         Mathf
+        //             .Clamp(general_mill.GetComponent<rotate>().speed + .6f,
+        //             20f,
+        //             50f);
+        // }
     }
 
     GameObject general_mill;
