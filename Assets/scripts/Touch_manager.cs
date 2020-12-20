@@ -85,7 +85,7 @@ public bool cross_move=false;
             var canvas = GameObject.FindGameObjectWithTag("Canvas");
             if (is_mouse_in_ui(canvas))
             {
-                Debug.Log("ignored!!!!!!!!!00 ui");
+            //    Debug.Log("ignored!!!!!!!!!00 ui");
                 return;
             }
         }

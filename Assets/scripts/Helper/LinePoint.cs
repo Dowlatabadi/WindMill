@@ -226,7 +226,7 @@ var vatar=(point-origin).magnitude;
             var height = top_right.y-left_bottom.y;
             float width_unit = width / columns;
             float height_unit = height / rows;
-UnityEngine.Debug.Log($"left bottom {left_bottom}");
+//UnityEngine.Debug.Log($"left bottom {left_bottom}");
             
                 return new Vector2((int)((input.x-left_bottom.x)/width_unit-80),(int)((input.y-left_bottom.y)/height_unit-160));
             
@@ -283,7 +283,7 @@ return firstpoints.Select<(int x, int y), (int x, int y)>(t=>(t.x+offset.x,t.y+o
             var result = new List<(int x, int y)>();
             var angle_share = 360 / point_number;
             var next_angle = start_angle;
-            UnityEngine.Debug.Log($"angle share is {angle_share}");
+//            UnityEngine.Debug.Log($"angle share is {angle_share}");
 
             for (int i = 0; i < point_number; i++)
             {
@@ -291,7 +291,7 @@ return firstpoints.Select<(int x, int y), (int x, int y)>(t=>(t.x+offset.x,t.y+o
                 var x = (int) Mathf.Round(Mathf.Cos(next_angle* (Mathf.PI / 180) ) * scale)+offset.x;
                 var y = (int) (Mathf.Round(Mathf.Sin(next_angle* (Mathf.PI / 180) ) * scale*y_scale)+offset.y);
                 result.Add((y,x));
-            UnityEngine.Debug.Log($"for angle {next_angle} generated {i}::: ({x}, {y}), sin(-180) {Mathf.Sin(-180* Mathf.PI)}");
+//            UnityEngine.Debug.Log($"for angle {next_angle} generated {i}::: ({x}, {y}), sin(-180) {Mathf.Sin(-180* Mathf.PI)}");
                 next_angle = (next_angle + angle_share) ;
             }
             return result;
@@ -308,7 +308,7 @@ return firstpoints.Select<(int x, int y), (int x, int y)>(t=>(t.x+offset.x,t.y+o
             var result = new List<(int x, int y)>();
            // var angle_share = 360 / point_number;
             var next_angle = start_angle;
-            UnityEngine.Debug.Log($"angle share is {angle_share}");
+     //       UnityEngine.Debug.Log($"angle share is {angle_share}");
 
             for (int i = 0; i < point_number; i++)
             {
@@ -316,7 +316,7 @@ return firstpoints.Select<(int x, int y), (int x, int y)>(t=>(t.x+offset.x,t.y+o
                 var x = (int) Mathf.Round(Mathf.Cos(next_angle* (Mathf.PI / 180) ) * scale)+offset.x;
                 var y = (int) (Mathf.Round(Mathf.Sin(next_angle* (Mathf.PI / 180) ) * scale*y_scale)+offset.y);
                 result.Add((y,x));
-            UnityEngine.Debug.Log($"for angle {next_angle} generated {i}::: ({x}, {y}), sin(-180) {Mathf.Sin(-180* Mathf.PI)}");
+//            UnityEngine.Debug.Log($"for angle {next_angle} generated {i}::: ({x}, {y}), sin(-180) {Mathf.Sin(-180* Mathf.PI)}");
                 next_angle = (next_angle + angle_share) ;
             }
             return result;

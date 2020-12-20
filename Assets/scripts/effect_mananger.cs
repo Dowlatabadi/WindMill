@@ -18,7 +18,7 @@ public class effect_mananger : MonoBehaviour
 		var gos=GameObject.FindGameObjectsWithTag("flash_go");
 		foreach (var flash_go in gos){
 			
-			Debug.Log("should fire");
+			//Debug.Log("should fire");
         flash_go.GetComponent<Animator>().SetBool("should_flash", true);
 		}
        
@@ -45,7 +45,7 @@ public class effect_mananger : MonoBehaviour
 			 fx_go.GetComponent<Image>().color=new Color32(0,0,255,48);
 
 			}
-			Debug.Log($"<color=red>{screen_pos}</color>");
+		//	Debug.Log($"<color=red>{screen_pos}</color>");
 			//fx_go.GetComponent<RectTransform>().anchoredPosition=new Vector2(screen_pos.x,screen_pos.y);
 		}
 	}

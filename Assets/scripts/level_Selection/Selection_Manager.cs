@@ -33,7 +33,7 @@ public class Selection_Manager : MonoBehaviour
         {
             var x = (counter % 3) * width + op_left_pos.x;
             var y = -(int)(counter / 3) * height + op_left_pos.y;
-            Debug.Log (x);
+//            Debug.Log (x);
 
             //instantiate
             var go = GameObject.Instantiate(bar_prefab, Container.transform);
@@ -107,7 +107,7 @@ go
         var container_rt = Container.GetComponent<RectTransform>();
         container_rt.anchoredPosition =
             new Vector2(container_rt.anchoredPosition.x, scroll_height);
-        Debug.Log("scroll " + scroll_height);
+//        Debug.Log("scroll " + scroll_height);
     }
 
     void gray(GameObject go, int child_num)

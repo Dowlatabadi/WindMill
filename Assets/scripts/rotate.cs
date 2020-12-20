@@ -55,8 +55,8 @@ public class rotate : MonoBehaviour
 
         var pivot_pos = pivot.transform.position;
         transform.position = pivot_pos;
-        UnityEngine.Debug.Log (pivot_pos);
-        UnityEngine.Debug.Log(transform.position);
+        // UnityEngine.Debug.Log (pivot_pos);
+        // UnityEngine.Debug.Log(transform.position);
     }
 
     public void set_pivot(GameObject pivot1, bool clockwise)

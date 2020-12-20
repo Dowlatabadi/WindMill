@@ -112,7 +112,7 @@ namespace Classes
                 labeled_number+=2;
             }
 
-             UnityEngine.Debug.Log("labeled ones========================" + labeled_number);
+//             UnityEngine.Debug.Log("labeled ones========================" + labeled_number);
             // UnityEngine.Debug.Log(String.Join(",", Labeled_indexes));
             List<int> C_indexes =
                 indexes
@@ -169,13 +169,13 @@ namespace Classes
 
                 res.Add (cur_tuple);
             }
-            UnityEngine.Debug.Log("before orderise pivots: " + res.Count());
+//            UnityEngine.Debug.Log("before orderise pivots: " + res.Count());
 
 
 var gen=$"new List<(int x,int y)>{{{System.String.Join(",", res.Select(tt=>Helper.get_grid_pos(tt.pivot_pos)).Select(pv=>$"({pv.y},{pv.x})"))}}}.Select(t=>(t.x,t.y,true)).ToList()";
-			UnityEngine.Debug.Log
-			(gen)
-			;
+			// UnityEngine.Debug.Log
+			// (gen)
+			// ;
  GUIUtility.systemCopyBuffer = gen;
 
             // var result = FakeOrderise(res);
@@ -231,9 +231,9 @@ var gen=$"new List<(int x,int y)>{{{System.String.Join(",", res.Select(tt=>Helpe
 
 			}
 
-            UnityEngine
-                .Debug
-                .Log("---------------------------ommited: " + pivot_cration_answer);
+            // UnityEngine
+            //     .Debug
+            //     .Log("---------------------------ommited: " + pivot_cration_answer);
 
             Pivots = labeled_result;
             this.Known_pivots = labeled_number;
@@ -275,10 +275,10 @@ var gen=$"new List<(int x,int y)>{{{System.String.Join(",", res.Select(tt=>Helpe
             Vector2 l1
         )
         {
-            UnityEngine
-                .Debug
-                .Log("input labelds1:============= " +
-                input.Where(x => x.labeled).Count());
+            // UnityEngine
+            //     .Debug
+            //     .Log("input labelds1:============= " +
+            //     input.Where(x => x.labeled).Count());
 
             var res =
                 new List<(
@@ -389,7 +389,7 @@ var gen=$"new List<(int x,int y)>{{{System.String.Join(",", res.Select(tt=>Helpe
                             -mapped_and_maybe_reflected.y);
                 var AngelBetween =
                     Vector2.SignedAngle(l1, mapped_and_maybe_reflected);
-                UnityEngine.Debug.Log("new ang: " + AngelBetween);
+//                UnityEngine.Debug.Log("new ang: " + AngelBetween);
                 if (
                     AngelBetween != 0 &&
                     AngelBetween != 180 &&
@@ -401,9 +401,9 @@ var gen=$"new List<(int x,int y)>{{{System.String.Join(",", res.Select(tt=>Helpe
                         Math.Abs(AngelBetween) > Math.Abs(min_diff)
                     )
                     {
-                        UnityEngine
-                            .Debug
-                            .Log($"correct condition: {Math.Abs(AngelBetween)} > {Math.Abs(min_diff)}");
+                        // UnityEngine
+                        //     .Debug
+                        //     .Log($"correct condition: {Math.Abs(AngelBetween)} > {Math.Abs(min_diff)}");
 
                         res = i;
                         min_diff = AngelBetween;
@@ -414,12 +414,12 @@ var gen=$"new List<(int x,int y)>{{{System.String.Join(",", res.Select(tt=>Helpe
                 // 			min_diff = AngelBetween;
                 // }
             }
-            UnityEngine
-                .Debug
-                .Log($"center is {start_index} and chosen diff is: " +
-                min_diff.ToString() +
-                " whose index is: " +
-                res);
+            // UnityEngine
+            //     .Debug
+            //     .Log($"center is {start_index} and chosen diff is: " +
+            //     min_diff.ToString() +
+            //     " whose index is: " +
+            //     res);
             return res;
         }
     }

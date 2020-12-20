@@ -40,7 +40,7 @@ new Vector2(-1,2),
 "Intro.."
 ),
 (3,3,0,.35f,game_mode.millCreataion_orderise,
-"You need to find start pivot which would form the provided order (3 should be met as the third pivot)\n-Touch to choose which pivot is your chosen pivot to start from(first pivot).\n-You always can drag up/down to change mill starting angle ",
+"In puzzles you need to find start pivot which would form the provided order (n should be met as the nth pivot)\n-Touch to choose which pivot is your chosen pivot to start from(1st pivot).\n-You always can drag up/down to change mill starting angle ",
 "Well done! you got the basic idea.",
 Helper.get_asymetric_poses(70,3).Select(t=>(t.x,t.y,true)).ToList(),3,
 new Vector2(1,0),
@@ -50,7 +50,7 @@ new Vector2(1,0),
 ),
 
 (4,10,0,1f,game_mode.millCreataion_inaccessible_pivots,
-"In some setups mill never meets some area, in this lvl you should start a setup wich wouldn't touch green pivots\n Well, it is not a must at all, the blue pivots cause mill rottae counter clockwise! ","This is the forth level.\n ",
+"Remember the mill should never meet green points ","empty",
 (Helper.get_asymetric_poses(30,4,8f))
 .plus_points(Helper.get_asymetric_poses(30,3,4f))
 .plus_points(Helper.get_asymetric_poses(10,3,2f))
@@ -66,16 +66,16 @@ new Vector2(0,-1),
 ),
 
 (5,5,0,.4f,game_mode.millCreataion_orderise,
-"Sometimes you can think reverse to guess the order...\n ","empty",
+"Sometimes to solve the order puzzle you can think in reverse rotation to guess the order...\n ","empty",
 Helper.get_asymetric_poses(75,5,6,1.2f).Select(t=>(t.x,t.y,true)).ToList()
 ,3,
 new Vector2(0,1),
-0
+2
 ,
 "Lvl 3."
 ),
 (6,5,0,.5f,game_mode.millCreataion_orderise,
-"This is the 10th level.\n ","This is the forth level.\n ",
+"As you saw the when needed mill slows down to show collisions properly.\n ","empty",
 new List<(int x, int y)>(){
 	(100,90),
 	(120,130),
@@ -90,7 +90,7 @@ new List<(int x, int y)>(){
 .Select(t=>(t.x,t.y,true)).ToList()
 ,3,
 new Vector2(-2,10),
-0
+2
 ,
 "Lvl 4."
 ),
@@ -110,7 +110,7 @@ new List<(int x, int y, bool centerised)>(){
 new Vector2(6,-1),
 0
 ,
-"Lvl 7."
+"Lvl 5."
 ),
 
 
