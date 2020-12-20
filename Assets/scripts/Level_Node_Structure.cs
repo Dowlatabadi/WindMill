@@ -19,6 +19,9 @@ public class Level_Node_Structure : MonoBehaviour
 
     public void go_lvl()
     {
+		 Camera
+            .main
+            .GetComponent<Selection_Manager>().save_current_scroll();
         Camera
             .main
             .GetComponent<Scene_manager>()

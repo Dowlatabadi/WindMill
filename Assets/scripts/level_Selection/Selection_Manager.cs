@@ -19,6 +19,12 @@ public class Selection_Manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+		if (PlayerPrefs.HasKey("scroll")){
+ var container_rt2 = Container.GetComponent<RectTransform>();
+ container_rt2.anchoredPosition=new Vector2(container_rt2.anchoredPosition.x,PlayerPrefs.GetInt("scroll"));
+           ;
+		}
+			
         if (debug_mode)
         {
             //unlock
@@ -103,10 +109,10 @@ go
             last_seen = PlayerPrefs.GetInt("temp_lvl_num");
 //            Debug.Log("found last " + last_seen);
         }
-        var scroll_height = ((int)(last_seen / 3)) * 160 - 3225;
-        var container_rt = Container.GetComponent<RectTransform>();
-        container_rt.anchoredPosition =
-            new Vector2(container_rt.anchoredPosition.x, scroll_height);
+        // var scroll_height = ((int)((last_seen-1) / 3)) * 220 - 3225;
+        // var container_rt = Container.GetComponent<RectTransform>();
+        // container_rt.anchoredPosition =
+        //     new Vector2(container_rt.anchoredPosition.x, scroll_height);
 //        Debug.Log("scroll " + scroll_height);
     }
 
@@ -124,4 +130,8 @@ go
     void Update()
     {
     }
+	public void save_current_scroll(){
+		 var container_rt = Container.GetComponent<RectTransform>();
+           PlayerPrefs.SetInt("scroll", (int)(container_rt.anchoredPosition.y));
+	}
 }
