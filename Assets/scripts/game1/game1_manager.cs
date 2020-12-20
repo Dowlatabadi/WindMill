@@ -133,7 +133,7 @@ public class game1_manager : MonoBehaviour
 
     void increase_speed()
     {
-        speed_up_fact = 70f;
+        speed_up_fact = 2f;
         speed_up = true;
     }
 
@@ -141,7 +141,7 @@ public class game1_manager : MonoBehaviour
 
     void reset_speed()
     {
-        speed_up_fact = 35f;
+        speed_up_fact =1f;
 
         speed_up = false;
         general_mill.GetComponent<rotate>().speed = 20;
@@ -156,7 +156,7 @@ public class game1_manager : MonoBehaviour
         increase_speed();
         if (white)
         {
-			UnityEngine.Debug.Log($"shouldn't happen");
+            UnityEngine.Debug.Log($"shouldn't happen");
             yield return new WaitForSeconds(lvl_details.finish_delay);
         }
 
@@ -192,9 +192,9 @@ public class game1_manager : MonoBehaviour
         if (st.Contains("empty"))
         {
             var wait = 0;
-UnityEngine.Debug.Log($"<color=white>white</color>");
+            UnityEngine.Debug.Log($"<color=white>white</color>");
             StartCoroutine(wait_and_go_next(3));
-           
+
             return;
         }
         StartCoroutine(wait_and_show(st, white, header_text));
@@ -222,7 +222,7 @@ UnityEngine.Debug.Log($"<color=white>white</color>");
 
     public void goto_last_lvl()
     {
-            UnityEngine.Debug.Log($"goto to");
+        UnityEngine.Debug.Log($"goto to");
 
         Camera.main.GetComponent<Notation_manager>().Update_Notations();
         var temp_prefs_is_set = PlayerPrefs.HasKey("temp_lvl_num");
@@ -467,7 +467,7 @@ UnityEngine.Debug.Log($"<color=white>white</color>");
 
         // UnityEngine.Debug.Log("reset");
         Draw_level (lvl);
-		 info_btn.GetComponent<Animator>().SetBool("Blink", false);
+        info_btn.GetComponent<Animator>().SetBool("Blink", false);
     }
 
     void destroy_all(GameObject[] gos)
@@ -636,10 +636,12 @@ UnityEngine.Debug.Log($"<color=white>white</color>");
         //select starting position for mill
         var index = 0;
         var starting_pivot = gos.ElementAt(0);
+
+        //initial angle
         var mill_angle =
             new Vector3(cyl_parent.transform.eulerAngles.x,
                 cyl_parent.transform.eulerAngles.y,
-                0);
+                -2f);
         if (!needs_cross)
         {
             var is_one_labeled = lvl.Pivots.ElementAt(0).labeled;
@@ -711,6 +713,11 @@ UnityEngine.Debug.Log($"<color=white>white</color>");
             GameObject
                 .FindGameObjectsWithTag("clockwise")
                 .Union(GameObject.FindGameObjectsWithTag("counterclockwise"));
+        if (all_pivots.Count() == 1)
+        {
+			general_mill.GetComponent<rotate>().speed = 25f;
+            return;
+        }
         var mill_vect =
             new Vector2(-Mathf
                     .Sin(general_mill.transform.eulerAngles.z * Mathf.Deg2Rad),
@@ -748,17 +755,18 @@ UnityEngine.Debug.Log($"<color=white>white</color>");
         // 	return;
         // }
         var next_speed =
-            Mathf
-                .Clamp(((float) norm_dist / 180f) * speed_up_fact + 5f,
-                5f,
-                40f);
 
+		//4*sqrt(x)+10
+            Mathf
+                .Clamp(((float) Mathf.Pow((norm_dist/35f)-2.41f,3f) ) * speed_up_fact+20f,
+                7f,
+                30f);
 
         //	UnityEngine.Debug.Log($"<color=blue>spd={next_speed} dist={angle_dist} mill_vect is {mill_vect}</color>");
         general_mill.GetComponent<rotate>().speed = next_speed;
     }
 
-    public float speed_up_fact = 35f;
+    public float speed_up_fact =1f;
 
     void Update()
     {

@@ -48,7 +48,7 @@ public class touch_col : MonoBehaviour
                     cyl_parent.transform.eulerAngles =
                         new Vector3(cyl_parent.transform.eulerAngles.x,
                             cyl_parent.transform.eulerAngles.y,
-                            0);
+                            cyl_parent.transform.eulerAngles.z);
                     // raycast hit this gameobject}
                 }
             }
