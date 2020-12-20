@@ -1000,7 +1000,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 218, y: 545.3}
+  m_AnchoredPosition: {x: 296, y: 545.3}
   m_SizeDelta: {x: 157.1737, y: 32.683205}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1198106538430419864
@@ -2713,7 +2713,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 218, y: 545.3}
+  m_AnchoredPosition: {x: 296, y: 545.3}
   m_SizeDelta: {x: 157.1737, y: 32.683205}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6052768289430571988
@@ -3942,7 +3942,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Buttons Side
+  m_text: Buttons Arrangement
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4011,7 +4011,7 @@ MonoBehaviour:
   m_margin: {x: -190.33261, y: -515.40063, z: -310.6505, w: 549.47595}
   m_textInfo:
     textComponent: {fileID: 8114392495461306252}
-    characterCount: 12
+    characterCount: 19
     spriteCount: 0
     spaceCount: 1
     wordCount: 2

@@ -25,6 +25,13 @@ public class Dialogue_script : MonoBehaviour
         {
         }
         GameObject.Destroy (gameObject);
+            var temp_lvl = PlayerPrefs.GetInt("temp_lvl_num");
+		
+		if (temp_lvl == 51)
+            {
+                Camera.main.gameObject.GetComponent<Scene_manager>().Scene_Intro();
+               
+            }
     }
 
     public void show(string text,string title="")

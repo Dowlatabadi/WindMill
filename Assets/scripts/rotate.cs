@@ -39,7 +39,7 @@ public class rotate : MonoBehaviour
 
     public void start()
     {
-        UnityEngine.Debug.Log($"started calls");
+//        UnityEngine.Debug.Log($"started calls");
         rotationSign = 1;
         stopped = false;
         pivot

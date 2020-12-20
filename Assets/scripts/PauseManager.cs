@@ -16,7 +16,7 @@ public class PauseManager : MonoBehaviour
         {
             //time passes in seconds!!
             thinking_duration += (int)(Time.deltaTime * 1000);
-            if (thinking_duration > 20000)
+            if (thinking_duration > 30000)
             {
                 GetComponent<game1_manager>().info_charged();
                 Reset_Thinking();

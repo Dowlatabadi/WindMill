@@ -223,7 +223,7 @@ if (!solved_angle.Contains((int)mill.transform.eulerAngles.z))
         {
             failed();
 
-            Debug.Log("sound");
+//            Debug.Log("sound");
         }
         // else
         // {

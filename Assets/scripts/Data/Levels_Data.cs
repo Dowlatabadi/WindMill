@@ -11,7 +11,7 @@ public static class Levels_Data
 public static List<(int lvl_num,int c,int cc,float labeled_ratio ,game_mode gamemode, string welcome_info, string end_info,List<(int x, int y, bool centerised)> predefined_locations ,int finish_delay,Vector2 start_vct,int pivot_creation_answer,string header_text)> levels_info=
 new List<(int lvl_num, int c, int cc, float labeled_ratio, game_mode gamemode, string welcome_info, string end_info,List<(int x, int y, bool centerised)> predefined_locations ,int finish_delay,Vector2 start_vct,int pivot_creation_answer,string header_text)>(){
 (1,1,0,0f,game_mode.millCreataion_orderise,
-"This game is based on a simple logic; The mill would rotate around its primary pivot.\n press Start button to run.",
+"This game is based on a simple logic; The mill would rotate around its primary pivot.\n \nPress Start Button to run your setup.",
 "empty",
 new List<(int x, int y, bool centerised)>(){
 	(160,90,true),
@@ -24,7 +24,7 @@ new Vector2(1,2),
 "Intro."
 //Helper.get_asymetric_poses(0,4).Select(t=>(t.x,t.y,true)).ToList()//triangle
 ),
-(2,2,0,1f,game_mode.millCreataion_orderise,
+(2,2,0,.4f,game_mode.millCreataion_orderise,
 "Let's see what happens when mill meets another pivot\n ",
 "Well, as you saw new touched pivot will be the primary pivot.\n The mill only can have one primary pivot at a time, therefore the old one is not primary anymore.",
 // new List<(int x, int y, bool centerised)>(){
@@ -41,7 +41,7 @@ new Vector2(-1,2),
 ),
 (3,3,0,.35f,game_mode.millCreataion_orderise,
 "In puzzles you need to find start pivot which would form the provided order (n should be met as the nth pivot)\n-Touch to choose which pivot is your chosen pivot to start from(1st pivot).\n-You always can drag up/down to change mill starting angle ",
-"Well done! you got the basic idea.",
+"Well done! you got the idea.",
 Helper.get_asymetric_poses(70,3).Select(t=>(t.x,t.y,true)).ToList(),3,
 new Vector2(1,0),
 0
@@ -49,7 +49,7 @@ new Vector2(1,0),
 "Lvl 1. Order guess"
 ),
 
-(4,10,0,1f,game_mode.millCreataion_inaccessible_pivots,
+(4,10,0,.4f,game_mode.millCreataion_inaccessible_pivots,
 "Remember the mill should never meet green points ","empty",
 (Helper.get_asymetric_poses(30,4,8f))
 .plus_points(Helper.get_asymetric_poses(30,3,4f))
@@ -307,7 +307,7 @@ new Vector2(0,1),
 ,
 "Lvl 17."
 ),
-(20,3,1,1f,game_mode.millCreataion_inaccessible_pivots,
+(20,3,1,.4f,game_mode.millCreataion_inaccessible_pivots,
 "Wait for the loop!","empty",
 new List<(int x, int y, bool centerised)>(){
 	
@@ -382,7 +382,7 @@ new Vector2(-1,-3),
 ,
 "Lvl 23."
 ),
-(26,5,2,1f,game_mode.millCreataion_orderise,
+(26,5,2,.4f,game_mode.millCreataion_orderise,
 "Wait for the loop to be detected!","empty",
 new List<(int x,int y)>{(154,118),(219,67),(263,114),(253,47),(134,99),(73,75),(56,44)}.Select(t=>(t.x,t.y,true)).ToList()
 ,
@@ -425,7 +425,7 @@ new List<(int x,int y)>{(67,71),(121,114),(142,38),(57,83),(238,96),(164,66)}.Se
 new Vector2(1,-3),
 3
 ,
-""
+"Lvl 26."
 ),
 
 (29,14,0,.4f,game_mode.millCreataion_orderise,
@@ -441,10 +441,10 @@ Helper.get_arc_poses(-45,7,15,9f).add_offset((0,-100))
 new Vector2(0.1f,1),
 2
 ,
-""
+"Lvl 27."
 ),
 
-(30,5,5,1f,game_mode.millCreataion_inaccessible_pivots,
+(30,5,5,.4f,game_mode.millCreataion_inaccessible_pivots,
 "Not Around!","empty",
 new List<(int x,int y)>{(184,109),(223,73),(221,103),(268,42),(262,65),(65,88),(48,69),(73,65),(163,45),(170,38)}.Select(t=>(t.x,t.y,true)).ToList()
 ,
@@ -452,18 +452,20 @@ new List<(int x,int y)>{(184,109),(223,73),(221,103),(268,42),(262,65),(65,88),(
 new Vector2(1,0),
 0
 ,
-""
+"Lvl 28."
 )
 ,
 (31,1,4,.4f,game_mode.millCreataion_orderise,
 "Random! Random! Random! ","empty",
-new List<(int x,int y)>{(251,27),(134,66),(53,49),(67,104),(150,42)}.Select(t=>(t.x,t.y,true)).ToList()
+new List<(int x,int y)>{(251,27),(134,66),(53,49),(67,104),(150,42)}
+.add_offset((0,20))
+.Select(t=>(t.x,t.y,true)).ToList()
 ,
 5,
 new Vector2(1,4),
 3
 ,
-""
+"Lvl 29."
 ),
 (32,5,5,.3f,game_mode.millCreataion_orderise,
 "Balanced pattern","empty",
@@ -488,7 +490,7 @@ new List<(int x, int y, bool centerised)>(){
 new Vector2(6,2),
 0
 ,
-""
+"Lvl 30."
 ),
 (33,8,1,.4f,game_mode.millCreataion_orderise,
 "Be careful about loops and green ones!","empty",
@@ -499,7 +501,8 @@ new List<(int x,int y)>{(107,151),(107,33),(168,95),(218,70),(274,117),(217,118)
 new Vector2(3,2),
 8
 ,
-""
+"Lvl 31."
+
 ),
 
 
@@ -515,7 +518,8 @@ new Vector2(3,2),
 new Vector2(3,2),
 8
 ,
-""
+"Lvl 32."
+
 ),
 
 (35,4,4,.4f,game_mode.millCreataion_orderise,
@@ -525,7 +529,8 @@ new Vector2(3,2),
 new Vector2(3,-1),
 0
 ,
-""
+"Lvl 33."
+
 ),
 
 (36,7,3,.3f,game_mode.millCreataion_orderise,
@@ -551,7 +556,8 @@ new List<(int x, int y, bool centerised)>(){
 new Vector2(1,3),
 0
 ,
-""
+"Lvl 34."
+
 ),
 (37,1,4,.4f,game_mode.millCreataion_orderise,
 "No worries! easy one!","empty",
@@ -561,7 +567,8 @@ new List<(int x,int y)>{(217,132),(130,64),(66,73),(189,100),(247,53)}.Select(t=
 new Vector2(1,-3),
 3
 ,
-""
+"Lvl 35."
+
 ),
 
 
@@ -570,11 +577,12 @@ new Vector2(1,-3),
 (38,6,2,.4f,game_mode.millCreataion_orderise,
 "Symetric and fun! ","empty",
 (Helper.get_asymetric_poses(30,6,6.5f).plus_points(Helper.get_asymetric_poses(0,2,7.5f))).Select(t=>(t.x,t.y,true)).ToList(),
-3,
+5,
 new Vector2(-3,3),
 0
 ,
-""
+"Lvl 36."
+
 ),
 
 
@@ -590,19 +598,21 @@ new Vector2(-3,3),
 new Vector2(0,1),
 0
 ,
-""
+"Lvl 37."
+
 ),
 
 
 (40,3,2,.4f,game_mode.millCreataion_orderise,
 "Random one","empty",
-new List<(int x,int y)>{(243,40),(110,68),(215,115),(202,44),(53,69)}.Select(t=>(t.x,t.y,true)).ToList()
+new List<(int x,int y)>{(243,40),(110,68),(215,115),(202,44),(53,69)}.add_offset((20,0)).Select(t=>(t.x,t.y,true)).ToList()
 ,
 5,
 new Vector2(1,4),
 3
 ,
-""
+"Lvl 38."
+
 ),
 
 
@@ -615,19 +625,21 @@ new List<(int x,int y)>{(135,118),(157,60),(131,38),(250,102),(75,71),(250,40)}.
 new Vector2(1,0),
 0
 ,
-""
+"Lvl 39."
+
 )
 ,
 
-(42,5,2,1f,game_mode.millCreataion_orderise,
+(42,5,2,.4f,game_mode.millCreataion_orderise,
 "----","empty",
-new List<(int x,int y)>{(39,82),(84,37),(195,79),(171,103),(96,64),(102,108),(57,118)}.Select(t=>(t.x,t.y,true)).ToList()
+new List<(int x,int y)>{(39,82),(84,37),(195,79),(171,103),(96,64),(102,108),(57,118)}.add_offset((60,0)).Select(t=>(t.x,t.y,true)).ToList()
 ,
 5,
 new Vector2(1,0),
 0
 ,
-""
+"Lvl 40."
+
 )
 
 
@@ -651,7 +663,8 @@ Helper.get_arc_poses(-45,7,15,9f).add_offset((0,-100))
 new Vector2(2,-2),
 5
 ,
-""
+"Lvl 41."
+
 ),
 
 
@@ -670,10 +683,11 @@ Helper.get_arc_poses(-45,7,15,9f).add_offset((0,-100))
 new Vector2(-2,-2),
 2
 ,
-""
+"Lvl 42."
+
 ),
 
-(45,9,1,1f,game_mode.millCreataion_orderise,
+(45,9,1,.4f,game_mode.millCreataion_orderise,
 "Departed!","empty",
 Helper.get_asymetric_poses(160,9,6f).add_offset((40,0))
 .plus_points(Helper.get_arc_poses(270,1,40,6f).add_offset((-40,0)))
@@ -682,19 +696,21 @@ Helper.get_asymetric_poses(160,9,6f).add_offset((40,0))
 new Vector2(1,5),
 0
 ,
-""
+"Lvl 43."
+
 ),
 
-(46,9,6,1f,game_mode.millCreataion_orderise,
+(46,9,6,.4f,game_mode.millCreataion_orderise,
 "Joint!","empty",
 Helper.get_asymetric_poses(160,9,6f).add_offset((40,0))
 .plus_points(Helper.get_arc_poses(180,6,40,4f).add_offset((-40,0)))
 .Select(t=>(t.x,t.y,true)).ToList(),
 5,
-new Vector2(1,5),
+new Vector2(1,-2),
 0
 ,
-""
+"Lvl 44."
+
 ),
 
 (47,5,1,.4f,game_mode.millCreataion_orderise,
@@ -705,10 +721,11 @@ new List<(int x,int y)>{(67,29),(252,112),(120,84),(50,114),(212,82),(120,45)}.S
 new Vector2(1,-3),
 3
 ,
-""
+"Lvl 45."
+
 ),
 
-(48,9,2,1f,game_mode.millCreataion_orderise,
+(48,9,2,.4f,game_mode.millCreataion_orderise,
 "Complements!","empty",
 Helper.get_asymetric_poses(160,9,5f).add_offset((0,0))
 .plus_points(Helper.get_arc_poses(270,1,40,8f))
@@ -718,7 +735,8 @@ Helper.get_asymetric_poses(160,9,5f).add_offset((0,0))
 new Vector2(1,5),
 0
 ,
-""
+"Lvl 46."
+
 ),
 (49,9,1,.3f,game_mode.millCreataion_orderise,
 "Different!","empty",
@@ -730,10 +748,11 @@ Helper.get_arc_poses(252,2,36,6f)
 new Vector2(0,5),
 6
 ,
-""
+"Lvl 47."
+
 ),
-(50,7,4,1f,game_mode.millCreataion_orderise,
-"See Horse!","empty",
+(50,7,4,.4f,game_mode.millCreataion_orderise,
+"Seahorse!","\n Grats!\n\n You are at the end!\n\n 48, that's all.",
 
 Helper.get_arc_poses(270,7,30,6f).add_offset((30,0))
 .plus_points(Helper.get_arc_poses(150,4,30,4f).add_offset((-70,0)))
@@ -742,7 +761,8 @@ Helper.get_arc_poses(270,7,30,6f).add_offset((30,0))
 new Vector2(1,5),
 6
 ,
-""
+"Lvl 48."
+
 ),
 
 // (32,1,3,1f,game_mode.pivotCreation_orderise,

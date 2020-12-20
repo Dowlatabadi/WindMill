@@ -27,7 +27,7 @@ public class Selection_Manager : MonoBehaviour
         RectTransform rt = (RectTransform) bar_prefab.transform;
         float width = rt.rect.width * 2;
         float height = rt.rect.height * 2;
-        Debug.Log (width);
+//        Debug.Log (width);
         int counter = 0;
         foreach (var info in Levels_Data.levels_info)
         {
@@ -101,7 +101,7 @@ go
         if (PlayerPrefs.HasKey("temp_lvl_num"))
         {
             last_seen = PlayerPrefs.GetInt("temp_lvl_num");
-            Debug.Log("found last " + last_seen);
+//            Debug.Log("found last " + last_seen);
         }
         var scroll_height = ((int)(last_seen / 3)) * 160 - 3225;
         var container_rt = Container.GetComponent<RectTransform>();

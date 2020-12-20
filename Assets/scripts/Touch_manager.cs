@@ -103,7 +103,7 @@ public bool cross_move=false;
                             .stopped
                     )
                     {
-                        UnityEngine.Debug.Log("started");
+                      //  UnityEngine.Debug.Log("started");
 
                         dragging = true;
                         drag_pos = Input.mousePosition;
@@ -118,7 +118,7 @@ public bool cross_move=false;
                     )
                     //rotation phase
                     {
-                        UnityEngine.Debug.Log("updown");
+                       // UnityEngine.Debug.Log("updown");
 
                         var mill =
                             GameObject
@@ -144,7 +144,7 @@ public bool cross_move=false;
                             .stopped
                     )
                     {
-                        UnityEngine.Debug.Log("release");
+                      //  UnityEngine.Debug.Log("release");
 
                         dragging = false;
                         drag_pos = Vector3.zero;
@@ -158,7 +158,7 @@ public bool cross_move=false;
                     if ((Input.GetMouseButton(0) && Input.GetMouseButtonDown(0)) &&
                         !dragging)
                     {
-						UnityEngine.Debug.Log("started for cpivot creation");
+					//	UnityEngine.Debug.Log("started for cpivot creation");
                         dragging = true;
                         drag_pos = Input.mousePosition;
                     }
@@ -166,7 +166,7 @@ public bool cross_move=false;
                         dragging)
                     {
  var currpos = Input.mousePosition;
-						UnityEngine.Debug.Log("dragging pivot creation "+currpos.x);
+						//UnityEngine.Debug.Log("dragging pivot creation "+currpos.x);
 var move_vect=Vector3.Normalize(currpos - drag_pos);
                       
 								move_cross(move_vect);

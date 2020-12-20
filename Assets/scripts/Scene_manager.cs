@@ -64,9 +64,14 @@ public class Scene_manager : MonoBehaviour
 
     public void Scene_LastLvlPlay()
     {
+		var last= Camera.main.GetComponent<save_manager>().get_progress_lvl();
+		if (last>50)
+		{
+			last=50;
+		}
         PlayerPrefs
-            .SetInt("temp_lvl_num",
-            Camera.main.GetComponent<save_manager>().get_progress_lvl());
+            .SetInt("temp_lvl_num",last
+           );
         Debug
             .Log("saved last: " +
             Camera.main.GetComponent<save_manager>().get_progress_lvl());

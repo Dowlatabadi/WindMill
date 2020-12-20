@@ -63,6 +63,8 @@ public class game1_manager : MonoBehaviour
 
     public void first_button_pressed()
     {
+        info_btn.gameObject.SetActive(false);
+        First_button.gameObject.SetActive(false);
         var pivot_creation =
             (
             gamemode == game_mode.pivotCreation_orderise ||
@@ -141,7 +143,7 @@ public class game1_manager : MonoBehaviour
 
     void reset_speed()
     {
-        speed_up_fact =1f;
+        speed_up_fact = 1f;
 
         speed_up = false;
         general_mill.GetComponent<rotate>().speed = 20;
@@ -150,6 +152,8 @@ public class game1_manager : MonoBehaviour
     public IEnumerator wait_and_show(string st, bool white, string header = "")
     {
         var temp_lvl = PlayerPrefs.GetInt("temp_lvl_num");
+		
+		
         var lvl_details =
             Levels_Data.levels_info.FirstOrDefault(x => x.lvl_num == temp_lvl);
 
@@ -185,6 +189,7 @@ public class game1_manager : MonoBehaviour
             .SetParent(GameObject.FindGameObjectWithTag("Canvas").transform,
             false);
         Camera.main.GetComponent<PauseManager>().Stops();
+			
     }
 
     public void show(string st, bool white = false, string header_text = "")
@@ -192,7 +197,7 @@ public class game1_manager : MonoBehaviour
         if (st.Contains("empty"))
         {
             var wait = 0;
-            UnityEngine.Debug.Log($"<color=white>white</color>");
+//            UnityEngine.Debug.Log($"<color=white>white</color>");
             StartCoroutine(wait_and_go_next(3));
 
             return;
@@ -222,14 +227,20 @@ public class game1_manager : MonoBehaviour
 
     public void goto_last_lvl()
     {
-        UnityEngine.Debug.Log($"goto to");
+//        UnityEngine.Debug.Log($"goto to");
 
         Camera.main.GetComponent<Notation_manager>().Update_Notations();
         var temp_prefs_is_set = PlayerPrefs.HasKey("temp_lvl_num");
         if (temp_prefs_is_set)
         {
+            
             var temp_lvl = PlayerPrefs.GetInt("temp_lvl_num");
-            UnityEngine.Debug.Log($"goto tem_lvl={temp_lvl}");
+			if (temp_lvl == 51)
+            {
+                gameObject.GetComponent<Scene_manager>().Scene_Selection();
+                return;
+            }
+//            UnityEngine.Debug.Log($"goto tem_lvl={temp_lvl}");
             var lvl_details =
                 Levels_Data
                     .levels_info
@@ -419,7 +430,7 @@ public class game1_manager : MonoBehaviour
                 if (!is_lvl_solved)
                 {
                     SV.Unlock_and_save(temp_lvl + 1);
-                    UnityEngine.Debug.Log($"next is set to= {temp_lvl + 1}");
+//                    UnityEngine.Debug.Log($"next is set to= {temp_lvl + 1}");
                     is_lvl_solved = true;
                 }
             }
@@ -433,7 +444,7 @@ public class game1_manager : MonoBehaviour
                 //     .Debug
                 //     .Log($"nt solvd,gos={gos.Count()}, faults={p}");
             }
-
+			 
             return true;
         }
         if (failed)
@@ -441,6 +452,7 @@ public class game1_manager : MonoBehaviour
             current_pvt.GetComponent<pivotActions>().failed();
             //call pivot failure
         }
+
         return false;
     }
 
@@ -451,6 +463,8 @@ public class game1_manager : MonoBehaviour
     void reset()
     {
         failure_counter = 0;
+        First_button.gameObject.SetActive(true);
+        info_btn.gameObject.SetActive(true);
 
         is_lvl_solved = false;
         is_end_message_shown_once = false;
@@ -715,7 +729,7 @@ public class game1_manager : MonoBehaviour
                 .Union(GameObject.FindGameObjectsWithTag("counterclockwise"));
         if (all_pivots.Count() == 1)
         {
-			general_mill.GetComponent<rotate>().speed = 25f;
+            general_mill.GetComponent<rotate>().speed = 25f;
             return;
         }
         var mill_vect =
@@ -755,10 +769,11 @@ public class game1_manager : MonoBehaviour
         // 	return;
         // }
         var next_speed =
-
-		//4*sqrt(x)+10
+            //4*sqrt(x)+10
             Mathf
-                .Clamp(((float) Mathf.Pow((norm_dist/35f)-2.41f,3f) ) * speed_up_fact+20f,
+                .Clamp(((float) Mathf.Pow((norm_dist / 35f) - 2.41f, 3f)) *
+                speed_up_fact +
+                20f,
                 7f,
                 30f);
 
@@ -766,7 +781,7 @@ public class game1_manager : MonoBehaviour
         general_mill.GetComponent<rotate>().speed = next_speed;
     }
 
-    public float speed_up_fact =1f;
+    public float speed_up_fact = 1f;
 
     void Update()
     {
