@@ -467,6 +467,7 @@ UnityEngine.Debug.Log($"<color=white>white</color>");
 
         // UnityEngine.Debug.Log("reset");
         Draw_level (lvl);
+		 info_btn.GetComponent<Animator>().SetBool("Blink", false);
     }
 
     void destroy_all(GameObject[] gos)
