@@ -547,8 +547,8 @@ var label_less=(gamemode == game_mode.millCreataion_inaccessible_pivots ||
 
                 current_labels.Add(pvt.order_num);
 
-if (!label_less){
 	 go.GetComponent<pivotActions>().set_number(pvt.order_num,true);
+if (!label_less && (pvt.order_num == -1000)){
  go
                     .transform
                     .Find("bigger_check")

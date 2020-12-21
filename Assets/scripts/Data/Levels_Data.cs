@@ -49,7 +49,7 @@ new Vector2(1,0),
 "Lvl 1. Order guess"
 ),
 
-(4,10,0,.4f,game_mode.millCreataion_inaccessible_pivots,
+(4,10,0,0f,game_mode.millCreataion_inaccessible_pivots,
 "Remember the mill should never meet green points ","empty",
 (Helper.get_asymetric_poses(30,4,8f))
 .plus_points(Helper.get_asymetric_poses(30,3,4f))
