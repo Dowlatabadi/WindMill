@@ -77,7 +77,7 @@ if (!solved_angle.Contains((int)mill.transform.eulerAngles.z))
         return int.Parse(str);
     }
 
-    public void set_number(int num)
+    public void set_number(int num,bool black=false)
     {
 
         var gamemode = Camera.main.GetComponent<game1_manager>().gamemode;
@@ -112,7 +112,13 @@ if (!solved_angle.Contains((int)mill.transform.eulerAngles.z))
                 .GetComponent<TMPro.TextMeshPro>()
                 .text = "";
         }
-
+if (num != -1000 && black){
+	 gameObject
+                .transform
+                .Find("number")
+                .GetComponent<TMPro.TextMeshPro>()
+                .color = Color.black;
+}
         gameObject
             .transform
             .Find("number")

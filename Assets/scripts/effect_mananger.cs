@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.UI;
+using Classes;
 public class effect_mananger : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -31,13 +32,19 @@ public class effect_mananger : MonoBehaviour
 		
 		foreach (var pvt in all_pivots)
 		{
+			var gamemode=Camera.main.GetComponent<game1_manager>().gamemode;
+			var blind_game=(gamemode == game_mode.millCreataion_inaccessible_pivots ||
+            gamemode == game_mode.pivotCreation_inaccessible_pivots);;
 			//var screen_pos=Camera.main.WorldToScreenPoint(pvt.transform.position);
 			var fx_go=GameObject
                         .Instantiate(flash_go,Vector3.zero,Quaternion.identity,GameObject.FindGameObjectWithTag("Canvas").transform);
 			 var rectTransform =fx_go.gameObject.GetComponent<RectTransform>();
 		var screen_pos=Camera.main.WorldToScreenPoint(pvt.transform.position);
 			rectTransform.position=new Vector2(screen_pos.x,screen_pos.y);
-			if (pvt.tag=="clockwise"){
+			if (pvt.GetComponent<pivotActions>().labled && !blind_game){
+ fx_go.GetComponent<Image>().color=new Color32(0,255,0,48);
+			}
+			else if (pvt.tag=="clockwise"){
 
 			 fx_go.GetComponent<Image>().color=new Color32(231,42,37,48);
 			}

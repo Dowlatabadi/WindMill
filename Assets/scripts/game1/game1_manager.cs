@@ -491,12 +491,13 @@ public class game1_manager : MonoBehaviour
             GameObject.Destroy (pvt_go);
         }
     }
-
+public byte check_transparency=60;
     void Draw_level(Level lvl)
     {
         var cross_sp_renderer =
             GameObject.FindWithTag("cross").GetComponent<SpriteRenderer>();
-
+var label_less=(gamemode == game_mode.millCreataion_inaccessible_pivots ||
+            gamemode == game_mode.pivotCreation_inaccessible_pivots);
         //hide cross
         var needs_cross =
             (
@@ -532,7 +533,7 @@ public class game1_manager : MonoBehaviour
             pivots_pos.Add(pvt.pivot_pos);
             GameObject go;
 
-            if (pvt.labeled || (pvt.order_num == -1000))
+            if (pvt.labeled || (pvt.order_num == -1000) )
             {
                 go =
                     GameObject
@@ -542,9 +543,19 @@ public class game1_manager : MonoBehaviour
                             checkpivot_pefab.transform.position.z),
                         Quaternion.identity);
 
-                go.GetComponent<pivotActions>().set_number(pvt.order_num);
+               
 
                 current_labels.Add(pvt.order_num);
+
+if (!label_less){
+	 go.GetComponent<pivotActions>().set_number(pvt.order_num,true);
+ go
+                    .transform
+                    .Find("bigger_check")
+                    .GetComponent<SpriteRenderer>()
+                    .color = new Color32(0, 255, 0, check_transparency);
+}
+				
             }
             else
             {
@@ -580,11 +591,15 @@ public class game1_manager : MonoBehaviour
                     .Find("graphics")
                     .GetComponent<Animator>()
                     .SetBool("clockwise", true);
-                go
+					if (!pvt.labeled || label_less ){
+go
                     .transform
                     .Find("bigger_check")
                     .GetComponent<SpriteRenderer>()
-                    .color = new Color32(255, 0, 0, 30);
+                    .color = new Color32(255, 0, 0, check_transparency);
+
+					}
+                
             }
             else
             {
@@ -605,12 +620,13 @@ public class game1_manager : MonoBehaviour
                     .Find("graphics")
                     .GetComponent<Animator>()
                     .SetBool("clockwise", false);
+					if (!pvt.labeled || label_less){
                 go
                     .transform
                     .Find("bigger_check")
                     .GetComponent<SpriteRenderer>()
-                    .color = new Color32(0, 0, 255, 30);
-
+                    .color = new Color32(0, 0, 255, check_transparency);
+					}
                 go.gameObject.tag = "counterclockwise";
             }
             if (pvt.order_num == -1000)
@@ -768,6 +784,8 @@ public class game1_manager : MonoBehaviour
         // {
         // 	return;
         // }
+		
+		
         var next_speed =
             //4*sqrt(x)+10
             Mathf
@@ -776,7 +794,20 @@ public class game1_manager : MonoBehaviour
                 20f,
                 7f,
                 30f);
-
+if (norm_dist<60 && norm_dist>5){
+			next_speed=  Mathf
+                .Clamp(next_speed*1.5f,
+                7f,
+                30f);
+			;
+		}
+		if (norm_dist<120 && norm_dist>=60){
+			next_speed=  Mathf
+                .Clamp(next_speed*1.8f,
+                7f,
+                30f);
+			;
+		}
         //	UnityEngine.Debug.Log($"<color=blue>spd={next_speed} dist={angle_dist} mill_vect is {mill_vect}</color>");
         general_mill.GetComponent<rotate>().speed = next_speed;
     }
