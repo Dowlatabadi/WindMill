@@ -670,7 +670,7 @@ public class game1_manager : MonoBehaviour
                             .Pivots
                             .Select((x, ind) => (x, ind))
                             .Skip(1)
-                            .Where(t => !t.x.labeled)
+                            .Where(t => !t.x.labeled && t.x.order_num!=-1000)
                             .OrderBy(x => UnityEngine.Random.value)
                             .FirstOrDefault()
                             .ind;

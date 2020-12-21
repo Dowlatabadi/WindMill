@@ -11,7 +11,7 @@ public static class Levels_Data
 public static List<(int lvl_num,int c,int cc,float labeled_ratio ,game_mode gamemode, string welcome_info, string end_info,List<(int x, int y, bool centerised)> predefined_locations ,int finish_delay,Vector2 start_vct,int pivot_creation_answer,string header_text)> levels_info=
 new List<(int lvl_num, int c, int cc, float labeled_ratio, game_mode gamemode, string welcome_info, string end_info,List<(int x, int y, bool centerised)> predefined_locations ,int finish_delay,Vector2 start_vct,int pivot_creation_answer,string header_text)>(){
 (1,1,0,0f,game_mode.millCreataion_orderise,
-"This game is based on a simple logic; The mill would rotate around its primary pivot.\n \nPress Start Button to run your setup.",
+"This game is based on a simple logic: The mill would rotate around its primary pivot.\n \nPress Start Button to run your setup.",
 "empty",
 new List<(int x, int y, bool centerised)>(){
 	(160,90,true),
@@ -40,7 +40,7 @@ new Vector2(-1,2),
 "Intro.."
 ),
 (3,3,0,.35f,game_mode.millCreataion_orderise,
-"In puzzles you need to find start pivot which would form the provided order (n should be met as the nth pivot)\n-Touch to choose which pivot is your chosen pivot to start from(1st pivot).\n-You always can drag up/down to change mill starting angle ",
+"To solve puzzles you need to find start pivot which would form the provided order (n should be met as the nth pivot)\n-Touch to choose which pivot is your chosen pivot to start from(1st pivot).\n-You always can drag up/down to change mill starting angle ",
 "Well done! you got the idea.",
 Helper.get_asymetric_poses(70,3).Select(t=>(t.x,t.y,true)).ToList(),5,
 new Vector2(1,0),
