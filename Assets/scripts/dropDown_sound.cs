@@ -24,16 +24,14 @@ public class dropDown_sound : MonoBehaviour
         switch (menuIndex)
         {
             case 0:
-                res = "Supersonic";
+                  res = "ForgottenLand";
                 break;
             case 1:
                 res = "Morrow";
                 break;
-				 case 2:
-                res = "ForgottenLand";
-                break;
+				
             default:
-                res = "Supersonic";
+                 res = "ForgottenLand";
                 break;
         }
         Camera.main.GetComponent<save_manager>().set_music(res);

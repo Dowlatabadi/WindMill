@@ -95,6 +95,6 @@ public class save_manager : MonoBehaviour
     {
         if (PlayerPrefs.HasKey("music_name"))
             return PlayerPrefs.GetString("music_name");
-        return "Supersonic";
+        return "ForgottenLand";
     }
 }

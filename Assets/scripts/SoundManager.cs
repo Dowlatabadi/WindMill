@@ -47,10 +47,7 @@ public bool game_ground;
         fx_vol = gameObject.GetComponent<save_manager>().get_effects_vol();
         switch (music_name)
         {
-            case "Supersonic":
-                gameObject.GetComponent<AudioSource>().clip = AudioClips[1];
-
-                break;
+           
             case "Morrow":
                 gameObject.GetComponent<AudioSource>().clip = AudioClips[5];
 
@@ -63,7 +60,7 @@ public bool game_ground;
                 gameObject.GetComponent<AudioSource>().clip = AudioClips[8];
 break;
             default:
-                gameObject.GetComponent<AudioSource>().clip = AudioClips[1];
+                gameObject.GetComponent<AudioSource>().clip = AudioClips[7];
 
                 break;
             

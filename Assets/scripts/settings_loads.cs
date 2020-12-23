@@ -17,14 +17,12 @@ public class settings_loads : MonoBehaviour
       
 	    switch (music_name)
         {
-            case "Supersonic":
-                res = 0;
-                break;
+           
             case "Morrow":
                 res = 1;
                 break;
             case "ForgottenLand":
-                res = 2;
+                res = 0;
                 break;
             default:
                 res = 0;
