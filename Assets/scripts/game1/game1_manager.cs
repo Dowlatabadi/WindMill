@@ -553,7 +553,7 @@ if (!label_less && (pvt.order_num != -1000)){
                     .transform
                     .Find("bigger_check")
                     .GetComponent<SpriteRenderer>()
-                    .color = new Color32(0, 255, 0, check_transparency);
+                    .color = new Color32(255, 255, 255, 100);
 }
 				
             }
