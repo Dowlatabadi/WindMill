@@ -54,6 +54,9 @@ public class Selection_Manager : MonoBehaviour
             node.cc = info.cc;
             node.ratio = info.labeled_ratio;
             node.gamemode = info.gamemode;
+			node.hardness=info.labeled_ratio;
+			node.point_list=info.predefined_locations;
+
             node.draw_info();
 
             counter++;
@@ -69,7 +72,7 @@ public class Selection_Manager : MonoBehaviour
 			if (go.GetComponent<Level_Node_Structure>().gamemode==game_mode.millCreataion_inaccessible_pivots ||go.GetComponent<Level_Node_Structure>().gamemode==game_mode.millCreataion_orderise ){
 go
                     .transform
-                    .GetChild(8)
+                    .Find("tiny_scr")
                     .gameObject
 					 .GetComponent<Image>()
                     .color = new Color32(255,0,0,40);
@@ -77,7 +80,7 @@ go
 			else{
 				go
                     .transform
-                    .GetChild(8)
+					.Find("tiny_scr")
                     .gameObject
 					 .GetComponent<Image>()
                     .color = new Color32(67,191,171,100);
@@ -95,7 +98,7 @@ go
                 //show lock
                 go
                     .transform
-                    .GetChild(7)
+                    .Find("lock")
                     .gameObject
                     .GetComponent<Image>()
                     .enabled = true;

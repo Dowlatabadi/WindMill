@@ -12,6 +12,8 @@ public class Level_Node_Structure : MonoBehaviour
     public int cc;
 
     public int c;
+    public float hardness;
+    public List<(int x, int y, bool centerised)> point_list;
 
     public game_mode gamemode;
 
@@ -46,18 +48,19 @@ else{
 }
 
 
-        Transform c_obj = transform.GetChild(1);
-		c_obj.gameObject.GetComponent<TextMeshProUGUI>().text =$"{c}";
-        Transform cc_obj = transform.GetChild(2);
-		cc_obj.gameObject.GetComponent<TextMeshProUGUI>().text =$"{cc}";
+        // Transform c_obj = transform.GetChild(1);
+		// c_obj.gameObject.GetComponent<TextMeshProUGUI>().text =$"{c}";
+        // Transform cc_obj = transform.GetChild(2);
+		// cc_obj.gameObject.GetComponent<TextMeshProUGUI>().text =$"{cc}";
 
-        Transform order_type = transform.GetChild(3);
-		order_type.gameObject.GetComponent<TextMeshProUGUI>().text =$"{translate(gamemode).order_type}";
+        // Transform order_type = transform.GetChild(3);
+		// order_type.gameObject.GetComponent<TextMeshProUGUI>().text =$"{translate(gamemode).order_type}";
 
-        Transform creation = transform.GetChild(4);
-		creation.gameObject.GetComponent<TextMeshProUGUI>().text =$"{translate(gamemode).creation_type}";
+        // Transform creation = transform.GetChild(4);
+		// creation.gameObject.GetComponent<TextMeshProUGUI>().text =$"{translate(gamemode).creation_type}";
 
-        
+          transform.Find("tiny_scr")
+		 .GetComponent<draw_thumb>().Draw(point_list,hardness,c,cc);
     }
 
     public static (string order_type,string creation_type) translate(game_mode gm)
