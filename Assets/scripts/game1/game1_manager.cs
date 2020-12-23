@@ -794,14 +794,14 @@ go
                 20f,
                 7f,
                 30f);
-if (norm_dist<60 && norm_dist>5){
+if (norm_dist<45 && norm_dist>5){
 			next_speed=  Mathf
                 .Clamp(next_speed*1.5f,
                 7f,
                 30f);
 			;
 		}
-		if (norm_dist<120 && norm_dist>=60){
+		if (norm_dist<120 && norm_dist>=45){
 			next_speed=  Mathf
                 .Clamp(next_speed*1.8f,
                 7f,
