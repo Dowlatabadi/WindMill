@@ -2747,7 +2747,7 @@ MonoBehaviour:
   musixMuted: 0
   AudioClips:
   - {fileID: 8300000, guid: 6fbdba1dea24c1b8a880f256d34ba699, type: 3}
-  - {fileID: 8300000, guid: fb676c4834d33b42a863fb6e0ffb065a, type: 3}
+  - {fileID: 0}
   - {fileID: 8300000, guid: 6028e5e512e3c1b139d8c3c308013da7, type: 3}
   - {fileID: 8300000, guid: 7cd60af8e521eb034a51905bfd9fe890, type: 3}
   - {fileID: 8300000, guid: 7cd60af8e521eb034a51905bfd9fe890, type: 3}
@@ -2805,7 +2805,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0cc75ed6d4a892ccb72c3cad397dd4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fx_ampli_factor: 6
 --- !u!114 &1628066477
 MonoBehaviour:
   m_ObjectHideFlags: 0

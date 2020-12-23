@@ -119,6 +119,20 @@ if (num != -1000 && black){
                 .GetComponent<TMPro.TextMeshPro>()
                 .color = Color.black;
 }
+else if (gameObject.tag=="clockwise"){
+ gameObject
+                .transform
+                .Find("number")
+                .GetComponent<TMPro.TextMeshPro>()
+                .color = Color.red;
+}
+else{
+gameObject
+                .transform
+                .Find("number")
+                .GetComponent<TMPro.TextMeshPro>()
+                .color = Color.blue;
+}
         gameObject
             .transform
             .Find("number")
@@ -193,7 +207,7 @@ if (num != -1000 && black){
                     )
                     {
                         check_up(false);
-                        set_number (current_num);
+                        set_number (current_num,true);
 						Camera.main.GetComponent<game1_manager>().primary_pvt=gameObject;
 
                         Camera.main.GetComponent<SoundManager>().play_ding();

@@ -33,7 +33,7 @@ public class SoundManager : MonoBehaviour
     {
         gameObject
             .GetComponent<AudioSource>()
-            .PlayOneShot(AudioClips[3],Mathf.Min(.3f * fx_vol,3) );
+            .PlayOneShot(AudioClips[3],Mathf.Min(.3f * fx_vol,6) );
     }
 
     public float fx_vol = 1f;

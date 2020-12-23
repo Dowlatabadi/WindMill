@@ -42,7 +42,7 @@ public class effect_mananger : MonoBehaviour
 		var screen_pos=Camera.main.WorldToScreenPoint(pvt.transform.position);
 			rectTransform.position=new Vector2(screen_pos.x,screen_pos.y);
 			if (pvt.GetComponent<pivotActions>().labled && !blind_game){
- fx_go.GetComponent<Image>().color=new Color32(0,255,0,48);
+ fx_go.GetComponent<Image>().color=new Color32(255,255,255,48);
 			}
 			else if (pvt.tag=="clockwise"){
 
