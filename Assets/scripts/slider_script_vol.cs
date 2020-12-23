@@ -31,7 +31,7 @@ public class slider_script_vol : MonoBehaviour
             .main
             .GetComponent<save_manager>()
             .set_effects_vol(GetComponent<Slider>().value);
-
+UnityEngine.Debug.Log($"saving fx is {GetComponent<Slider>().value}");
         Camera.main.GetComponent<SoundManager>().AdjustSoundPreferences();
     }
 }

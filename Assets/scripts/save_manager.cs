@@ -59,18 +59,18 @@ public class save_manager : MonoBehaviour
         return .3f;
     }
 
-    public float fx_ampli_factor = 4f;
+    //public float fx_ampli_factor = 4f;
 
     public void set_effects_vol(float percent)
     {
-        PlayerPrefs.SetFloat("effects_vol", percent * fx_ampli_factor);
+        PlayerPrefs.SetFloat("effects_vol", percent );
     }
 
     public float get_effects_vol()
     {
         if (PlayerPrefs.HasKey("effects_vol"))
             return PlayerPrefs.GetFloat("effects_vol");
-        return fx_ampli_factor;
+        return 1f;
     }
 
     public void set_ui_direction(string direction)
