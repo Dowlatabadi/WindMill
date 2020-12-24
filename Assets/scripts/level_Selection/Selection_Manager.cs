@@ -89,11 +89,11 @@ go
             {
                 //disable button
                 go.GetComponent<Button>().interactable = false;
-                gray(go, 0);
-                gray(go, 1);
+                //gray(go, 1);
                 gray(go, 2);
                 gray(go, 3);
                 gray(go, 4);
+                gray(go, 5);
 
                 //show lock
                 go

@@ -24,7 +24,7 @@ new Vector2(1,2),
 "Intro."
 //Helper.get_asymetric_poses(0,4).Select(t=>(t.x,t.y,true)).ToList()//triangle
 ),
-(2,2,0,.4f,game_mode.millCreataion_orderise,
+(2,2,0,0f,game_mode.millCreataion_orderise,
 "Let's see what happens when mill meets another pivot\n ",
 "Well, as you saw new touched pivot will be the primary pivot.\n The mill only can have one primary pivot at a time, therefore the old one is not primary anymore.",
 // new List<(int x, int y, bool centerised)>(){

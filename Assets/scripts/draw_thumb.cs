@@ -57,11 +57,16 @@ Transform screen;
             p1_go.transform.localPosition = map_scr(p1.x, p1.y, p1.centerised,width_unit,height_unit,left_bottom);
             //UnityEngine.Debug.Log($"position {map_scr(p1.x, p1.y,p1.centerised)}");
         }
+		Color hard_color=new Color32(0,0,0,0);
+		if (hardness<.4f )
+		hard_color=new Color32((byte)(255*(1-hardness)),0,0,(byte)(255*(1-hardness)));
+		else if (hardness<0.5f)
+		hard_color=new Color32((byte)((255*(1-hardness))),0,0,(byte)(255*(1-hardness)));
+		else if (hardness<.7f)
+		hard_color=new Color32(0,0,(byte)(255*hardness),200);
         transform.Find("header").GetComponent<Image>().color =
-            new Color32((byte)(hardness * 255),
-                0,
-                (byte)((1 - hardness) * 255),
-                20);
+          		hard_color;
+
     }
 
     Vector3 map_scr(int row_num, int col_num, bool centerised,float width_unit,float height_unit,Vector2 left_bottom)

@@ -43,6 +43,7 @@ public class game1_manager : MonoBehaviour
     {
         //shouldn't some labled pivot be qual in number
         //shouldn't be met again
+		
         StartCoroutine(waitandAdjustSpeed());
         return ++current_order;
     }
@@ -796,7 +797,7 @@ go
                 30f);
 if (norm_dist<45 && norm_dist>5){
 			next_speed=  Mathf
-                .Clamp(next_speed*1.5f,
+                .Clamp(next_speed*2f,
                 7f,
                 30f);
 			;

@@ -36,7 +36,7 @@ public class Level_Node_Structure : MonoBehaviour
 
     public void draw_info()
     {
-        Transform firstChild_lvl_bold = transform.GetChild(0);
+        Transform firstChild_lvl_bold = transform.Find("0");
 if (lvl_num<=2)
 {
 		 firstChild_lvl_bold.gameObject.GetComponent<TextMeshProUGUI>().text =$"Intro. {lvl_num}";
