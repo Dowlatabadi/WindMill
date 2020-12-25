@@ -65,7 +65,7 @@ Transform screen;
 		else if (hardness<.7f)
 		hard_color=new Color32(0,0,(byte)(255*hardness),200);
         transform.Find("header").GetComponent<Image>().color =
-          		hard_color;
+          		new Color32((byte)(((float)c/(c+cc))*255),0,(byte)(((float)cc/(c+cc))*255),180);
 
     }
 
