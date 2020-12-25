@@ -523,6 +523,7 @@ var label_less=(gamemode == game_mode.millCreataion_inaccessible_pivots ||
         var cyl_parent = GameObject.FindGameObjectsWithTag("cylinderparent")[0];
         gos = new List<GameObject>();
         int i = 0;
+		var rand_indexes=lvl.Pivots.Select((x,ind)=>ind).OrderBy(x=>UnityEngine.Random.value).ToArray();
         foreach (var pvt in lvl.Pivots)
         {
             if (lvl.Omited_answer == i && needs_cross)
@@ -574,7 +575,7 @@ if (!label_less && (pvt.order_num != -1000)){
             {
                 go.GetComponent<dest_move>().Move = true;
                 go.GetComponent<dest_move>().DestPos = go.transform.position;
-                go.transform.position = spawn_location.transform.position;
+                go.transform.position =lvl.Pivots.ElementAt(rand_indexes[i-1]).pivot_pos*2;
             }
             if (pvt.pivot_type == Pivot_type.ClockWise)
             {
@@ -797,7 +798,7 @@ go
                 30f);
 if (norm_dist<45 && norm_dist>5){
 			next_speed=  Mathf
-                .Clamp(next_speed*2f,
+                .Clamp(next_speed*3f,
                 7f,
                 30f);
 			;

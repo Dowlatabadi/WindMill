@@ -32,8 +32,8 @@ Transform screen;
         var width_unit = width / columns;
         var height_unit = height / rows;
         var left_bottom =
-            new Vector2(this.transform.position.x - width / 2,
-                this.transform.position.y - height / 2);
+            new Vector2(transform.Find("Screen").position.x - width / 2,
+                transform.Find("Screen").position.y - height / 2);
 		//////
         int i = 0;
 		
