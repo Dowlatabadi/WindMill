@@ -17,7 +17,8 @@ public class rotate : MonoBehaviour
     {
         GetComponent<Animator>().SetBool("should_blibk", true);
     }
-	 public void blink_off()
+
+    public void blink_off()
     {
         GetComponent<Animator>().SetBool("should_blibk", false);
     }
@@ -39,7 +40,7 @@ public class rotate : MonoBehaviour
 
     public void start()
     {
-//        UnityEngine.Debug.Log($"started calls");
+        //        UnityEngine.Debug.Log($"started calls");
         rotationSign = 1;
         stopped = false;
         pivot
@@ -70,11 +71,27 @@ public class rotate : MonoBehaviour
         child_transform.position = pivot_pos + dis;
         if (clockwise)
         {
+            if (!pivot1.GetComponent<pivotActions>().intro)
+            {
+                transform
+                    .Find("mill")
+                    .gameObject
+                    .GetComponent<SpriteRenderer>()
+                    .color = Color.red;
+            }
             rotationSign = 1;
             // pivot.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1); // Set to opaque bla
         }
         else
         {
+            if (!pivot1.GetComponent<pivotActions>().intro)
+            {
+                transform
+                    .Find("mill")
+                    .gameObject
+                    .GetComponent<SpriteRenderer>()
+                    .color = Color.blue;
+            }
             rotationSign = -1;
             // pivot.GetComponent<SpriteRenderer>().color = new Color(0, 82f/255f, 1); // Set to opaque bla
         }
