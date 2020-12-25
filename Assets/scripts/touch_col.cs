@@ -21,6 +21,7 @@ public class touch_col : MonoBehaviour
             if (hit.collider != null && hit.collider.transform == this.transform
             )
             {
+				Debug.Log("touched");
 				var gamemode = Camera.main.GetComponent<game1_manager>().gamemode;
         var AccessModeGame =
             (
@@ -40,11 +41,13 @@ public class touch_col : MonoBehaviour
                     )
                 )
                 {
+				Debug.Log("touched2");
+
                     var cyl_parent =
                         GameObject.FindGameObjectsWithTag("cylinderparent")[0];
                     cyl_parent
                         .GetComponent<rotate>()
-                        .set_pivot(this.transform.parent.gameObject, false);
+                        .set_pivot(this.transform.parent.gameObject, transform.parent.gameObject.tag=="clockwise");
                     cyl_parent.transform.eulerAngles =
                         new Vector3(cyl_parent.transform.eulerAngles.x,
                             cyl_parent.transform.eulerAngles.y,

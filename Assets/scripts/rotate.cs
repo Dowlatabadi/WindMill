@@ -53,7 +53,26 @@ public class rotate : MonoBehaviour
     public void SPAWN_pivot(GameObject pivot1)
     {
         pivot = pivot1;
+if (!pivot1.GetComponent<pivotActions>().intro)
+            {
+				if (pivot1.tag=="clockwise")
+				{
+transform
+                    .Find("mill")
+                    .gameObject
+                    .GetComponent<SpriteRenderer>()
+                    .color = Color.red;
 
+				}
+				else
+				{
+					 transform.Find("mill")
+                    .gameObject
+                    .GetComponent<SpriteRenderer>()
+                    .color = Color.blue;
+				}
+                
+            }
         var pivot_pos = pivot.transform.position;
         transform.position = pivot_pos;
         // UnityEngine.Debug.Log (pivot_pos);
@@ -78,6 +97,7 @@ public class rotate : MonoBehaviour
                     .gameObject
                     .GetComponent<SpriteRenderer>()
                     .color = Color.red;
+					Debug.Log("should be red");
             }
             rotationSign = 1;
             // pivot.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1); // Set to opaque bla
@@ -91,6 +111,8 @@ public class rotate : MonoBehaviour
                     .gameObject
                     .GetComponent<SpriteRenderer>()
                     .color = Color.blue;
+					Debug.Log("should be blue");
+
             }
             rotationSign = -1;
             // pivot.GetComponent<SpriteRenderer>().color = new Color(0, 82f/255f, 1); // Set to opaque bla

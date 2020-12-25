@@ -77,7 +77,7 @@ Transform screen;
             var temp =
                 new Vector2((col_num - 1) * width_unit + width_unit / 2,
                     (row_num - 1) * height_unit + height_unit / 2);
-            UnityEngine.Debug.Log($"screen1 {temp}");
+            //UnityEngine.Debug.Log($"screen1 {temp}");
 
             return temp + left_bottom;
         }

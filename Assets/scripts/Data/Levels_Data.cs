@@ -494,7 +494,9 @@ new Vector2(6,2),
 ),
 (33,8,1,.4f,game_mode.millCreataion_orderise,
 "Be careful about loops and green ones!","empty",
-new List<(int x,int y)>{(107,151),(107,33),(168,95),(218,70),(274,117),(217,118),(165,41),(165,142),(275,72)}.Select(t=>(t.x,t.y,true)).ToList()
+new List<(int x,int y)>{(107,151),(107,33),(168,95),(218,70),(274,117),(217,118),(165,41),(165,142),(275,72)}
+.add_offset((-20,0))
+.Select(t=>(t.x,t.y,true)).ToList()
 
 ,
 3,

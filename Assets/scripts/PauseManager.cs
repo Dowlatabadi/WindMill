@@ -31,9 +31,13 @@ public class PauseManager : MonoBehaviour
 
     float thinking_duration = 0;
 
-    bool Paused = false;
+     bool Paused = false;
 
-    bool Playing = false;
+     bool Playing = false;
+
+public bool playing_or_Paused(){
+	return  Playing || Paused;
+}
 
     public void Plays()
     {

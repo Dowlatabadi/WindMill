@@ -33,6 +33,12 @@ public void Update_Notations(){
             
         }
 }
+public void lvl_btn_shines(){
+	 lvl_indicator.GetComponent<Animator>().SetBool("shines",true) ;
+}
+public void lvl_btn_off(){
+	 lvl_indicator.GetComponent<Animator>().SetBool("shines",false);
+}
     // Update is called once per frame
     void Update()
     {
