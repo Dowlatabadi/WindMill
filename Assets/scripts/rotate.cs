@@ -61,7 +61,7 @@ transform
                     .Find("mill")
                     .gameObject
                     .GetComponent<SpriteRenderer>()
-                    .color = Color.red;
+                    .color = clockwise_color;
 
 				}
 				else
@@ -69,7 +69,7 @@ transform
 					 transform.Find("mill")
                     .gameObject
                     .GetComponent<SpriteRenderer>()
-                    .color = Color.blue;
+                    .color = counterclockwise_color;
 				}
                 
             }
@@ -78,7 +78,8 @@ transform
         // UnityEngine.Debug.Log (pivot_pos);
         // UnityEngine.Debug.Log(transform.position);
     }
-
+public Color clockwise_color;
+public Color counterclockwise_color;
     public void set_pivot(GameObject pivot1, bool clockwise)
     {
         pivot = pivot1;
@@ -96,7 +97,7 @@ transform
                     .Find("mill")
                     .gameObject
                     .GetComponent<SpriteRenderer>()
-                    .color = Color.red;
+                    .color = clockwise_color;
 					Debug.Log("should be red");
             }
             rotationSign = 1;
@@ -110,8 +111,7 @@ transform
                     .Find("mill")
                     .gameObject
                     .GetComponent<SpriteRenderer>()
-                    .color = Color.blue;
-					Debug.Log("should be blue");
+                    .color =counterclockwise_color;
 
             }
             rotationSign = -1;

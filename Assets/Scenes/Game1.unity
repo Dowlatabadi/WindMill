@@ -3160,6 +3160,36 @@ PrefabInstance:
       propertyPath: speed
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 4510869152659804131, guid: 4439f3dd142bbadf0ad8284138540079,
+        type: 3}
+      propertyPath: clockwise_color.r
+      value: 0.7735849
+      objectReference: {fileID: 0}
+    - target: {fileID: 4510869152659804131, guid: 4439f3dd142bbadf0ad8284138540079,
+        type: 3}
+      propertyPath: clockwise_color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4510869152659804131, guid: 4439f3dd142bbadf0ad8284138540079,
+        type: 3}
+      propertyPath: clockwise_color.b
+      value: 0.21530476
+      objectReference: {fileID: 0}
+    - target: {fileID: 4510869152659804131, guid: 4439f3dd142bbadf0ad8284138540079,
+        type: 3}
+      propertyPath: counterclockwise_color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4510869152659804131, guid: 4439f3dd142bbadf0ad8284138540079,
+        type: 3}
+      propertyPath: counterclockwise_color.g
+      value: 0.46234277
+      objectReference: {fileID: 0}
+    - target: {fileID: 4510869152659804131, guid: 4439f3dd142bbadf0ad8284138540079,
+        type: 3}
+      propertyPath: counterclockwise_color.b
+      value: 0.8980392
+      objectReference: {fileID: 0}
     - target: {fileID: 4510869152659804133, guid: 4439f3dd142bbadf0ad8284138540079,
         type: 3}
       propertyPath: m_Name
