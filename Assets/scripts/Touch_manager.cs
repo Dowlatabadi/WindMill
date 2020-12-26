@@ -125,9 +125,20 @@ public bool cross_move=false;
                                 .FindGameObjectsWithTag("cylinderparent")[0];
 
                         var currpos = Input.mousePosition;
-                        var amount =
-                            Mathf
-                                .Clamp(.002f * (currpos.y - drag_pos.y),
+                        var final_diff =0f;
+						var delta=currpos-drag_pos;
+						
+						if (Mathf.Abs(delta.x)>Mathf.Abs(delta.y))
+						{
+final_diff=-delta.x;
+						}
+						else{
+final_diff=delta.y;
+
+						}
+						
+				 var amount =Mathf
+                                .Clamp(.002f *final_diff,
                                 -6f,
                                 6f);
                         mill.transform.eulerAngles =
