@@ -242,7 +242,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 0.423
+  m_FillAmount: 0.518
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -1239,6 +1239,8 @@ MonoBehaviour:
   speed: 9
   pivot: {fileID: 1190577074}
   stopped: 0
+  clockwise_color: {r: 0, g: 0, b: 0, a: 0}
+  counterclockwise_color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!4 &1002210440
 Transform:
   m_ObjectHideFlags: 0
@@ -1378,7 +1380,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 0.411
+  m_FillAmount: 0.512
   m_FillClockwise: 0
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -1824,6 +1826,8 @@ MonoBehaviour:
   speed: 9
   pivot: {fileID: 751088645}
   stopped: 0
+  clockwise_color: {r: 0, g: 0, b: 0, a: 0}
+  counterclockwise_color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!4 &1369515677
 Transform:
   m_ObjectHideFlags: 0
@@ -2514,7 +2518,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 0.423
+  m_FillAmount: 0.512
   m_FillClockwise: 0
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -2909,6 +2913,8 @@ MonoBehaviour:
   speed: 9
   pivot: {fileID: 314547560}
   stopped: 0
+  clockwise_color: {r: 0, g: 0, b: 0, a: 0}
+  counterclockwise_color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!4 &1701422849
 Transform:
   m_ObjectHideFlags: 0
@@ -3048,7 +3054,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 0.559
+  m_FillAmount: 0.505
   m_FillClockwise: 0
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -3759,7 +3765,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 0.417
+  m_FillAmount: 0.494
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0

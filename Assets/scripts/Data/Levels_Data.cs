@@ -41,7 +41,7 @@ new Vector2(-1,2),
 ),
 (3,3,0,.35f,game_mode.millCreataion_orderise,
 "To solve puzzles you need to find start pivot which would form the provided order (n should be met as the nth pivot)\n-Touch to choose which pivot is your chosen pivot to start from(1st pivot).\n-You always can drag up/down to change mill starting angle ",
-"Well done! you got the idea.",
+"empty",
 Helper.get_asymetric_poses(70,3).Select(t=>(t.x,t.y,true)).ToList(),5,
 new Vector2(1,0),
 0

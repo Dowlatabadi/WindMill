@@ -13,6 +13,7 @@ TagManager:
   - Settings
   - cross
   - flash_go
+  - guide
   layers:
   - Default
   - TransparentFX

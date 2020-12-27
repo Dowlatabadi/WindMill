@@ -1350,7 +1350,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -96.57, y: 1.57}
+  m_AnchoredPosition: {x: -96.57, y: 0}
   m_SizeDelta: {x: 0, y: 78.098145}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &786002201
@@ -1366,7 +1366,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6037736, g: 0.17087933, b: 0.29061618, a: 0.6313726}
+  m_Color: {r: 0.06769404, g: 0, b: 0.6037736, a: 0.36862746}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2324,6 +2324,8 @@ MonoBehaviour:
   info_btn: {fileID: 1108832952}
   check_transparency: 60
   gamemode: 0
+  guide_prefab: {fileID: 4978442649846210357, guid: 283555f344fc9bf85946619fbe780937,
+    type: 3}
   speed_up_fact: 55
   debug: 0
 --- !u!82 &1628066471
@@ -2439,7 +2441,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 6fbdba1dea24c1b8a880f256d34ba699, type: 3}
   - {fileID: 0}
   - {fileID: 8300000, guid: 6028e5e512e3c1b139d8c3c308013da7, type: 3}
-  - {fileID: 8300000, guid: 7cd60af8e521eb034a51905bfd9fe890, type: 3}
+  - {fileID: 8300000, guid: 317c68cf7b32589818974db63b282718, type: 3}
   - {fileID: 8300000, guid: 37e1f7d90a4790cf8a3b1cd3768329b4, type: 3}
   - {fileID: 0}
   - {fileID: 0}

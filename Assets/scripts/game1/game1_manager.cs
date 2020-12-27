@@ -63,6 +63,9 @@ public class game1_manager : MonoBehaviour
 
     public void first_button_pressed()
     {
+		
+remove_guid();
+		
         info_btn.gameObject.SetActive(false);
         First_button.gameObject.SetActive(false);
         var pivot_creation =
@@ -197,7 +200,7 @@ public class game1_manager : MonoBehaviour
             var wait = 0;
 
             //            UnityEngine.Debug.Log($"<color=white>white</color>");
-            StartCoroutine(wait_and_go_next(3));
+            StartCoroutine(wait_and_go_next(2));
 
             return;
         }
@@ -543,6 +546,10 @@ public class game1_manager : MonoBehaviour
                 .Select((x, ind) => ind)
                 .OrderBy(x => UnityEngine.Random.value)
                 .ToArray();
+				if (lvl.header_text=="Intro.."){
+
+spawn_guid(lvl.Pivots.ElementAt(0).pivot_pos);
+		}
         foreach (var pvt in lvl.Pivots)
         {
             if (lvl.Omited_answer == i && needs_cross)
@@ -724,7 +731,7 @@ public class game1_manager : MonoBehaviour
         }
 
         cyl_parent.GetComponent<rotate>().SPAWN_pivot(starting_pivot);
-
+		
         //move effect initial
         if (failure_counter == 0)
         {
@@ -749,10 +756,17 @@ public class game1_manager : MonoBehaviour
                 .GetComponent<Animator>()
                 .SetBool("blink", true);
         }
+		
     }
 
     public game_mode gamemode;
-
+    public GameObject guide_prefab;
+public void spawn_guid(Vector3 position){
+	GameObject.Instantiate(guide_prefab,position+new Vector3(0.1f,-.2f,0),Quaternion.identity);
+}
+public void remove_guid(){
+	GameObject.Destroy( GameObject.FindWithTag("guide"));
+}
     public void MillSpeedAdjust()
     {
         if (primary_pvt == null)
