@@ -40,7 +40,7 @@ new Vector2(-1,2),
 "Intro.."
 ),
 (3,3,0,.35f,game_mode.millCreataion_orderise,
-"To solve puzzles you need to find start pivot which would form the provided order (n should be met as the nth pivot)\n-Touch to choose which pivot is your chosen pivot to start from(1st pivot).\n-You always can drag up/down to change mill starting angle ",
+"To solve puzzles you need to find start pivot which would form the provided order (n should be seen as the nth pivot)\n-Touch to choose which pivot is your chosen pivot to start from(1st pivot).\n-You always can drag up/down to change mill starting angle ",
 "empty",
 Helper.get_asymetric_poses(70,3).Select(t=>(t.x,t.y,true)).ToList(),5,
 new Vector2(1,0),
@@ -253,7 +253,7 @@ new Vector2(1,-1),
 ,
 "Lvl 13."
 ),
-(16,1,3,.4f,game_mode.millCreataion_orderise,
+(16,1,3,.5f,game_mode.millCreataion_orderise,
 "Random one!","empty",
 new List<(int x,int y)>{(268,56),(152,46),(71,86),(215,107)}.Select(t=>(t.x,t.y,true)).ToList()
 ,
@@ -294,7 +294,7 @@ new Vector2(1,-3),
 ),
 
 (19,0,6,.5f,game_mode.millCreataion_orderise,
-"Let's rotate more in reverse!","empty",
+"A triangle consisted of triangles!","empty",
 (Helper.get_asymetric_poses(50,3,6f))
 .plus_points(Helper.get_asymetric_poses(30,3,8f))
 
