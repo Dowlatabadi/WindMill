@@ -338,7 +338,7 @@ new Vector2(1,-1),
 ),
 
 (22,3,3,.4f,game_mode.millCreataion_orderise,
-"Try to not be traped in loops!","empty",
+"Try not to be traped in loops!","empty",
 new List<(int x,int y)>{(101,136),(184,48),(215,115),(64,57),(171,58),(259,92)}.Select(t=>(t.x,t.y,true)).ToList()
 ,
 3,

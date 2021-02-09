@@ -40,7 +40,6 @@ public class rotate : MonoBehaviour
 
     public void start()
     {
-        //        UnityEngine.Debug.Log($"started calls");
         rotationSign = 1;
         stopped = false;
         pivot
@@ -75,8 +74,6 @@ transform
             }
         var pivot_pos = pivot.transform.position;
         transform.position = pivot_pos;
-        // UnityEngine.Debug.Log (pivot_pos);
-        // UnityEngine.Debug.Log(transform.position);
     }
 public Color clockwise_color;
 public Color counterclockwise_color;
@@ -101,7 +98,6 @@ public Color counterclockwise_color;
 					Debug.Log("should be red");
             }
             rotationSign = 1;
-            // pivot.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1); // Set to opaque bla
         }
         else
         {

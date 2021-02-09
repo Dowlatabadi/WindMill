@@ -231,10 +231,7 @@ var gen=$"new List<(int x,int y)>{{{System.String.Join(",", res.Select(tt=>Helpe
 
 			}
 
-            // UnityEngine
-            //     .Debug
-            //     .Log("---------------------------ommited: " + pivot_cration_answer);
-
+           
             Pivots = labeled_result;
             this.Known_pivots = labeled_number;
             this.gamemode = game_mode;

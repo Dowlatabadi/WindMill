@@ -85,7 +85,6 @@ public bool cross_move=false;
             var canvas = GameObject.FindGameObjectWithTag("Canvas");
             if (is_mouse_in_ui(canvas))
             {
-            //    Debug.Log("ignored!!!!!!!!!00 ui");
                 return;
             }
         }
@@ -169,7 +168,6 @@ final_diff=delta.y;
                     if ((Input.GetMouseButton(0) && Input.GetMouseButtonDown(0)) &&
                         !dragging)
                     {
-					//	UnityEngine.Debug.Log("started for cpivot creation");
                         dragging = true;
                         drag_pos = Input.mousePosition;
                     }
@@ -177,7 +175,6 @@ final_diff=delta.y;
                         dragging)
                     {
  var currpos = Input.mousePosition;
-						//UnityEngine.Debug.Log("dragging pivot creation "+currpos.x);
 var move_vect=Vector3.Normalize(currpos - drag_pos);
                       
 								move_cross(move_vect);

@@ -10,10 +10,10 @@ public class settings_loads : MonoBehaviour
         var music_name = Camera.main.GetComponent<save_manager>().get_music();
         var music_vol =
             Camera.main.GetComponent<save_manager>().get_music_vol();
-UnityEngine.Debug.Log($"saved music is {music_vol}");
+// UnityEngine.Debug.Log($"saved music is {music_vol}");
 
         var fx_vol = Camera.main.GetComponent<save_manager>().get_effects_vol();
-UnityEngine.Debug.Log($"saved fx is {fx_vol}");
+// UnityEngine.Debug.Log($"saved fx is {fx_vol}");
 
         var res = 0;
         var saved_side = (Camera.main.GetComponent<save_manager>().get_ui_direction()=="Lefties")?0:1;

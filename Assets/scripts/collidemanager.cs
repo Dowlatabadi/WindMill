@@ -20,7 +20,6 @@ public class collidemanager : MonoBehaviour
 	void OnTriggerEnter2D(Collider2D col)
 	{
 		
-		// Debug.Log("mill touched");
 	}
 
 

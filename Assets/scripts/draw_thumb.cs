@@ -55,7 +55,6 @@ Transform screen;
                 p1_go.GetComponent<Image>().color = Color.blue;
             }
             p1_go.transform.localPosition = map_scr(p1.x, p1.y, p1.centerised,width_unit,height_unit,left_bottom);
-            //UnityEngine.Debug.Log($"position {map_scr(p1.x, p1.y,p1.centerised)}");
         }
 		Color hard_color=new Color32(0,0,0,0);
 		if (hardness<.4f )
@@ -74,23 +73,22 @@ Transform screen;
        
         if (centerised)
         {
-            var temp =
+            var temp1 =
                 new Vector2((col_num - 1) * width_unit + width_unit / 2,
                     (row_num - 1) * height_unit + height_unit / 2);
-            //UnityEngine.Debug.Log($"screen1 {temp}");
 
-            return temp + left_bottom;
+            return temp1 + left_bottom;
         }
         else
         {
             var random_x_off = UnityEngine.Random.Range(0f, width_unit);
             var random_y_off = UnityEngine.Random.Range(0f, height_unit);
-            var temp =
+            var temp1 =
                 new Vector2((col_num - 1) * width_unit + random_x_off,
                     (row_num - 1) * height_unit + random_y_off);
-            UnityEngine.Debug.Log($"screen {temp}");
+            // UnityEngine.Debug.Log($"screen {temp1}");
 
-            return temp + left_bottom;
+            return temp1 + left_bottom;
         }
     }
 

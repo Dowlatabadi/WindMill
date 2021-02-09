@@ -36,12 +36,12 @@ namespace LinePoint
 
         public static float LinesAngelBetween(Line line1, Line l2)
         {
-            var angle1 =
+            var angle =
                 Mathf
                     .Atan((l2.m_slope - line1.m_slope) /
                     (1f + l2.m_slope * line1.m_slope));
 
-            return ((angle1 * 180) / Mathf.PI);
+            return ((angle* 180) / Mathf.PI);
         }
 public static float FindNearestPointOnLine(Vector2 origin, Vector2 direction, Vector2 point)
 {
@@ -56,9 +56,7 @@ var vatar=(point-origin).magnitude;
         public static float LinePointGetDist(Vector2 point, Line line)
         {
             var b1 = point.y + (point.x / line.m_slope);
-
-            //UnityEngine.Debug.Log(b1);
-            var x_collisionPoint =
+ var x_collisionPoint =
                 (b1 - line.b) / (line.m_slope + (1 / line.m_slope));
             var y_colltionPoint = line.m_slope * x_collisionPoint + line.b;
             return Vector2
