@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b1bf842e4093d1c52b25caff95047537
+guid: e05a1a5da30fb90a3a9d6873ecf68f0e
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -8,9 +8,9 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: Agan?
+  fontName: Arial
   fontNames:
-  - Agan?
+  - Arial
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
